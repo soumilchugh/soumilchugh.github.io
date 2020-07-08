@@ -292,31 +292,34 @@ style='font-size:24.0pt;line-height:115%'> DAIC-WOZ Database</span></span></p>--
 <br>
 <p>  <center> <f5> Eye Tracking XR Dataset </center> </f5> </p>
 <p> <f2> Database Description </f2> </p>
-<p> <f3> <br> Eye Tracking XR dataset is a data set of eye images captured using a virtual-reality HMD with two eye-facing cameras at a frame rate of 
+<p> <f3> <br> Eye Tracking XR dataset is a data set of eye images (left and right eyes) captured using a virtual-reality HMD with two eye-facing cameras at a frame rate of 
 	120 Hz with five light sources for illumination.  This dataset is labelled with information about reflections of light sources on the cornea (corneal reflections)
-	as well as informaton needed to fit an ellipse around the pupil including the pupil center. The module used to collect the eye images is manufactured by Pupil Labs and is available here. 
+	as well as informaton needed to fit an ellipse around the pupil including the pupil center. The module used to collect the eye images is manufactured by <a href="https://pupil-labs.com/products/vr-ar/">Pupil Labs</a>. 
 	HTC Vive VR headset was used as the VR HMD. 
-	<p>For each of the eye images in the dataset, the following information is available 
+	<p>For each of the eye images in the dataset, the following information is available: 
 <ul>
   	<li>Corneal Reflection Locations and its Correspondence with light source (list of x,y coordinates)</li>
   	<li>Pupil Center Locations (x,y coordinate)</li>
-	<li>Pupil Boundary Information (list of x,y coordinates)</li>
+	<li>Pupil Boundary Locations (list of x,y coordinates)</li>
 	<li>Angle and Axis of the fitted pupil ellipse</li>
 	<li>Validity of frame in the context of eye tracking (1 or 0)</li>
 
 </ul>
-	<p>The dataset was recorded using 15 people. Apart from these 15 people, images of another 10 people were used that are made available by  
+	<p>The dataset was recorded using 15 people. Apart from these 15 people, images of another 10 people are used, made available by  
 	<a href="https://research.nvidia.com/publication/2019-05_NVGaze%3A-An-Anatomically-Informed">NVIDIA</a>. 
-	The Eye Tracking XR database can be downloaded by <a href="uoft.png" download="uoftlogo">clicking here</a>. The downloaded zip folder contains images and a label json file with information
+	The Eye Tracking XR dataset can be downloaded by <a href="uoft.png" download="uoftlogo">clicking here</a>. The downloaded zip folder contains images and a label json file with information
 	about about every frame in the image.</p>
 	
-	<p>Please note that, unfortunately, due to consent constraints we are only allowed to distribute data recorded by us and not the one from NVIDIA. You have to separately download
+	<p>Please note that, unfortunately, due to license constraints, we are only allowed to distribute data recorded by us and not the one from NVIDIA. You have to separately download
 	the VR images from the website linked above. However, we make label information available for the NVIDIA images used in our dataset.</p>
 	
 <p> <f2> Dataset Usage  </f2></p>
 
 <p> <f3>  
-	The naming convention of the labelled images follows 'person_frameNumber_ValidityOfImage'. 
+	The naming convention of the labelled images follows 'person_frameNumber_ValidityOfImage'. 'person' is replaced with Pn where n ranges from 1-15 representing the 15 different people in our dataset.  
+	In case of images from NVIDIA, we use'nvidia-Pn' where n ranges from 0-10 representing the 10 different people in the NVIDIA dataset.
+	
+	<p>'frameNumber' represents the frame number in the eye video recordings that was labelled. 
 	
 	<p>'ValidityOfImage' can be 'pos' or 'neg'. A frame is said to be 'neg' if
 	more than half the pupil is occluded as a result of blinking or eye lid occlusion. Also, if less than two corneal reflections instead of five are present in the eye image, 
@@ -327,9 +330,9 @@ style='font-size:24.0pt;line-height:115%'> DAIC-WOZ Database</span></span></p>--
 	corneal reflection as a result of the topmost light source in the Pupil Labs module. The other four elements in the list, correspond to the four light sources in an anticlock wise direction starting from the top light source.	
 	There are scenarios when not all five corneal reflection are present in the image. The missing corneal reflection is denoted by -1 in the label file. </p>
 	
-	<p>'frameNumber' represents the sequence in the eye video recordings that was labelled. 
+	<p>For any questions, related to this dataset, please email to this <a href="mailto:soumil.chugh@gmail.com">e-mail </a> address. </f3></p>
 	
-	For any questions, related to this dataset, please email to this <a href="mailto:soumil.chugh@gmail.com">e-mail </a> address. </f3></p>
+	</p>
 <br>
 	
 <p> <f2> Examples of Labelled Images </f2></p>

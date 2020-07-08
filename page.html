@@ -290,28 +290,50 @@ style='font-size:24.0pt;line-height:115%'> DAIC-WOZ Database</span></span></p>--
 
 <br>
 <br>
-<p>  <center> <f5> Eye Tracking Dataset </center> </f5> </p>
+<p>  <center> <f5> Eye Tracking XR Dataset </center> </f5> </p>
 <p> <f2> Database Description </f2> </p>
-<p> <f3> <br> Eye Tracking for XR systems requires accurate estimation of eye features such as pupil center and corneal reflection locations. Another important requirement
-	is accurate </br></f3>
-	
-	 <img src="uoft.png" height="300" width="200",class="center"/> 
-	<ul>
-  <li>Frame Valid: 1, 0</li>
-  <li>Corneal Reflection Locations</li>
-  <li>Pupil Center Locations</li>
+<p> <f3> <br> Eye Tracking XR dataset is a data set of eye images captured using a virtual-reality HMD with two eye-facing cameras at a frame rate of 
+	120 Hz with five light sources for illumination.  This dataset is labelled with information about reflections of light sources on the cornea (corneal reflections)
+	as well as informaton needed to fit an ellipse around the pupil including the pupil center. The module used to collect the eye images is manufactured by Pupil Labs and is available here. 
+	HTC Vive VR headset was used as the VR HMD. 
+	For each of the eye images in the dataset, the following information is available 
+<ul>
+  	<li>Corneal Reflection Locations and its Correspondence with light source (list of x,y coordinates)</li>
+  	<li>Pupil Center Locations (x,y coordinate)</li>
+	<li>Pupil Boundary Information (list of x,y coordinates)</li>
+	<li>Angle and Axis of the fitted pupil ellipse</li>
+	<li>Validity of frame in the context of eye tracking (1 or 0)</li>
+
 </ul>
+	The dataset was recorded using 15 people. Apart from these 15 people, images of another 10 people were used that are made available by NVIDIA 
+	<a href="https://research.nvidia.com/publication/2019-05_NVGaze%3A-An-Anatomically-Informed">download link</a>. 
+	The Eye Tracking XR database can be downloaded by <a href="uoft.png" download="uoftlogo">clicking here</a>. The downloaded zip folder contains images and a label json file with information
+	about about every frame in the image.
+	Please note that, unfortunately, due to consent constraints we are only allowed to distribute data recorded by us and not the one from NVIDIA. You have to separately download
+	the VR images from the website linked above. However, we make label information available for the NVIDIA images used in our dataset.
 	
-<p> <f2> Download  </f2></p>
+<p> <f2> Dataset Usage  </f2></p>
 
-<p> <f3> To be able to download the DAIC-WOZ database, please download here <a href="uoft.png" download="uoftlogo">download link</a>  to this <a href="mailto:boberg@ict.usc.edu">e-mail </a> address. </f3> Please note that, unfortunately, due to consent constraints we are only allowed to distribute the data to academics and other non-profit researchers. Please use your academic e-mail address when requesting the data download.</f3></p>
+<p> <f3>  
+	The naming convention of the labelled images follows 'person_frameNumber_ValidityOfImage'. 
+	
+	'ValidityOfImage' can be 'pos' or 'neg'. A frame is said to be 'neg' if
+	more than half the pupil is occluded as a result of blinking or eye lid occlusion. Also, if less than two corneal reflections instead of five are present in the eye image, 
+	then we label that image as 'neg'. The eye feature labels (corneal reflections and pupil) for the 'neg' images are set to -1. 
+	
+	For 'pos'/valid images, an important information provided is regarding Corneal reflections. Based on the placement of light sources in the Pupil labs module, we label and save the
+	the locations of corneal reflections. This information for every frame is saved in the form of a list in the label file. The first element in the list corresponds to the 
+	corneal reflection as a result of the topmost light source in the Pupil Labs module. The other four elements in the list, correspond to the four light sources in an anticlock wise direction starting from the top light source.	
+	There are scenarios when not all five corneal reflection are present in the image. The missing corneal reflection is denoted by -1 in the label file. 
+	
+	'frameNumber' represents the sequence in the eye video recordings that was labelled. 
+	
+	For any questions, related to this dataset, please email to this <a href="mailto:soumil.chugh@gmail.com">e-mail </a> address. </f3>
 <br>
 
-<p> <f2> References </f2></p>
-<p> <f4><a href="//schererstefan.net/assets/files/papers/508_Paper.pdf">Gratch J, Artstein R, Lucas GM, Stratou G, Scherer S, Nazarian A, Wood R, Boberg J, DeVault D, Marsella S, Traum DR. The Distress Analysis Interview Corpus of human and computer interviews. InLREC 2014 May (pp. 3123-3128)</a> </f4></p>
+<p> <f2> Examples of Labelled Images </f2></p>
 
-<p><f4><a href="//dl.acm.org/citation.cfm?id=2617415">DeVault, D., Artstein, R., Benn, G., Dey, T., Fast, E., Gainer, A., Georgila, K., Gratch, J., Hartholt, A., Lhommet, M., Lucas, G., Marsella, S., Morbini, F., Nazarian, A., Scherer, S., Stratou, G., Suri, A., Traum, D., Wood, R., Xu, Y., Rizzo, A., and Morency, L.-P. (2014). “SimSensei kiosk: A virtual human interviewer for healthcare decision support”. In Proceedings of the 13th International Conference on Autonomous Agents and Multiagent Systems (AAMAS’14), Paris</a> </f4></p>
-<br>
+<img src="uoft.png" height="300" width="200",class="center"/> 
 
 <!--
 Links</span></span></p>
@@ -330,14 +352,6 @@ Following soon.
 -->
 
 </div>
-
-<div id="footer">
-            <f3><a href="//ict.usc.edu/prototypes/simsensei">SimSensei Project</a> | <a href="//ict.usc.edu/">Institute for Creative Technologies</a> | <a href="//www.usc.edu/">University of Southern California</a> </f3>
-		<h4>Copyright 2016 ict - All Rights Reserved</h4>
-	</div>
-        
-</div> <!-- end wrapper -->
-
 
 </body>
 

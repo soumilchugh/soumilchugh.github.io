@@ -1,4 +1,4 @@
-particlesJS("particles-js", {
+particlesJS("particles-js-canvas-el", {
   "particles": {
     "number": {
       "value": 100,

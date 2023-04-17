@@ -1,53 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="keywords" content="Soumil Chugh, University of Toronto, Huawei, JanaCare, Panjab University, UofT, GPx, GeneralPrognostics, Eye Tracking, Computer Vision, Deep Learning, Gaze Estimation ">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tsparticles Background Animation</title>
+    <script src="tsparticles.bundle.min.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-  <title>
-    
-       Soumil Chugh
-   
-  </title>
-  <meta itemprop="description" name="description" content="Human Computer Interaction Researcher @ Huawei, Toronto, Canada." />
-  <link rel="canonical" href="https://soumilchugh.github.io/">
-
-  <!--Open Graph Related Stuff-->
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Soumil Chugh">
-  <meta property="og:url" content="https://soumilchugh.github.io/">
-  <meta property="og:site_name" content="Soumil Chugh">
-  <meta property="og:image" content="https://soumilchugh.github.io/bmw-car.jpg"/>
-  <meta property="og:image:url" content="https://soumilchugh.github.io/bmw-car.jpg"/>
-  <meta property="og:description" content="Research Engineer @ Huawei, Toronto, Canada.">
-
-
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <script src="tsparticles.bundle.min.js"></script>
-
-<style>
-    #tsparticles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-</style>
-
+        #tsparticles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="tsparticles"></div>
-      <script>
+    <div id="tsparticles"></div>
+    <script>
         window.addEventListener('load', function () {
             tsParticles.load("tsparticles", {
                 particles: {
@@ -78,131 +57,6 @@
             });
         });
     </script>
-  <nav id="navbar">
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12 col-12">
-        <div id="site-title-container">
-          <a id="site-title" href="">Soumil Chugh</a>
-        </div>
-        <div id="navbar-ul-container">
-          <ul id="navbar-ul">
-            <li class="nav-listitem">
-              <a target="_blank" href="/Resume.pdf">CV</a>
-            </li>
-            <li class="nav-listitem">
-              <a target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Google Scholar</a>
-            </li>
-            <li class="social-media">
-              <a target="_blank" href="https://github.com/soumilchugh" itemprop="sameAs">
-                <i class="fab fa-fw fa-github" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li class="social-media">
-              <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-95b33652/" itemprop="sameAs">
-                <i class="fab fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <hr id="navbar-border">
-  </div>
-</nav>
-
-
-  <div class="container">
-    <div class="content">
-      <div class="container">
-  <div class="row">
-    <!-- Display picture and social media links -->
-    <div class="col-md-4 col-sm-4 col-xs-12">
-      <div class="row">
-        <!-- Display picture -->
-        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0">
-          <img alt="Soumil Chugh" title="Soumil Chugh" id="display-picture" src="https://soumilchugh.github.io/bmw-car.jpg" />
-        </div>
-        
-      </div>
-    </div>
-    <!-- About -->
-    <div class="col-md-8 col-sm-8 col-xs-12">
-      <p>
-        <strong>
-        ABOUT
-          </strong>
-      </p>
-      <p>
-        I am a Research Engineer in the Human Machine Interaction (HMI) Lab at <a href="http://dev3.noahlab.com.hk/index.html">Huawei</a>, Toronto, Canada.
-        Before joining HMI Lab, I completed Masters of Applied Science (MASc) in Computer Engineering under the supervision of <a href="http://www.eecg.utoronto.ca/~jayar/"> Prof Jonathan Rose</a> and 
-        <a href="https://www.uhnresearch.ca/researcher/moshe-eizenman"> Prof Moshe Eizenman</a> from the Electrical and Computer Engineering Department at University of Toronto, Canada.
-        My thesis focussed on designing an Eye-Tracking System for a Virtual Reality (VR) Headset. 
-      </p>
-      <p>
-        <strong>
-        PRIOR
-          </strong>
-      </p>
-      <p>
-        I graduated from Panjab University, India in 2015, with a
-        major in Electronics and Communication. Before purusing my masters at University of Toronto, I worked 
-        as a software and hardware engineer at <a href="http://www.janacare.com/"> Jana Care</a>, India where 
-        I was part of the R&D team that designed and developed FDA approved smartphone enabled portable medical devices.
-      </p>
-      
-      <p>
-        <strong>
-        CURRENT RESEARCH
-          </strong>
-      </p>
-      <p>
-       My main area of research is to design cross-platform camera-based eye tracking systems. The platforms include Virtual Reality headsets, smartphones, laptops/desktops and in-car systems. 
-        While devices such as smartphones and laptops/desktops have in-built RGB webcams that are used for monitoring a person's eye movements, for devices such as VR headsets and in-car systems, an Infrared based optical system is used. 
-        Over the last 4 years, I have filed 3 patents and written 2 papers mainly focussing on algorithm development. The algorithms include traditional computer vision techniques, deep learning-based methods and a hybrid approach. My current research focus is on driver monitoring systems. 
-        The issue with the state-of-the-art eye tracking systems inside a car is their sensitivity towards head movement. We are currently working towards an algorithm that is robust to head movements while also exhibiting the accuracy required by eye tracking inside a car.
-      </p>
-            <p style="margin-top: 20px">
-        Feel free to contact at: <b>soumil dot chugh at gmail dot com</b>
-      </p>
-    </div>
-  </div>
-</div>
-
-<hr />
-<h2>Timeline</h2>
-<p><strong>[Sep 2022]</strong> Filed a patent titled "A Method for Gaze Assisted Mouse Interaction" <br />
-<p><strong>[Aug 2022]</strong> Filed a patent titled "Eye Gaze Tracking System using One Corneal Reflection" <br />
-<p><strong>[Aug 2021]</strong> Started working on designing an eye tracking system for in-car scenario using IR cameras and LEDs <br />
-<p><strong>[July 2021]</strong> Filed a patent titled "Gaze Estimation Systems and Devices". <br />
-<p><strong>[Jan 2021]</strong> Started working on RGB based eye tracking system  <br />
-<p><strong>[Sep 2020]</strong> Succesfully defended my master thesis with an A+ grade. Click <a href="https://www.eecg.utoronto.ca/~jayar/pubs/theses/Chugh/SoumilChugh.pdf"> here</a> to view the thesis <br />
-<p><strong>[Aug 2020]</strong> Joined Human Machine Interaction Lab @Huawei as a Research Engineer.<br />
-<p><strong>[July 2020]</strong> Paper accepted at ICPR 2020.<br />
-<p><strong>[July 2020]</strong> Released the XR Eye Feature Estimation Dataset. Click <a href="https://www.eecg.utoronto.ca/~jayar/datasets/xreyetrack.html"> here</a> to download and know more about the dataset.<br />
-<p><strong>[Sep 2019]</strong> Started Graduate Teaching Assistance for the first year C programming course. <br/>
-<p><strong>[Sep 2018]</strong> Started Masters of Applied Science in Computer Engineering at the University of Toronto. <br />
-<p><strong>[March 2018]</strong> Completed the software design of a now FDA approved <a href="https://www.youtube.com/watch?v=dlgvvrSZJGU"> Robotic system</a> @ Jana Care that measures the average glucose levels for the last 3 months using a drop of blood! <br />
-<p><strong>[April 2018]</strong> Paper titled<a href="https://ieeexplore.ieee.org/abstract/document/8529537"> Effect of Different Signal Processing Techniques on a Calibration Free Pulse Oximeter,</a> accepted @ 3rd International Conference on Convergence in Technology. <br />
-<p><strong>[June 2017]</strong> Completed the development of a prototype called insulin pen cap which measures the time a person injects insulin and syncs the data with a smartphone<br />
-<p><strong>[Dec 2015]</strong> Paper titled <a href="https://ieeexplore.ieee.org/abstract/document/7443576">Low cost calibration free Pulse oximeter</a>, accepted @ Annual IEEE Conference.<br/>
-<p><strong>[Nov 2015]</strong> Paper titled <a href="https://ieeexplore.ieee.org/abstract/document/7432925">Non-invasive hemoglobin monitoring device,</a> accepted @ International Conference on Control Communication & Computing India (ICCC). <br/>
-<p><strong>[Jan 2015] </strong> Started 6 months Internship at Central Scientific Instrumentation Organisation (CSIO-CSIR), Chandigarh, India. <br/>
-<p><strong>[Aug 2014]</strong> Paper titled <a href="https://www.semanticscholar.org/paper/Exudates-Segmentation-in-Retinal-Fundus-Images-for-Chugh-Kaur/27346142329ac0641c1eee19502e6997e4235622">Exudates Segmentation in Retinal Fundus Images for the Detection of Diabetic Retinopathy</a>, accepted @ International journal of engineering research and technology. <br/>
-  <br/>
-
-
-  <hr />
-<hr />
-
-
-    </div>
-  </div>
-
-
-
 </body>
 
 </html>
-

@@ -91,7 +91,7 @@ hr {
   left: 0;
   right: 0;
   background-color: #fff;
-  z-index: 1030;
+  z-index: 3;
 }
 
 #site-title-container {
@@ -360,6 +360,7 @@ hr {
 
 .container {
   position: relative;
+  z-index: 2;
 }
 
 #tsparticles {

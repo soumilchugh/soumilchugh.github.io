@@ -143,6 +143,17 @@ hr {
   vertical-align: bottom;
 }
 
+/* Updated media query for #site-title-container */
+@media (max-width: 768px) {
+  #site-title-container {
+    display: block;
+    float: none;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+}
+
 #site-title {
   color: #000;
   font-size: 34px;
@@ -156,6 +167,17 @@ hr {
   float: right;
   margin: 0;
   vertical-align: bottom;
+}
+
+/* Updated media query for #navbar-ul-container */
+@media (max-width: 768px) {
+  #navbar-ul-container {
+    display: block;
+    float: none;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 #navbar-ul {
@@ -216,8 +238,8 @@ hr {
 #display-picture {
   border: 5px solid #f0f0f0;
   margin: 0;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   vertical-align: middle;
   border-radius: 60%;
   display: block;

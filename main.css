@@ -186,8 +186,8 @@ hr {
 #display-picture {
   border: 0;
   margin: 0;
-  max-width: 200px;
-  max-height: 200px;
+  width: 100px;
+  height: 100px;
   vertical-align: middle;
   border-radius: 50%;
   display: block;

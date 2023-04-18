@@ -194,7 +194,7 @@ hr {
 }
 
 #display-picture {
-  border: 0;
+  border: 5px solid #f0f0f0;
   margin: 0;
   width: 300px;
   height: 300px;
@@ -202,6 +202,14 @@ hr {
   border-radius: 50%;
   display: block;
   margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#display-picture:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  border-color: #e0e0e0;
 }
 
 #social-media-ul {

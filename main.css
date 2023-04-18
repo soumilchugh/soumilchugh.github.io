@@ -31,6 +31,13 @@ body {
   background: #fafafa;
 }
 
+/* Add a media query to adjust padding on smaller screens */
+@media (max-width: 768px) {
+  body {
+    padding: 150px 0 0 0;
+  }
+}
+
 .main-content {
   position: relative;
   z-index: 2;
@@ -122,6 +129,14 @@ hr {
   z-index: 3;
 }
 
+/* Add a media query to adjust padding and add box-shadow on smaller screens */
+@media (max-width: 768px) {
+  #navbar {
+    padding: 10px 0 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
 #site-title-container {
   display: inline-block;
   float: left;
@@ -204,7 +219,7 @@ hr {
   width: 300px;
   height: 300px;
   vertical-align: middle;
-  border-radius: 50%;
+  border-radius: 60%;
   display: block;
   margin-bottom: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

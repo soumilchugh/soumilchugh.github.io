@@ -7,13 +7,6 @@ html {
   padding: 0;
 }
 
-.my-image {
-  width: 200px; /* This will make the image responsive */
-  height: 200px; /* This will maintain the aspect ratio */
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .text-background {
   background-color: rgba(255, 255, 255, 1); /* White background with 50% opacity */
   padding: 15px; /* Add some padding around the text */
@@ -34,15 +27,6 @@ body {
 .main-content {
   position: relative;
   z-index: 2;
-}
-
-
-#about-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%;
-  display: block;
-  margin-bottom: 15px;
 }
 
 h1 {
@@ -202,8 +186,12 @@ hr {
 #display-picture {
   border: 0;
   margin: 0;
-  max-width: 100%;
+  max-width: 200px;
+  max-height: 200px;
   vertical-align: middle;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 15px;
 }
 
 #social-media-ul {

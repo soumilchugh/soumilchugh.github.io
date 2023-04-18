@@ -8,7 +8,7 @@ html {
 }
 
 .text-background {
-  background-color: rgba(255, 255, 255, 0.95); /* Adjust opacity to 95% */
+  background-color: rgba(230, 230, 230, 0.9); /* Adjust opacity to 95% */
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -251,16 +251,16 @@ hr {
 /* Media query for small screens (phones) */
 @media (max-width: 480px) {
   #display-picture {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
   }
 }
 
 /* Media query for medium screens (tablets) */
 @media (min-width: 481px) and (max-width: 768px) {
   #display-picture {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
   }
 }
 

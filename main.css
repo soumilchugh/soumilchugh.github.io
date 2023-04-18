@@ -2,9 +2,17 @@ html{height:100%;margin:0;padding:0}body{padding:100px 0 0 0;margin:0;font-famil
 .container {
   position: relative;
 }
-particles-js {
-  position: absolute;
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  z-index: -1;
 }
+
+body {
+    color: #ffffff;
+}
+
+

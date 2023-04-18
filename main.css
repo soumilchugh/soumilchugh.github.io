@@ -8,10 +8,15 @@ html {
 }
 
 .text-background {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.95); /* Adjust opacity to 95% */
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease; /* Add transition for a smooth hover effect */
+}
+
+.text-background:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 body {

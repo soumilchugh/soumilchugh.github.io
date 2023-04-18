@@ -125,7 +125,7 @@ hr {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: rgba(230, 230, 230, 0.9); /* Adjust opacity to 95% */
   z-index: 3;
 }
 
@@ -274,7 +274,7 @@ hr {
 
 #display-picture:hover {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  transform: scale(1.05);
+  transform: scale(1.2);
   border-color: #e0e0e0;
 }
 

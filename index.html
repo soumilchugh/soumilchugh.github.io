@@ -9,13 +9,13 @@
 
   <title>
     
-       Soumil Chugh
+       Soumil Chugh - Engineer (Someone who likes to build things)
    
   </title>
   <meta itemprop="description" name="description" content="Human Computer Interaction Researcher @ Huawei, Toronto, Canada." />
   <link rel="canonical" href="https://soumilchugh.github.io/">
 
-  <!--Open Graph Related Stuff-->
+  <!--MetaData Related Stuff-->
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Soumil Chugh">
@@ -112,7 +112,7 @@
         </div>
 
         <div class="col-md-12 col-sm-12 col-xs-12 col-12">
-          <h4>Patents and Publications</h4>
+          <h3>Patents and Publications</h3>
           <p>
             You can find a list of my patents and publications <a href="publications.html">here</a>.
           </p>
@@ -141,6 +141,7 @@
           color: "#ffffff",
           distance: 150,
           opacity: 0.4
+          random: true
         },
         move: {
           attract: {
@@ -163,9 +164,10 @@
         },
         opacity: {
           value: 0.5
+          random: true
         },
         shape: {
-          type: "circle"
+          type: {"circle", "square", "triangle"}
         },
         size: {
           value: 3

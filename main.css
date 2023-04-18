@@ -238,14 +238,38 @@ hr {
 #display-picture {
   border: 5px solid #f0f0f0;
   margin: 0;
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   vertical-align: middle;
   border-radius: 60%;
   display: block;
   margin-bottom: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+}
+
+/* Media query for small screens (phones) */
+@media (max-width: 480px) {
+  #display-picture {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Media query for medium screens (tablets) */
+@media (min-width: 481px) and (max-width: 768px) {
+  #display-picture {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Media query for large screens (desktops) */
+@media (min-width: 769px) {
+  #display-picture {
+    width: 350px;
+    height: 350px;
+  }
 }
 
 #display-picture:hover {

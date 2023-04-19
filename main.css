@@ -246,6 +246,10 @@ hr {
 }
 
 #display-picture {
+  background-image: url('https://soumilchugh.github.io/bmw.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border: 5px solid #f0f0f0;
   margin: 0;
   width: 350px;

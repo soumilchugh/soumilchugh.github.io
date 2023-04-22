@@ -11,6 +11,25 @@
       margin: 0;
       padding: 0;
     }
+    #project1img {
+  background-image: url('https://soumilchugh.github.io/vr.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 5px solid #f0f0f0;
+  margin: 0;
+  width: 350px;
+  height: 350px;
+  vertical-align: middle;
+  border-radius: 60%;
+  display: block;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+  padding-right: 20px;
+}
     h1 {
       font-size: 36px;
       font-weight: bold;
@@ -33,7 +52,8 @@
       margin-bottom: 30px;
     }
     .col img {
-      max-width: 100%;
+      max-width: 300px;
+      max-height: 300px;
       display: block;
       margin: 0 auto;
       border-radius: 5px;
@@ -74,18 +94,54 @@
     <div class="row">
       <div class="col">
         <a href="project1.html">
-          <img src="project1.jpg" alt="Project 1">
+          <img src="https://soumilchugh.github.io/vr.png" alt="Project 1",id="project1img">
         </a>
-        <h3>Project 1</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget elit quis elit euismod semper. Donec sed ante sit amet lacus rutrum tincidunt. Aliquam in ipsum nec nibh vulputate laoreet a ac justo. Praesent vel blandit ex.</p>
+        <h3>Eye Tracker for a Head Mounted Headset</h3>
+        <p>
+          In head-mounted extended reality (XR) systems, eye tracking technology can unlock the potential for multifocal displays, foveated rendering, and enhanced interaction with 3D content. Achieving accurate gaze estimation at various fixation distances within the 3D scene is vital, as is maintaining precision when the device's position shifts relative to the user's head, which can alter the relationship between the eye-tracking apparatus and the eyes.
+
+          The innovative hybrid approach developed involves the design of a video-based, head-mounted binocular eye-tracking system that leverages a 3D gaze estimation model and a convolutional neural network (CNN) based eye feature extractor. This method effectively addresses the challenges of maintaining accuracy during device movement and estimating gaze at different fixation distances. An impressive accuracy of 1 degree has been achieved, demonstrating the system's robustness. The project's findings have been documented and published in a research paper, contributing to the growing knowledge in this field.
+        </p>
+      </div>
+      <div class="col">
+                
+        <h3>Eye Tracker for Desktops/Mobile Phones</h3>
+        <img src="https://soumilchugh.github.io/phone.png" alt="Project 2",id="project1img">
+
+        <p>
+          Eye trackers generally rely on custom hardware, such as infrared cameras and light sources, for their design. To promote widespread adoption and ubiquity of eye tracking technology, it is crucial to develop algorithms compatible with standard RGB cameras found in desktop computers and smartphones. A neural network-based approach has been devised to estimate an individual's gaze direction using images captured by a low-resolution RGB camera. This method has successfully achieved an accuracy of 4 degrees, demonstrating its potential for broader applications. A patent was succesfully filed.  
+
+          The development of eye tracking algorithms for standard RGB cameras not only expands the potential applications of this technology but also reduces implementation costs. By making eye tracking more accessible, it opens up possibilities for its use in various fields, such as gaming, virtual reality, marketing, and accessibility features for individuals with disabilities. This innovation has the potential to revolutionize user experiences across multiple industries.
+        </p>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+        <a href="project1.html">
+          <img src="https://soumilchugh.github.io/car.jpeg" alt="Project 3",id="project1img">
+        </a>
+        <h3>Eye Tracker for a Car</h3>
+        <p>
+          Driver monitoring systems are increasingly essential components of autonomous and semi-autonomous vehicles. Central to these systems is eye tracking technology, which plays a crucial role in assessing and maintaining driver attentiveness. Numerous patented algorithms have been developed to facilitate the seamless integration of such monitoring systems within vehicles, ensuring enhanced safety and performance.
+
+          In addition to eye tracking, these advanced driver monitoring systems can incorporate other biometric and behavioral data, such as facial expressions, head movements, and even physiological signals, to provide a comprehensive assessment of the driver's state. This multi-modal approach contributes to a more reliable and effective system, enhancing overall road safety and facilitating the transition to autonomous driving technologies.
+        </p>
       </div>
       <div class="col">
         <a href="project2.html">
-          <img src="project2.jpg" alt="Project 2">
+          <img src="https://soumilchugh.github.io/watch.jpeg" alt="Project 4",id="project1img">
         </a>
-        <h3>Project 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget elit quis elit euismod semper. Donec sed ante sit amet lacus rutrum tincidunt. Aliquam in ipsum nec nibh vulputate laoreet a ac justo. Praesent vel blandit ex.</p>
+        <h3>Smartwatch Software designed to collect biomarker data</h3>
+        <p>
+          Utilizing biomarker data, including step count, heart rate, and heart rate variability (HRV), reveals numerous concealed patterns and exhibits strong correlations with an array of blood biomarkers. The objective of this project was to develop a custom software solution capable of unobtrusively recording this data and transmitting it to the cloud. Furthermore, the platform incorporates supplementary watch features to enhance its functionality. 
+
+          Additionally, the custom software solution provides an intuitive user interface, allowing for easy access to the recorded data and facilitating more informed health-related decisions. The integration of advanced analytics also enables the identification of trends and potential health risks, ultimately improving user well-being.
+        </p>
       </div>
-      </div></div>
+    </div>
+
+  </div>
 </body>
 </html>        

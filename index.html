@@ -2,174 +2,205 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="keywords" content="Soumil Chugh, University of Toronto, Huawei, Panjab University, UofT, GeneralPrognostics, Eye Tracking, Computer Vision, Deep Learning, Gaze Estimation, Machine Learning">
 
   <title>Soumil Chugh</title>
-  <meta name="description" content="Research Engineer @ Huawei, Toronto, Canada." />
+  <meta itemprop="description" name="description" content="Research Engineer @ Huawei, Toronto, Canada." />
   <link rel="canonical" href="https://soumilchugh.github.io/">
 
-  <!-- Open Graph Meta Tags -->
+  <!--MetaData Related Stuff-->
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Soumil Chugh">
   <meta property="og:url" content="https://soumilchugh.github.io/">
   <meta property="og:site_name" content="Soumil Chugh">
-  <meta property="og:image" content="https://soumilchugh.github.io/bmw.png" />
+  <meta property="og:image" content="https://soumilchugh.github.io/bmw.png"/>
+  <meta property="og:image:url" content="https://soumilchugh.github.io/bmw.png"/>
   <meta property="og:description" content="Research Engineer @ Huawei, Toronto, Canada.">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="bootstrap.min.css">
-  <link rel="stylesheet" href="main.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!-- Load tsParticles -->
   <script src="tsparticles.bundle.min.js"></script>
 
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inconsolata', monospace;
       color: #333;
-      background-color: #f0f0f0;
+      background-color: #f8f9fa;
     }
 
-    .navbar {
-      background-color: #0066cc;
+    #navbar {
+      background-color: #212529;
       padding: 1rem;
     }
 
-    .navbar .nav-link, .navbar-brand {
+    #navbar .nav-link, #site-title {
       color: #ffffff;
-      font-weight: 500;
+      font-weight: 700;
     }
 
-    .navbar-brand {
-      font-size: 1.5rem;
-    }
-
-    #tsparticles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
+    #site-title {
+      font-size: 1.8rem;
     }
 
     .hero-section {
       padding: 60px 0;
       background-color: #ffffff;
-      display: flex;
-      align-items: center;
     }
 
     .hero-section img {
-      max-width: 120px;
-      margin-right: 20px;
+      max-width: 150px;
       border-radius: 50%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .hero-section-content {
-      max-width: 600px;
-    }
-
-    .hero-section-content h1 {
-      color: #0066cc;
+      margin-bottom: 20px;
     }
 
     footer {
-      background-color: #0066cc;
+      background-color: #212529;
       color: #ffffff;
       padding: 1rem;
       text-align: center;
     }
 
     .btn-primary {
-      background-color: #0066cc;
+      background-color: #007bff;
       border: none;
     }
   </style>
 </head>
 
 <body>
-  <div id="tsparticles"></div>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#">Soumil Chugh</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" target="_blank" href="/Resume.pdf">CV</a></li>
-          <li class="nav-item"><a class="nav-link" target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Google Scholar</a></li>
-          <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a></li>
-          <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a></li>
-          <li class="nav-item"><a class="nav-link" target="_blank" href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <section class="hero-section">
-    <div class="container">
-      <img src="https://soumilchugh.github.io/bmw.png" alt="Soumil Chugh" title="Soumil Chugh" class="img-fluid">
-      <div class="hero-section-content">
-        <h1>Hi, I'm Soumil Chugh</h1>
-        <h3>Engineer & Builder</h3>
-        <p>Research Engineer @ Huawei, Canada</p>
-        <hr>
-        <p>I am currently working as a Research Engineer at the Human Machine Interaction (HMI) Lab with <a href="http://dev3.noahlab.com.hk/index.html">Huawei</a>, Toronto, Canada. My work involves developing user-centric technologies, including advanced eye-tracking systems and intelligent agents for enhancing interaction in system-level applications.</p>
-        <p>Previously, I earned my MASc in Computer Engineering from the University of Toronto, under the guidance of <a href="http://www.eecg.utoronto.ca/~jayar/">Prof. Jonathan Rose</a> and <a href="https://www.uhnresearch.ca/researcher/moshe-eizenman">Prof. Moshe Eizenman</a>, focusing on VR eye-tracking systems.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="container py-5">
-    <div class="row">
-      <div class="col-md-6">
-        <h3>Prior Experience</h3>
-        <p>I completed my undergraduate studies in Electronics and Communication at Panjab University, Chandigarh, India. Post-graduation, I worked at <a href="http://www.janacare.com/">Jana Care</a> in India, where I was part of the R&D team that developed FDA-approved portable medical devices and a robotic system for HbA1c tests.</p>
-        <p>Later, I contributed to building <a href="https://gpx.ai/">General Prognostics Inc.</a>, a remote disease management system.</p>
-      </div>
-      <div class="col-md-6">
-        <h3>Career Mission & Contributions</h3>
-        <p>My mission is to develop systems that directly impact end-users by advancing human-machine interactions. This includes projects like eye-tracking systems at Huawei and intelligent agent systems for operating system-level applications.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="container py-5">
-    <h3>Contact Me</h3>
-    <div class="row">
-      <div class="col-md-6">
-        <form>
-          <div class="form-group">
-            <input type="text" class="form-control" id="name" placeholder="Your Name">
+  <div class="main-content">
+    <div id="tsparticles"></div>
+    <nav id="navbar">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div id="site-title-container">
+              <a id="site-title" href="#">Soumil Chugh</a>
+            </div>
+            <div id="navbar-ul-container">
+              <ul id="navbar-ul">
+                <li class="nav-listitem">
+                  <a class="nav-link" href="publications.html">Publications</a>
+                </li>
+                <li class="nav-listitem">
+                  <a class="nav-link" href="projects.html">Projects</a>
+                </li>
+                <li class="nav-listitem">
+                  <a target="_blank" href="/Resume.pdf">CV</a>
+                </li>
+                <li class="nav-listitem">
+                  <a target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Google Scholar</a>
+                </li>
+                <li class="social-media">
+                  <a target="_blank" href="https://github.com/soumilchugh" itemprop="sameAs">
+                    <i class="fab fa-fw fa-github" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="social-media">
+                  <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94" itemprop="sameAs">
+                    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="social-media">
+                  <a target="_blank" href="https://twitter.com/soumil_chugh" itemprop="sameAs">
+                    <i class="fab fa-fw fa-twitter" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="form-group">
-            <input type="email" class="form-control" id="email" placeholder="Your Email">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+        </div>
       </div>
-      <div class="col-md-6">
-        <h4>Location</h4>
-        <div class="embed-responsive embed-responsive-4by3">
-          <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.327537225695!2d-79.40655078451029!3d43.65909997912034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34b78c7759f9%3A0x93c1058deeb7674f!2sHuawei+Canada!5e0!3m2!1sen!2sca!4v1551839327483" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </nav>
+
+    <div class="container" id="main">
+      <div class="text-background">
+        <div class="row">
+          <div class="col-12">
+            <h1>Hi, I'm Soumil Chugh - Engineer/Builder</h1>
+            <h2>Research Engineer @ Huawei, Canada</h2>
+            <hr>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-md-6 col-12">
+                <img alt="Soumil Chugh" title="Soumil Chugh" id="display-picture" src="https://soumilchugh.github.io/bmw.png" class="img-fluid" />
+              </div>
+              <div class="col-md-6 col-12">
+                <h3>About Me</h3>
+                <p>
+                  I currently serve as a Research Engineer at the Human Machine Interaction (HMI) Lab with <a href="http://dev3.noahlab.com.hk/index.html">Huawei</a>, located in Toronto, Canada. Previously, I earned my Master of Applied Science (MASc) in Computer Engineering from the University of Toronto, Canada. During my time there, I had the privilege to work under the guidance of <a href="http://www.eecg.utoronto.ca/~jayar/">Prof. Jonathan Rose</a> 
+                  and <a href="https://www.uhnresearch.ca/researcher/moshe-eizenman">Prof. Moshe Eizenman</a> from the Department of Electrical and Computer Engineering. My graduate thesis concentrated on the development of an Eye Tracking System specifically designed for a Virtual Reality (VR) Headset.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <h3>Prior Experience</h3>
+            <p>
+              In 2015, I received my undergraduate degree from Panjab University in Chandigarh, India, majoring in Electronics and Communication (ECE). Post-graduation, I accepted a position as a Software and Hardware Engineer at          
+              <a href="http://www.janacare.com/">Jana Care</a> in India. There, I contributed to the research and development team responsible for designing and implementing FDA-approved portable medical devices.
+              In our portfolio of achievements, we designed a robotics system specifically to automate the HbA1c test. You can view details about this innovation <a href="https://youtu.be/dlgvvrSZJGU"> here </a>.
+              I have also contributed to the development of the software stack from the ground up for <a href="https://gpx.ai/"> General Prognostics Inc. </a>, a remote disease management system. 
+            </p>
+          </div>
+
+          <div class="col-12">
+            <h3>Advancing User-centric Technologies: My Career Mission and Contributions </h3>
+            <p>
+              My overarching objective is to engineer systems that significantly impact end users directly.  This includes the development of eye-tracking systems at Huawei, which are poised to be integrated into desktops and laptops, enhancing the human-computer interaction experience. 
+              Beyond this, my recent focus has been on designing intelligent agent systems that assist users in operating system-level applications including the photos/notes/painting application.          
+            </p>
+          </div>
+
+          <div class="col-12">
+            <h1>Contact Me</h1>
+            <hr>
+          </div>
+          <div class="col-md-6 col-12">
+            <p><strong>Email:</strong> soumil.chugh@gmail.com</p>
+            <p><strong>Address:</strong> Toronto, ON, Canada</p>
+          </div>
+          <div class="col-md-6 col-12">
+            <h2>Get in Touch</h2>
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Your Email">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+          <div class="col-md-6 col-12">
+            <h2>My Location</h2>
+            <div class="embed-responsive embed-responsive-4by3">
+              <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.327537225695!2d-79.40655078451029!3d43.65909997912034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34b78c7759f9%3A0x93c1058deeb7674f!2sHuawei+Canada!5e0!3m2!1sen!2sca!4v1551839327483" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
 
   <footer>
     <div class="container">
@@ -181,7 +212,7 @@
   <script>
     tsParticles.load("tsparticles", {
       background: {
-        color: "#0066cc"
+        color: "#212121"
       },
       fpsLimit: 60,
       particles: {
@@ -222,5 +253,4 @@
     });
   </script>
 </body>
-
 </html>

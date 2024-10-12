@@ -24,7 +24,7 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
   <link rel="stylesheet" type="text/css" href="main.css">
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto:400,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -35,7 +35,7 @@
 
   <style>
     body {
-      font-family: 'Inconsolata', monospace;
+      font-family: 'Roboto', sans-serif;
       color: #333;
       background-color: #f8f9fa;
     }
@@ -50,32 +50,117 @@
       font-weight: 700;
     }
 
+    #navbar .nav-link {
+      margin-right: 15px;
+    }
+
+    #navbar .nav-link:hover {
+      color: #007bff;
+    }
+
+    #navbar .nav-listitem a[href*="CV"],
+    #navbar .nav-listitem a[href*="scholar"] {
+      color: #f8f9fa;
+      background-color: #007bff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-transform: uppercase;
+    }
+
+    #navbar .social-media a {
+      color: #f8f9fa;
+      font-size: 1.2rem;
+    }
+
     #site-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     .hero-section {
-      padding: 60px 0;
+      padding: 80px 0;
       background-color: #ffffff;
+      text-align: center;
     }
 
     .hero-section img {
-      max-width: 150px;
+      max-width: 120px;
       border-radius: 50%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .hero-section h1 {
+      font-family: 'Inconsolata', monospace;
+      font-size: 2.5rem;
+      color: #007bff;
+    }
+
+    .hero-section h2 {
+      font-size: 1.5rem;
+      color: #333;
       margin-bottom: 20px;
     }
 
     footer {
       background-color: #212529;
       color: #ffffff;
-      padding: 1rem;
+      padding: 1.5rem;
       text-align: center;
+      font-size: 0.9rem;
     }
 
     .btn-primary {
       background-color: #007bff;
       border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .text-background {
+      padding: 60px 0;
+    }
+
+    .text-background h3 {
+      font-family: 'Inconsolata', monospace;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    .text-background p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .form-group input, .form-group textarea {
+      font-size: 1rem;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    #main hr {
+      border: 1px solid #007bff;
+      width: 50%;
+      margin: 30px auto;
+    }
+
+    .social-media i {
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .social-media i:hover {
+      color: #007bff;
+    }
+
+    #navbar-ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
   </style>
 </head>
@@ -99,10 +184,10 @@
                   <a class="nav-link" href="projects.html">Projects</a>
                 </li>
                 <li class="nav-listitem">
-                  <a target="_blank" href="/Resume.pdf">CV</a>
+                  <a class="nav-link" target="_blank" href="/Resume.pdf">CV</a>
                 </li>
                 <li class="nav-listitem">
-                  <a target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Google Scholar</a>
+                  <a class="nav-link" target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Google Scholar</a>
                 </li>
                 <li class="social-media">
                   <a target="_blank" href="https://github.com/soumilchugh" itemprop="sameAs">
@@ -129,14 +214,14 @@
     <div class="container" id="main">
       <div class="text-background">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 text-center">
             <h1>Hi, I'm Soumil Chugh - Engineer/Builder</h1>
             <h2>Research Engineer @ Huawei, Canada</h2>
             <hr>
           </div>
           <div class="col-12">
-            <div class="row">
-              <div class="col-md-6 col-12">
+            <div class="row align-items-center">
+              <div class="col-md-6 col-12 text-center">
                 <img alt="Soumil Chugh" title="Soumil Chugh" id="display-picture" src="https://soumilchugh.github.io/bmw.png" class="img-fluid" />
               </div>
               <div class="col-md-6 col-12">
@@ -160,14 +245,14 @@
           </div>
 
           <div class="col-12">
-            <h3>Advancing User-centric Technologies: My Career Mission and Contributions </h3>
+            <h3>Advancing User-centric Technologies: My Career Mission and Contributions</h3>
             <p>
-              My overarching objective is to engineer systems that significantly impact end users directly.  This includes the development of eye-tracking systems at Huawei, which are poised to be integrated into desktops and laptops, enhancing the human-computer interaction experience. 
+              My overarching objective is to engineer systems that significantly impact end users directly. This includes the development of eye-tracking systems at Huawei, which are poised to be integrated into desktops and laptops, enhancing the human-computer interaction experience. 
               Beyond this, my recent focus has been on designing intelligent agent systems that assist users in operating system-level applications including the photos/notes/painting application.          
             </p>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 text-center">
             <h1>Contact Me</h1>
             <hr>
           </div>
@@ -190,7 +275,7 @@
               <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
           </div>
-          <div class="col-md-6 col-12">
+          <div class="col-md-6 col-12 mt-4">
             <h2>My Location</h2>
             <div class="embed-responsive embed-responsive-4by3">
               <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.327537225695!2d-79.40655078451029!3d43.65909997912034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34b78c7759f9%3A0x93c1058deeb7674f!2sHuawei+Canada!5e0!3m2!1sen!2sca!4v1551839327483" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -199,7 +284,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <footer>

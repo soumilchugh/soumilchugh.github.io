@@ -33,11 +33,11 @@
     body {
       font-family: 'Roboto', sans-serif;
       color: #333;
-      background-color: #f8f9fa;
+      background-color: #f0f0f0;
     }
 
     .navbar {
-      background-color: #212121;
+      background-color: #0066cc;
       padding: 1rem;
     }
 
@@ -61,21 +61,36 @@
 
     .hero-section {
       padding: 60px 0;
-      text-align: center;
       background-color: #ffffff;
+      display: flex;
+      align-items: center;
     }
 
     .hero-section img {
-      max-width: 100%;
+      max-width: 120px;
+      margin-right: 20px;
       border-radius: 50%;
-      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section-content {
+      max-width: 600px;
+    }
+
+    .hero-section-content h1 {
+      color: #0066cc;
     }
 
     footer {
-      background-color: #212121;
+      background-color: #0066cc;
       color: #ffffff;
       padding: 1rem;
       text-align: center;
+    }
+
+    .btn-primary {
+      background-color: #0066cc;
+      border: none;
     }
   </style>
 </head>
@@ -105,12 +120,14 @@
   <section class="hero-section">
     <div class="container">
       <img src="https://soumilchugh.github.io/bmw.png" alt="Soumil Chugh" title="Soumil Chugh" class="img-fluid">
-      <h1>Hi, I'm Soumil Chugh</h1>
-      <h3>Engineer & Builder</h3>
-      <p>Research Engineer @ Huawei, Canada</p>
-      <hr>
-      <p>I am currently working as a Research Engineer at the Human Machine Interaction (HMI) Lab with <a href="http://dev3.noahlab.com.hk/index.html">Huawei</a>, Toronto, Canada. My work involves developing user-centric technologies, including advanced eye-tracking systems and intelligent agents for enhancing interaction in system-level applications.</p>
-      <p>Previously, I earned my MASc in Computer Engineering from the University of Toronto, under the guidance of <a href="http://www.eecg.utoronto.ca/~jayar/">Prof. Jonathan Rose</a> and <a href="https://www.uhnresearch.ca/researcher/moshe-eizenman">Prof. Moshe Eizenman</a>, focusing on VR eye-tracking systems.</p>
+      <div class="hero-section-content">
+        <h1>Hi, I'm Soumil Chugh</h1>
+        <h3>Engineer & Builder</h3>
+        <p>Research Engineer @ Huawei, Canada</p>
+        <hr>
+        <p>I am currently working as a Research Engineer at the Human Machine Interaction (HMI) Lab with <a href="http://dev3.noahlab.com.hk/index.html">Huawei</a>, Toronto, Canada. My work involves developing user-centric technologies, including advanced eye-tracking systems and intelligent agents for enhancing interaction in system-level applications.</p>
+        <p>Previously, I earned my MASc in Computer Engineering from the University of Toronto, under the guidance of <a href="http://www.eecg.utoronto.ca/~jayar/">Prof. Jonathan Rose</a> and <a href="https://www.uhnresearch.ca/researcher/moshe-eizenman">Prof. Moshe Eizenman</a>, focusing on VR eye-tracking systems.</p>
+      </div>
     </div>
   </section>
 
@@ -164,7 +181,7 @@
   <script>
     tsParticles.load("tsparticles", {
       background: {
-        color: "#212121"
+        color: "#0066cc"
       },
       fpsLimit: 60,
       particles: {

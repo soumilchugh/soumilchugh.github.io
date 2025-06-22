@@ -1,299 +1,918 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patents and Publications - Soumil Chugh</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-      /* Styling for the header */
-      header {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soumil Chugh - Publications & Patents</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary-color: #64748b;
+      --accent-color: #06b6d4;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-dark: #0f172a;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .site-title {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+      margin: 0;
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .social-media a {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-media a:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    .header {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Publications Section */
+    .publications-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .publications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .publication-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .publication-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .publication-header {
+      background: var(--primary-color);
+      color: white;
+      padding: 1.5rem;
+    }
+
+    .publication-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .publication-type {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .publication-content {
+      padding: 1.5rem;
+    }
+
+    .publication-description {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .publication-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .meta-label {
+      font-weight: 600;
+      color: var(--text-primary);
+      min-width: 80px;
+    }
+
+    .publication-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .publication-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .publication-link:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      color: white;
+      text-decoration: none;
+    }
+
+    .publication-link.secondary {
+      background: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .publication-link.secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-social a {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
       }
 
-      /* Styling for the section */
-      section {
-        background-color: #f5f5f5;
-        padding: 50px 0;
+      .publications-grid {
+        grid-template-columns: 1fr;
       }
 
-      /* Styling for the cards */
-      .card {
-        margin-bottom: 30px;
-        box-shadow: 0px 0px 10px #888;
+      .nav-links {
+        gap: 1rem;
       }
 
-      .card-header {
-        background-color: #333;
-        color: #fff;
+      .publication-links {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 2rem;
       }
 
-      .card-body {
-        font-size: 16px;
+      .section-title {
+        font-size: 2rem;
       }
 
-      /* Styling for the links */
-      a {
-        color: #007bff;
-        text-decoration: none;
+      .container {
+        padding: 0 1rem;
       }
+    }
 
-      a:hover {
-        color: #0056b3;
-        text-decoration: underline;
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <h1>Patents and Publications</h1>
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Scroll animations */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .scroll-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <a href="index.html" class="site-title">Soumil Chugh</a>
+        </div>
+        <div class="col-6">
+          <ul class="nav-links d-flex justify-content-end">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="projects.html">Projects</a></li>
+            <li><a class="nav-link" target="_blank" href="/Resume.pdf">CV</a></li>
+            <li><a class="nav-link" target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Scholar</a></li>
+            <li class="social-media">
+              <a target="_blank" href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a>
+              <a target="_blank" href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <section>
-      <div class="container">
-        <div class="row">
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1>Publications & Patents</h1>
+      <p>Research contributions in eye tracking, computer vision, and machine learning technologies</p>
+    </div>
+  </header>
 
-           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Multi-modal interaction for selecting semantic regions in agent-based image editing</h4>
+  <!-- Publications Section -->
+  <section class="publications-section">
+    <div class="container">
+      <h2 class="section-title scroll-animate">Research Publications</h2>
+      <p class="section-subtitle scroll-animate">
+        Academic papers and conference proceedings in computer vision, deep learning, and human-computer interaction
+      </p>
+      
+      <div class="publications-grid">
+
+        <!-- CSA-CNN Paper -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">CSA-CNN: A Contrastive Self-Attention Neural Network for Pupil Segmentation in Eye Gaze Tracking</h3>
+            <div class="publication-type">Conference Paper</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Algorithm to detect pupil in eye images using a deep neural network with contrastive self-attention mechanisms for improved accuracy in eye gaze tracking applications.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Authors:</span>
+                <span>Soumil Chugh, Juntao Ye, Yuqi Fu and Moshe Eizenman</span>
               </div>
-              <div class="card-body">
-                <p>Interaction methods for agent-based image editing.</p>
-                <p><strong>Inventors:</strong> Yu Zhao, Abby Lu, Soumil Chugh, Che Yan, Yuan Deng</p>
-                <p><strong>Patent number:</strong> TBD</p>
+              <div class="meta-item">
+                <span class="meta-label">Conference:</span>
+                <span>Symposium on Eye Tracking Research and Applications</span>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Methods for cross-media configuration on virtual keyboard theme </h4>
-              </div>
-              <div class="card-body">
-                <p>Interaction methods for agent-based image editing.</p>
-                <p><strong>Inventors:</strong> Yu Zhao, Yuan Deng, Soumil Chugh, Che Yan, Wei Li </p>
-                <p><strong>Patent number:</strong> TBD</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://dl.acm.org/doi/abs/10.1145/3649902.3653351" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Paper
+              </a>
             </div>
           </div>
+        </div>
 
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>A method for cursor positioning with gaze-assisted pen interaction</h4>
+        <!-- Corneal Reflections Paper -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Detection and Correspondence Matching of Corneal Reflections for Eye Tracking Using Deep Learning</h3>
+            <div class="publication-type">Conference Paper</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Novel deep learning approach for detecting and matching corneal reflections in eye tracking systems, improving accuracy and robustness of gaze estimation algorithms.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Authors:</span>
+                <span>S. Chugh, B. Brousseau, J. Rose, and M. Eizenman</span>
               </div>
-              <div class="card-body">
-                <p>Interaction methods for agent-based image editing.</p>
-                <p><strong>Inventors:</strong> Juntao Ye, Shuyang Teng, Soumil Chugh, Andy Chow, Yu Zhao </p>
-                <p><strong>Patent number:</strong> TBD</p>
+              <div class="meta-item">
+                <span class="meta-label">Conference:</span>
+                <span>25th International Conference on Pattern Recognition (ICPR)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year:</span>
+                <span>2021</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Pages:</span>
+                <span>2210-2217</span>
               </div>
             </div>
-          </div>
-
-          
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Methods and systems for multi-camera corneal reflection gaze system</h4>
-              </div>
-              <div class="card-body">
-                <p>An algorithm that uses multiple cameras and single corneal reflection for gaze estimation.</p>
-                <p><strong>Inventors:</strong> Soumil Chugh, Juntao Ye and Moshe Eizenman</p>
-                <p><strong>Patent number:</strong> TBD</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/9412066" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Paper
+              </a>
             </div>
           </div>
-
-
-           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>CSA-CNN: A Contrastive Self-Attention Neural Network for Pupil Segmentation in Eye Gaze Tracking</h4>
+        </div>
+        <!-- Eye Tracking System for VR Headset -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">An Eye Tracking System for a Virtual Reality Headset</h3>
+            <div class="publication-type">Master's Thesis</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              This research describes a head-mounted eye tracking system for a commercial virtual reality (VR) system. The system uses infrared LEDs that illuminate the eyes and cameras to capture eye images and a 3D gaze estimation model that uses the locations pupil center and corneal reflections in the eye images. It generates gaze estimates that are insensitive to headset slippage. A key contribution of the work is a novel method to determine the correspondence between the corneal reflections and the LEDs using a fully convolutional neural network (CNN) based on the UNET architecture, which correctly identifies and matches 91% of reflections in tests. The eye tracking system has an average gaze accuracy of 1.1°, which is at least 100% better than current VR eye tracking systems.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Author:</span>
+                <span>Soumil Chugh</span>
               </div>
-              <div class="card-body">
-                <p>Algorithm to detect pupil in eye images using a deep neural network</p>
-                <p><strong>Authors:</strong> Soumil Chugh, Juntao Ye, Yuqi Fu and Moshe Eizenman</p>
-                <p><strong>Journal:</strong> Symposium on Eye Tracking Research and Applications </p>
+              <div class="meta-item">
+                <span class="meta-label">Institution:</span>
+                <span>University of Toronto (Canada)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year:</span>
+                <span>2020</span>
               </div>
             </div>
-          </div>
-          
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Methods and Systems for Gaze Tracking using One Corneal Reflection</h4>
-              </div>
-              <div class="card-body">
-                <p>An algorithm that uses reflection from only one light source to estimate the direction in which the person is looking.</p>
-                <p><strong>Inventors:</strong> Soumil Chugh, Juntao Ye and Moshe Eizenman</p>
-                <p><strong>Patent number:</strong> 92023266PCT01</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://www.proquest.com/openview/c57871aa2b1ce1c4e9769fb579e61d9d/1?pq-origsite=gscholar&cbl=18750&diss=y" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Thesis
+              </a>
             </div>
           </div>
+        </div>
 
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Methods and Systems for Gaze Tracking and Gaze Tracking calibration</h4>
+        <!-- Exudates Segmentation Paper -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Exudates Segmentation in Retinal Fundus Images for the Detection of Diabetic Retinopathy</h3>
+            <div class="publication-type">Journal Paper</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              A simpler automated approach to detect diabetic retinopathy taking exudates into account. The method uses homogeneity of healthy areas rather than unhealthy areas, first extracting healthy areas such as blood vessels by entropy thresholding method and optic disc using sobel filter method, then employing thresholding to segment the exudates. The results show that the presented method performs better than previous proposed methods for segmentation of exudates.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Authors:</span>
+                <span>Soumil Chugh, Jaskirat Kaur, Deepti Mittal</span>
               </div>
-              <div class="card-body">
-                <p>An algorithm that uses a 3D model approach with no corneal reflection for gaze estimation.</p>
-                <p><strong>Inventors:</strong> Soumil Chugh, Juntao Ye and Moshe Eizenman</p>
-                <p><strong>Patent number:</strong> 92023211US01</p>
+              <div class="meta-item">
+                <span class="meta-label">Journal:</span>
+                <span>International Journal of Engineering Research & Technology (IJERT)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year:</span>
+                <span>2014</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">ISSN:</span>
+                <span>2278-0181</span>
               </div>
             </div>
-          </div>
-
-           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Prediction of blood renal diseases using digital biomarkers</h4>
-              </div>
-              <div class="card-body">
-                <p>An algorithm that predicts renal diseases using a digital smartwatch.</p>
-                <p><strong>Inventors:</strong> Mike, Soumil, Javi, Sean </p>
-                <p><strong>Patent number:</strong> TBD</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://www.ijert.org/research/exudates-segmentation-in-retinal-fundus-images-for-the-detection-of-diabetic-retinopathy-IJERTV3IS100481.pdf" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Paper
+              </a>
             </div>
           </div>
-          
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Methods and Systems for Gaze Estimation</h4>
+        </div>
+
+        <!-- Low Cost Calibration Free Pulse Oximeter -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Low Cost Calibration Free Pulse Oximeter</h3>
+            <div class="publication-type">Conference Paper</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              A pulse oximeter device that measures pulse rate and blood oxygen levels in a non-invasive way without any need of calibration. The device uses digital computation power of the microcontroller leading to a simpler circuit design. Two Photo-plethysmographic (PPG) signals corresponding to Red and Infrared wavelengths are obtained from the sensor using an Arduino microcontroller, with signal processing carried out using MATLAB. Oxygen levels are determined using Beer Lambert Law while Pulse rate is calculated both in time and frequency domain.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Authors:</span>
+                <span>Soumil Chugh, Jaskirat Kaur</span>
               </div>
-              <div class="card-body">
-                <p>A RGB-based eye tracking system that uses the significant eye of a person to figure out where the person is looking.</p>
-                <p><strong>Inventors:</strong> Soumil Chugh, Juntao Ye</p>
-                <p><strong>Patent number:</strong>92005506US01</p>
+              <div class="meta-item">
+                <span class="meta-label">Conference:</span>
+                <span>2015 Annual IEEE India Conference (INDICON)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year:</span>
+                <span>2015</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Pages:</span>
+                <span>1-5</span>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Methods and systems for gaze-assisted interaction</h4>
-              </div>
-              <div class="card-body">
-                <p>An eye tracking system used as an assisted device.</p>
-                <p><strong>Inventors:</strong> Soumil Chugh, Juntao Ye and Manpreet Singh</p>
-                <p><strong>Patent number:</strong> 92026995US01</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/7443576" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Paper
+              </a>
             </div>
           </div>
+        </div>
 
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Quality control of user‑generated biological sample cards</h4>
+        <!-- Non-invasive Hemoglobin Monitoring Device -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Non-invasive Hemoglobin Monitoring Device</h3>
+            <div class="publication-type">Conference Paper</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              A non-invasive hemoglobin-monitoring device that measures hemoglobin concentration without utilizing a drop of blood. The method uses the principle of photoplethysmography and Beer Lambert law to measure hemoglobin levels. Two PPG signals are obtained by shining lights corresponding to Red and IR wavelengths on the fingertip, and absorbance levels are computed. Path length is determined using the refractive index of hemoglobin and physical distance between source and detector, removing the need for any calibration.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Authors:</span>
+                <span>Soumil Chugh, Jaskirat Kaur</span>
               </div>
-              <div class="card-body">
-                <p>A computer vision algorithm to analyse biological sample cards</p>
-                <p><strong>Inventors:</strong> Michal Depa, Soumil Chugh, Javi, Sean, Sidhant,Theressa</p>
-                <p><strong>Patent number:</strong> PCT/US2022/050057</p>
+              <div class="meta-item">
+                <span class="meta-label">Conference:</span>
+                <span>2015 International Conference on Control Communication & Computing India (ICCC)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year:</span>
+                <span>2015</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Pages:</span>
+                <span>380-383</span>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Corneal Reflections detection and matching for eye tracking using deep learning</h4>
-              </div>
-              <div class="card-body">
-                <p>Algorithm to detect reflections from the light sources in the eye images using a deep neural network</p>
-                <p><strong>Authors:</strong> Soumil Chugh, Braiden Brousseu, Jonathan Rose and Moshe Eizenman</p>
-                <p><strong>Journal:</strong> International Conference of Pattern Recognition</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/7432925" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Paper
+              </a>
             </div>
           </div>
+        </div>
 
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Eye Tracking System for a Virtual Reality Headset</h4>
+        
+        <!-- Pulse Oximeter Paper -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Effect of Different Signal Processing Techniques on a Calibration-Free Pulse Oximeter</h3>
+            <div class="publication-type">Conference Paper</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Investigation of various signal processing techniques to improve the accuracy and reliability of calibration-free pulse oximetry systems for medical applications.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Authors:</span>
+                <span>S. Chugh and A. Akula</span>
               </div>
-              <div class="card-body">
-                <p>An eye tracker designed specifically for a Virtual Reality Headset using Infrared Light sources and Cameras.</p>
-                <p><strong>Authors:</strong> Soumil Chugh, Jonathan Rose and Moshe Eizenman</p>
-                <p><strong>Journal:</strong> University of Toronto</p>
+              <div class="meta-item">
+                <span class="meta-label">Conference:</span>
+                <span>3rd International Conference for Convergence in Technology (I2CT)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year:</span>
+                <span>2018</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Pages:</span>
+                <span>1-6</span>
               </div>
             </div>
-          </div>
-
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Non‑invasive hemoglobin monitoring device</h4>
-              </div>
-              <div class="card-body">
-                <p>A hemoglobin monitoring device that works on the principle of photo-plethysmography without using a drop of blood.</p>
-                <p><strong>Authors:</strong> Soumil Chugh, Jaskirat Kaur</p>
-                <p><strong>Journal:</strong> International Conference on Control Communication Computing India, IEEE</p>
-              </div>
+            <div class="publication-links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/8529537" target="_blank" class="publication-link">
+                <i class="fas fa-file-alt"></i>
+                View Paper
+              </a>
             </div>
           </div>
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Low Cost Calibration Free Pulse Oximeter</h4>
-              </div>
-              <div class="card-body">
-                <p>A pulse oximeter designed using Arduino microcontroller under $20.</p>
-                <p><strong>Authors:</strong> Soumil Chugh, Jaskirat Kaur</p>
-                <p><strong>Journal:</strong> Annual IEEE India Conference, 2015 </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Exudates segmentation in retinal fundus images for the detection of diabetic retinopathy</h4>
-              </div>
-              <div class="card-body">
-                <p>An image processing algorithm that segments exudates/spots in the fundus images for early detection of diabetic retinopathy </p>
-                <p><strong>Authors:</strong> Soumil Chugh, Jaskirat Kaur</p>
-                <p><strong>Journal:</strong> Int J Eng Res Technology </p>
-              </div>
-            </div>
-          </div>
-
-                    <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4>Effect of different signal processing techniques on a calibration-free pulse oximeter </h4>
-              </div>
-              <div class="card-body">
-                <p>A comparison of different signal processing techniques on PPG signal acquired by a low-cost pulse oximeter </p>
-                <p><strong>Authors:</strong> Soumil Chugh, Aparna Akula</p>
-                <p><strong>Journal:</strong> 3rd International Conference for Convergence in Technology (I2CT) </p>
-              </div>
-            </div>
-          </div>
-
-
-
         </div>
       </div>
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2023 Soumil Chugh</p>
-      </div>
-    </footer>
+      <h2 class="section-title scroll-animate">Patents</h2>
+      <p class="section-subtitle scroll-animate">
+        Intellectual property in eye tracking, computer vision, human-computer interaction, and healthcare technologies
+      </p>
+      
+      <div class="publications-grid">
+        <!-- Multi-modal interaction -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Multi-modal interaction for selecting semantic regions in agent-based image editing</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Interaction methods for agent-based image editing using multi-modal input for enhanced user experience and precise semantic region selection.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Yu Zhao, Abby Lu, Soumil Chugh, Che Yan, Yuan Deng</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status:</span>
+                <span>Submitted</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Cross-media configuration -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Methods for cross-media configuration on virtual keyboard theme</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Advanced interaction methods for cross-media configuration and virtual keyboard theming in modern computing environments.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Yu Zhao, Yuan Deng, Soumil Chugh, Che Yan, Wei Li</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status:</span>
+                <span>Submitted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gaze-assisted pen interaction -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">A method for cursor positioning with gaze-assisted pen interaction</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Innovative method combining gaze tracking with pen interaction for precise cursor positioning and enhanced user interface control.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Juntao Ye, Shuyang Teng, Soumil Chugh, Andy Chow, Yu Zhao</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status:</span>
+                <span>Submitted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multi-camera corneal reflection -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Methods and systems for multi-camera corneal reflection gaze system</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Advanced algorithm utilizing multiple cameras and single corneal reflection for precise gaze estimation in eye tracking systems.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Soumil Chugh, Juntao Ye and Moshe Eizenman</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status:</span>
+                <span>Submitted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- One corneal reflection -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Methods and Systems for Gaze Tracking using One Corneal Reflection</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Innovative algorithm that uses reflection from only one light source to estimate gaze direction, simplifying eye tracking hardware requirements.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Soumil Chugh, Juntao Ye and Moshe Eizenman</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Patent #:</span>
+                <span>92023266PCT01</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D model gaze tracking -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Methods and Systems for Gaze Tracking and Gaze Tracking calibration</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Advanced algorithm using a 3D model approach with no corneal reflection for robust gaze estimation and calibration in eye tracking systems.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Soumil Chugh, Juntao Ye and Moshe Eizenman</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Patent #:</span>
+                <span>92023211US01</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blood renal diseases -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Prediction of blood renal diseases using digital biomarkers</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Innovative algorithm that predicts renal diseases using digital biomarkers collected from smartwatch devices for early detection and monitoring.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Mike, Soumil, Javi, Sean</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Patent #:</span>
+                <span>WO2025106664A1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RGB-based gaze estimation -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Methods and Systems for Gaze Estimation</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              RGB-based eye tracking system that uses the significant eye of a person to determine gaze direction without requiring specialized hardware.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Soumil Chugh, Juntao Ye</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Patent #:</span>
+                <span>92005506US01</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gaze-assisted interaction -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Methods and systems for gaze-assisted interaction</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Eye tracking system designed for assisted device applications, enabling enhanced accessibility and interaction for users with disabilities.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Soumil Chugh, Juntao Ye and Manpreet Singh</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Patent #:</span>
+                <span>92026995US01</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quality control biological samples -->
+        <div class="publication-card scroll-animate">
+          <div class="publication-header">
+            <h3 class="publication-title">Quality control of user‑generated biological sample cards</h3>
+            <div class="publication-type">Patent</div>
+          </div>
+          <div class="publication-content">
+            <p class="publication-description">
+              Computer vision algorithm to analyze biological sample cards for quality assessment, reducing errors in medical testing and improving diagnostic accuracy.
+            </p>
+            <div class="publication-meta">
+              <div class="meta-item">
+                <span class="meta-label">Inventors:</span>
+                <span>Michal Depa, Soumil Chugh, Javi, Sean, Sidhant, Theressa</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Patent #:</span>
+                <span>WO2023091455A1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 Soumil Chugh. All rights reserved.</p>
+          <p>AI Research Engineer | Eye Tracking Specialist | AI Systems Developer</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
+          <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>

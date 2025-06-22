@@ -1,200 +1,552 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Soumil Chugh - Projects</title>
+  <title>Soumil Chugh - Research Projects</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
+  
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+    :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary-color: #64748b;
+      --accent-color: #06b6d4;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-dark: #0f172a;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    #project1img {
-  background-image: url('https://soumilchugh.github.io/vr.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 5px solid #f0f0f0;
-  margin: 0;
-  width: 350px;
-  height: 350px;
-  vertical-align: middle;
-  border-radius: 60%;
-  display: block;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  flex: 1;
-  text-align: center;
-  padding-right: 20px;
-}
-    h1 {
-      font-size: 36px;
-      font-weight: bold;
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .site-title {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+      margin: 0;
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .social-media a {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-media a:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    .header {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 4rem 0;
       text-align: center;
-      margin-top: 50px;
     }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 50px;
+      padding: 0 2rem;
     }
-    .row {
+
+    /* Projects Grid */
+    .projects-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 2rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tags {
       display: flex;
       flex-wrap: wrap;
-      margin: -10px;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
-    .col {
-      flex: 1;
-      padding: 10px;
-      margin-bottom: 30px;
+
+    .project-tag {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
-    .col img {
-      max-width: 300px;
-      max-height: 300px;
-      display: block;
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      color: white;
+      text-decoration: none;
+    }
+
+    .project-link.secondary {
+      background: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .project-link.secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .footer-content {
+      max-width: 600px;
       margin: 0 auto;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease-in-out;
     }
-    .col img:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+    .footer-text {
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.8);
     }
-    .col h3 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 20px;
-      margin-bottom: 10px;
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
     }
-    .col p {
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 20px;
+
+    .footer-social a {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
     }
-    @media screen and (max-width: 768px) {
-      .col {
-        flex-basis: 50%;
+
+    .footer-social a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .project-links {
+        flex-direction: column;
       }
     }
-    @media screen and (max-width: 576px) {
-      .col {
-        flex-basis: 100%;
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 2rem;
       }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Scroll animations */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .scroll-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
+
 <body>
-  <h1>Projects</h1>
-  <div class="container">
-    <div class="row">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <a href="index.html" class="site-title">Soumil Chugh</a>
+        </div>
+        <div class="col-6">
+          <ul class="nav-links d-flex justify-content-end">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="publications.html">Publications</a></li>
+            <li><a class="nav-link" target="_blank" href="/Resume.pdf">CV</a></li>
+            <li><a class="nav-link" target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Scholar</a></li>
+            <li class="social-media">
+              <a target="_blank" href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a>
+              <a target="_blank" href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1>Research Projects</h1>
+      <p>Exploring the intersection of AI, computer vision, and human-computer interaction through innovative research and development</p>
+    </div>
+  </header>
+
+  <!-- Projects Section -->
+  <section class="projects-section">
+    <div class="container">
+      <h2 class="section-title scroll-animate">Featured Projects</h2>
       
-      <div class="row">
-      <div class="col">
-        
-        <h3>Eye Tracker for a Car</h3>
-        <a href="project1.html">
-          <img src="https://soumilchugh.github.io/car.jpeg" alt="Project 3",id="project1img">
-        </a>
-        <p>
-          Driver monitoring systems are increasingly essential components of autonomous and semi-autonomous vehicles. Central to these systems is eye-tracking technology, which plays a crucial role in assessing and maintaining driver attentiveness. Numerous patented algorithms have been developed to facilitate the seamless integration of such monitoring systems within vehicles, ensuring enhanced safety and performance.
-          In addition to eye tracking, these advanced driver monitoring systems can incorporate other biometric and behavioural data, such as facial expressions, head movements, and even physiological signals, to provide a comprehensive assessment of the driver's state. This multi-modal approach contributes to a more reliable and effective system, enhancing overall road safety and facilitating the transition to autonomous driving technologies.
-        </p>
-      </div>
-      <div class="col">
-        
-        <h3>Smartwatch Software designed to collect biomarker data</h3>
-        <a href="project2.html">
-          <img src="https://soumilchugh.github.io/watch.jpeg" alt="Project 4",id="project1img">
-        </a>
-        <p>
-          Utilizing biomarker data, including step count, heart rate, and heart rate variability (HRV), reveals numerous concealed patterns and exhibits strong correlations with an array of blood biomarkers. The objective of this project was to develop a custom software solution capable of unobtrusively recording this data and transmitting it to the cloud. Furthermore, the platform incorporates supplementary watch features to enhance its functionality. 
-          Additionally, the custom software solution provides an intuitive user interface, allowing for easy access to the recorded data and facilitating more informed health-related decisions. The integration of advanced analytics also enables the identification of trends and potential health risks, ultimately improving user well-being.
-        </p>
+      <div class="projects-grid">
+        <!-- LLM Agents for System Applications -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/gallery.png" alt="LLM Agents" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">LLM Agents for System-Level Applications</h3>
+            <p class="project-description">
+              Led the development of LLM agents to elevate user experience in system-level applications, including intelligent image editing in the Photos app and color recommendation features in digital painting tools for artists.
+              Made use of multiple open source models like Qwen, Llava for different tasks.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">LLM Agents</span>
+              <span class="project-tag">System Integration</span>
+              <span class="project-tag">User Experience</span>
+              <span class="project-tag">AI Applications</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deep Research LLM Agent -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/deep_research.png" alt="Research Agent" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Deep Research LLM Agent with Smart Editing</h3>
+            <p class="project-description">
+              Designed a deep-research LLM agent leveraging Retrieval-Augmented Generation (RAG) for comprehensive report creation, incorporating capabilities such as smart editing, multi-source content merging, and automated visualization.
+              Made use of multiple open source models like Qwen reasoning, Mistral for different tasks.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">Deep Research</span>
+              <span class="project-tag">Content Generation</span>
+              <span class="project-tag">Multi-Source Integration</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow Automation Agent -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/operator.png" alt="Workflow Automation" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">LLM-Based Workflow Automation Agent</h3>
+            <p class="project-description">
+              Built an LLM-based agent to automate user-recorded workflows in the Chrome browser, enabling cross-domain support for websites in entertainment, travel, food, and more, functionally similar to GPT-Operator.
+              Made of use of multiple models for HTML data processing to identify the target element followed by action execution on that element.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Workflow Automation</span>
+              <span class="project-tag">Browser Integration</span>
+              <span class="project-tag">Cross-Domain Support</span>
+              <span class="project-tag">Process Automation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gesture Recognition with LLM -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/gesture.png" alt="Gesture Recognition" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Gesture Recognition with LLM Function Calling</h3>
+            <p class="project-description">
+              Designed a gesture recognition ML model integrating LLM-based function calling to accurately interpret diverse hand-drawn and custom gestures made with a stylus on a tablet.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Gesture Recognition</span>
+              <span class="project-tag">LLM Function Calling</span>
+              <span class="project-tag">Computer Vision</span>
+              <span class="project-tag">Tablet Interaction</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PEFT Model Fine-tuning -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/color_palette.png" alt="Model Fine-tuning" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">PEFT Model Fine-tuning for AI Applications</h3>
+            <p class="project-description">
+              Fine-tuned large language models using Parameter-Efficient Fine-Tuning (PEFT) techniques like LoRA and adapter tuning to enable AI-powered sticker prompt generation in the Notes app and color palette creation in painting app.
+              Finetuned LLama 3 model in pytorch with custom dataset and loss functions.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">PEFT</span>
+              <span class="project-tag">LoRA</span>
+              <span class="project-tag">Model Fine-tuning</span>
+              <span class="project-tag">Creative AI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Eye Tracking -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/car.jpeg" alt="Advanced Eye Tracking" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Advanced Computer Vision for Gaze Tracking</h3>
+            <p class="project-description">
+              Led the research and deployment of advanced computer vision and deep learning methods for gaze tracking, achieving significant improvements in accuracy and performance for VR, desktop, and mobile applications.
+              Worked on both RGB and IR cameras for gaze tracking.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Computer Vision</span>
+              <span class="project-tag">Deep Learning</span>
+              <span class="project-tag">Gaze Tracking</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SmartWatch based Heart Risk Monitoring System -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/watch.jpeg" alt="Medical Quality Control" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">SmartWatch based Heart Risk Monitoring System</h3>
+            <p class="project-description">
+              Created end-end ML pipeline for monitoring heart health using smartwatch biomarker data.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Machine Learning</span>
+              <span class="project-tag">Healthcare</span>
+              <span class="project-tag">SmartWatch Biomarkers</span>
+              <span class="project-tag">FDA Compliance</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Medical Devices -->
+        <div class="project-card scroll-animate">
+          <img src="https://soumilchugh.github.io/hba1c-test.jpg" alt="Smart Medical" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">IoT-Enabled Smart Medical Devices</h3>
+            <p class="project-description">
+              Developed robotic systems with IoT connectivity for measuring HbA1c levels in patients in a remote setting using finger-prick blood samples.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">IoT</span>
+              <span class="project-tag">Healthcare</span>
+              <span class="project-tag">Smart Devices</span>
+              <span class="project-tag">Patient Care</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-
-    <div class="row">
-      <div class="col">
-        
-        <h3>Machine Learning Framework for Analyzing Smartwatch Data and Blood Biomarkers</h3>
-        <a href="project1.html">
-          <img src="https://soumilchugh.github.io/model.png" alt="Project 3",id="project1img">
-        </a>
-        <p>
-          The objective of this project is to develop a cutting-edge machine-learning framework designed to uncover patterns and correlations between data collected from smartwatches and various blood biomarkers. By analyzing biomarker data, such as step count, heart rate, and heart rate variability (HRV), the framework will facilitate a deeper understanding of the relationships between wearable device data and specific health indicators.
-          Leveraging advanced machine learning algorithms, the framework will process large volumes of smartwatch data and blood biomarker information, identifying meaningful connections and potential trends. The insights gained from this analysis can contribute to more informed health-related decisions, improved personalized healthcare, and early detection of potential health risks.
-          Ultimately, this project aims to create a powerful tool that can not only enhance the utility of smartwatches for health monitoring but also advance the field of personalized medicine and preventive healthcare.
-        </p>
-      </div>
-      <div class="col">
-        
-        <h3>Computer Vision System for Analyzing At-Home Blood Sampling Cards</h3>
-        <a href="project2.html">
-          <img src="https://soumilchugh.github.io/blood-card.jpeg" alt="Project 4",id="project1img">
-        </a>
-        <p>
-          The goal of this project is to develop an innovative computer vision system that can analyze at-home blood sampling cards to determine the accuracy and quality of blood collection performed by patients. This technology aims to reduce the need for re-sampling and save time by providing immediate feedback on whether the blood collection procedure was performed correctly or not.
-          Traditionally, patients would send their blood sample cards to a lab for testing, only to find out later that the sample was insufficient or incorrect, requiring them to redo the blood collection process. This project addresses this issue by utilizing advanced computer vision algorithms to assess the blood samples in real time and identify potential errors, such as insufficient or excessive blood, incomplete filling, or other issues affecting the sample's usability.
-          By providing immediate feedback to patients, this system will streamline the blood testing process, minimize the need for additional sampling, and improve overall patient satisfaction. Furthermore, this technology has the potential to enhance the efficiency of diagnostic labs, reducing the burden on healthcare professionals and ensuring more accurate results for patients. This algorithm was patented. 
-        </p>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 Soumil Chugh. All rights reserved.</p>
+          <p>AI Research Engineer | Eye Tracking Specialist | AI Systems Developer</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
+          <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i></a>
+        </div>
       </div>
     </div>
+  </footer>
 
+  <script>
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-    <div class="col">
-        <h3>FDA-Approved Robotic System for Rapid HbA1c Testing</h3>
-        <a href="project1.html">
-          <img src="https://soumilchugh.github.io/hba1c-test.jpg" alt="Project 1",id="project1img">
-        </a>
-        <p>
-          This project introduces an FDA-approved robotic system capable of performing HbA1c tests in just 2 minutes. The system is based on a novel testing mechanism developed by JanaCare, which significantly expedites the testing process. The swift and efficient robotic system has the potential to be utilized in various settings, such as medical camps, where rapid testing is crucial.
-          By automating the HbA1c testing process, this innovative system minimizes the likelihood of human errors, thereby enhancing the accuracy and reliability of the results. Its rapid testing capability not only provides quicker diagnoses for patients but also alleviates the workload for healthcare professionals, enabling them to focus on other crucial aspects of patient care.
-        A demonstration of the designed system can be viewed at the following <a href="https://www.youtube.com/watch?v=dlgvvrSZJGU">link:</a>. This project represents a significant advancement in diagnostic technology, with the potential to revolutionize HbA1c testing and improve overall healthcare efficiency.
-        </p>
-      </div>
-      <div class="col">
-                
-        <h3>Bluetooth-Enabled Insulin Pen Cap for Enhanced Diabetes Management</h3>
-        <img src="https://soumilchugh.github.io/Insulin_pen.jpeg" alt="Project 2",id="project1img">
-        <p>
-          The focus of this project is the development of a universally compatible insulin pen cap equipped with Bluetooth connectivity. This innovative cap is designed to monitor and record essential information about insulin pen usage, such as the time of day it was utilized, the duration of use, and the temperature of the insulin stored within the pen.
-        By collecting this data, the Bluetooth-enabled insulin pen cap offers valuable insights for patients and healthcare professionals alike, enabling more effective diabetes management. The gathered information can help users optimize their insulin administration routines, while healthcare professionals can use the data to make more informed treatment recommendations.
-        Additionally, the cap's temperature monitoring capability ensures that the insulin is stored at the appropriate temperature, maintaining its efficacy and reducing potential wastage. This project aims to create a user-friendly and practical solution that not only simplifies diabetes management but also enhances the overall quality of care for patients living with this chronic condition.
-        </p>
-      </div>
-    </div>
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
 
-
-      <div class="col">
-        <h3>Eye Tracker for a Head Mounted Headset</h3>
-        <a href="project1.html">
-          <img src="https://soumilchugh.github.io/vr.png" alt="Project 1",id="project1img">
-        </a>
-        <p>
-          In head-mounted extended reality (XR) systems, eye tracking technology can unlock the potential for multifocal displays, foveated rendering, and enhanced interaction with 3D content. Achieving accurate gaze estimation at various fixation distances within the 3D scene is vital, as is maintaining precision when the device's position shifts relative to the user's head, which can alter the relationship between the eye-tracking apparatus and the eyes.
-          The innovative hybrid approach developed involves the design of a video-based, head-mounted binocular eye-tracking system that leverages a 3D gaze estimation model and a convolutional neural network (CNN) based eye feature extractor. This method effectively addresses the challenges of maintaining accuracy during device movement and estimating gaze at different fixation distances. An impressive accuracy of 1 degree has been achieved, demonstrating the system's robustness. The project's findings have been documented and published in a research paper, contributing to the growing knowledge in this field.
-        </p>
-      </div>
-      <div class="col">
-                
-        <h3>Eye Tracker for Desktops/Mobile Phones</h3>
-        <img src="https://soumilchugh.github.io/phone.png" alt="Project 2",id="project1img">
-        <p>
-          Eye trackers generally rely on custom hardware, such as infrared cameras and light sources, for their design. To promote the widespread adoption and ubiquity of eye-tracking technology, it is crucial to develop algorithms compatible with standard RGB cameras found on desktop computers and smartphones. A neural network-based approach has been devised to estimate an individual's gaze direction using images captured by a low-resolution RGB camera. This method has successfully achieved an accuracy of 4 degrees, demonstrating its potential for broader applications. A patent was successfully filed.  
-          The development of eye-tracking algorithms for standard RGB cameras not only expands the potential applications of this technology but also reduces implementation costs. By making eye tracking more accessible, it opens up possibilities for its use in various fields, such as gaming, virtual reality, marketing, and accessibility features for individuals with disabilities. This innovation has the potential to revolutionize user experiences across multiple industries.
-        </p>
-      </div>
-    </div>
-
-
-    
-
-  </div>
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>        

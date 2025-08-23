@@ -1,55 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="keywords" content="Soumil Chugh, University of Toronto, Huawei, Panjab University, UofT, GeneralPrognostics, Eye Tracking, Computer Vision, Deep Learning, Machine Learning, LLM Agents ">
-
   <title>Soumil Chugh - AI Research Engineer</title>
-  <meta itemprop="description" name="description" content="AI Research Engineer @ Huawei, Toronto, Canada. Specializing in Computer Vision, Deep Learning, and LLM Agents." />
-  <link rel="canonical" href="https://soumilchugh.github.io/">
-
-  <!--MetaData Related Stuff-->
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content="website">
+  <meta name="description" content="AI Research Engineer specializing in knowledge graphs, graph RAG approaches, and building reliable LLM systems">
+  <meta name="keywords" content="AI Research Engineer, LLM Agents, Knowledge Graphs, Graph RAG, Machine Learning, Computer Vision">
+  
+  <!-- Open Graph tags -->
   <meta property="og:title" content="Soumil Chugh - AI Research Engineer">
-  <meta property="og:url" content="https://soumilchugh.github.io/">
-  <meta property="og:site_name" content="Soumil Chugh">
-  <meta property="og:image" content="https://soumilchugh.github.io/bmw.png"/>
-  <meta property="og:image:url" content="https://soumilchugh.github.io/bmw.png"/>
-  <meta property="og:description" content="AI Research Engineer @ Huawei, Toronto, Canada. Specializing in Computer Vision, Deep Learning, and LLM Agents">
-
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
-  <link rel="stylesheet" type="text/css" href="main.css">
+  <meta property="og:description" content="Building reliable and trustworthy LLM systems through knowledge graphs and graph RAG approaches">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- Load tsParticles -->
-  <script src="tsparticles.bundle.min.js"></script>
-
+  
   <style>
     :root {
-      --primary-color: #2563eb;
-      --primary-dark: #1d4ed8;
-      --secondary-color: #64748b;
-      --accent-color: #06b6d4;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
+      /* Light Theme */
       --bg-primary: #ffffff;
       --bg-secondary: #f8fafc;
-      --bg-dark: #0f172a;
-      --border-color: #e2e8f0;
+      --bg-tertiary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-navbar: rgba(255, 255, 255, 0.95);
+      --bg-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --text-white: #ffffff;
+      
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      
       --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
       --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    [data-theme="dark"] {
+      /* Dark Theme */
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --bg-card: #1e293b;
+      --bg-navbar: rgba(15, 23, 42, 0.95);
+      --bg-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-white: #ffffff;
+      
+      --primary: #60a5fa;
+      --primary-dark: #3b82f6;
+      --accent: #22d3ee;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --error: #f87171;
+      
+      --border: #334155;
+      --border-light: #475569;
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
     }
 
     * {
@@ -59,124 +88,205 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-primary);
-      background-color: var(--bg-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    .main-content {
-      position: relative;
-      z-index: 2;
+    html {
+      background: var(--bg-primary);
     }
 
-    #tsparticles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.75rem; }
+    h4 { font-size: 1.5rem; }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+      background: var(--bg-primary);
+      transition: background-color 0.3s ease;
+    }
+
+    .section:nth-child(even) {
+      background: var(--bg-secondary);
     }
 
     /* Navigation */
-    #navbar {
+    .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-navbar);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
       z-index: 1000;
       padding: 1rem 0;
       transition: all 0.3s ease;
     }
 
-    #navbar.scrolled {
-      background: rgba(255, 255, 255, 0.98);
+    .navbar.scrolled {
+      background: var(--bg-navbar);
       box-shadow: var(--shadow-md);
+      backdrop-filter: blur(20px);
     }
 
-    #site-title {
-      color: var(--primary-color);
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 1.5rem;
       font-weight: 700;
+      color: var(--primary);
       text-decoration: none;
-      font-family: 'JetBrains Mono', monospace;
     }
 
-    #navbar-ul {
+    .nav-menu {
       display: flex;
       list-style: none;
       gap: 2rem;
       align-items: center;
-      margin: 0;
     }
 
     .nav-link {
       color: var(--text-primary);
-      text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: color 0.2s ease;
       position: relative;
     }
 
     .nav-link:hover {
-      color: var(--primary-color);
+      color: var(--primary);
     }
 
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -4px;
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--primary-color);
-      transition: width 0.3s ease;
+      background: var(--primary);
+      transition: width 0.2s ease;
     }
 
     .nav-link:hover::after {
       width: 100%;
     }
 
-    .social-media a {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      margin: 0 0.5rem;
-      transition: all 0.3s ease;
+    .social-links {
+      display: flex;
+      gap: 1rem;
     }
 
-    .social-media a:hover {
-      color: var(--primary-color);
+    .social-links a {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
       transform: translateY(-2px);
     }
 
+    .theme-toggle {
+      background: none;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      background: var(--bg-card);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: scale(1.05);
+    }
+
     /* Hero Section */
-    .hero-section {
+    .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
+      background: var(--bg-hero);
       position: relative;
-      padding: 8rem 0 4rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
     }
 
     .hero-content {
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-avatar {
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid white;
-      box-shadow: var(--shadow-lg);
+      border: 4px solid var(--text-white);
+      box-shadow: var(--shadow-xl);
       margin-bottom: 2rem;
       transition: transform 0.3s ease;
     }
@@ -186,29 +296,29 @@
     }
 
     .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: white;
+      color: var(--text-white);
       margin-bottom: 1rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .hero-subtitle {
+      color: var(--text-white);
       font-size: 1.5rem;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 2rem;
       font-weight: 400;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
     }
 
     .hero-description {
+      color: var(--text-white);
       font-size: 1.1rem;
-      color: rgba(255,255,255,0.8);
       max-width: 600px;
       margin: 0 auto 3rem;
-      line-height: 1.8;
+      opacity: 0.8;
+      line-height: 1.7;
     }
 
-    .cta-buttons {
+    .hero-buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
@@ -216,154 +326,142 @@
     }
 
     .btn {
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
       font-weight: 600;
-      transition: all 0.3s ease;
+      text-decoration: none;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 1rem;
     }
 
     .btn-primary {
-      background: white;
-      color: var(--primary-color);
-      border: 2px solid white;
+      background: var(--text-white);
+      color: var(--primary);
+      border: 2px solid var(--text-white);
     }
 
     .btn-primary:hover {
       background: transparent;
-      color: white;
+      color: var(--text-white);
       transform: translateY(-2px);
     }
 
     .btn-outline {
       background: transparent;
-      color: white;
-      border: 2px solid white;
+      color: var(--text-white);
+      border: 2px solid var(--text-white);
     }
 
     .btn-outline:hover {
-      background: white;
-      color: var(--primary-color);
+      background: var(--text-white);
+      color: var(--primary);
       transform: translateY(-2px);
     }
 
-    /* Content Sections */
-    .section {
-      padding: 5rem 0;
-      position: relative;
-    }
-
-    .section:nth-child(even) {
-      background: var(--bg-secondary);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
     }
 
     .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 3rem;
       color: var(--text-primary);
+      margin-bottom: 1rem;
     }
 
     .section-subtitle {
+      color: var(--text-secondary);
       font-size: 1.2rem;
-      color: var(--text-primary);
-      text-align: center;
-      margin-bottom: 4rem;
       max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.7;
-    }
-
-    /* About Section */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      max-width: 900px;
       margin: 0 auto;
     }
 
-    .about-text {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-primary);
-      background: white;
-      padding: 2.5rem;
+    /* Cards */
+    .card {
+      background: var(--bg-card);
       border-radius: 16px;
+      padding: 2rem;
       box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
     }
 
-    .about-text h3 {
-      color: var(--primary-color);
-      font-size: 1.4rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* About Section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .about-item {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-item h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .about-text h3::before {
+    .about-item h3::before {
       content: '';
       width: 4px;
-      height: 24px;
-      background: var(--primary-color);
+      height: 20px;
+      background: var(--primary);
       border-radius: 2px;
     }
 
-    .about-text p {
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-    }
-
-    .about-text a {
-      color: var(--primary-color);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .about-text a:hover {
-      text-decoration: underline;
+    .about-item p {
+      color: var(--text-secondary);
+      line-height: 1.7;
     }
 
     /* Experience Section */
     .experience-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .experience-card {
-      background: white;
+      background: var(--bg-card);
       padding: 2rem;
       border-radius: 16px;
-      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
       transition: all 0.3s ease;
-      border: 1px solid var(--border-color);
     }
 
     .experience-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     .experience-header {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .experience-logo {
@@ -371,46 +469,39 @@
       height: 60px;
       object-fit: contain;
       border-radius: 8px;
-      background: white;
+      background: var(--bg-card);
       padding: 0.5rem;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
     }
 
-    .experience-info {
-      flex: 1;
+    [data-theme="dark"] .experience-logo {
+      background: white;
+      border-color: var(--border-light);
     }
 
-    .experience-title {
-      font-size: 1.3rem;
-      font-weight: 600;
+    .experience-info h3 {
       color: var(--text-primary);
+      font-size: 1.3rem;
       margin-bottom: 0.5rem;
     }
 
-    .experience-company {
-      color: var(--primary-color);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-period {
+    .experience-info p {
       color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.25rem;
     }
 
     .experience-description {
-      color: var(--text-primary);
+      color: var(--text-secondary);
       line-height: 1.6;
     }
 
     /* Education Section */
     .education-card {
-      background: white;
-      padding: 2.5rem;
+      background: var(--bg-card);
+      padding: 2rem;
       border-radius: 16px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
       max-width: 800px;
       margin: 0 auto;
     }
@@ -419,23 +510,27 @@
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .education-logo {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       object-fit: contain;
-      border-radius: 12px;
-      background: white;
+      border-radius: 8px;
+      background: var(--bg-card);
       padding: 0.5rem;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
+    }
+
+    [data-theme="dark"] .education-logo {
+      background: white;
+      border-color: var(--border-light);
     }
 
     .education-info h3 {
       color: var(--text-primary);
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.3rem;
       margin-bottom: 0.5rem;
     }
 
@@ -445,81 +540,92 @@
     }
 
     .education-details {
-      color: var(--text-primary);
+      color: var(--text-secondary);
       line-height: 1.7;
     }
 
     .education-details a {
-      color: var(--primary-color);
-      text-decoration: none;
+      color: var(--primary);
       font-weight: 500;
-    }
-
-    .education-details a:hover {
-      text-decoration: underline;
     }
 
     /* Skills Section */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .skill-card {
-      background: white;
-      padding: 1.5rem;
+      background: var(--bg-card);
+      padding: 2rem;
       border-radius: 12px;
       text-align: center;
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
       transition: all 0.3s ease;
-      border: 1px solid var(--border-color);
     }
 
     .skill-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
 
     .skill-icon {
       font-size: 2.5rem;
-      color: var(--primary-color);
+      color: var(--primary);
       margin-bottom: 1rem;
     }
 
     .skill-title {
       font-weight: 600;
       color: var(--text-primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
     }
 
     .skill-description {
-      color: var(--text-primary);
-      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     /* Contact Section */
-    .contact-info {
+    .contact-content {
       text-align: center;
       max-width: 600px;
       margin: 0 auto;
     }
 
     .contact-item {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 1rem;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      background: white;
+      padding: 1rem 2rem;
+      background: var(--bg-card);
       border-radius: 12px;
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
+      margin: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    [data-theme="light"] .contact-item {
+      background: var(--bg-secondary);
+      border-color: var(--border-light);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     .contact-icon {
       font-size: 1.5rem;
-      color: var(--primary-color);
+      color: var(--primary);
     }
 
     .contact-text {
@@ -528,13 +634,12 @@
     }
 
     /* Footer */
-    footer {
-      background: var(--bg-dark);
-      color: white;
+    .footer {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
       text-align: center;
       padding: 3rem 0;
-      position: relative;
-      z-index: 10;
+      border-top: 1px solid var(--border);
     }
 
     .footer-content {
@@ -544,13 +649,11 @@
 
     .footer-text {
       margin-bottom: 2rem;
-      color: white;
-      font-weight: 500;
     }
 
     .footer-text p {
+      color: var(--text-secondary);
       margin-bottom: 0.5rem;
-      font-size: 1rem;
     }
 
     .footer-social {
@@ -560,44 +663,34 @@
     }
 
     .footer-social a {
-      color: white;
+      color: var(--text-muted);
       font-size: 1.5rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
     .footer-social a:hover {
-      color: var(--accent-color);
+      color: var(--primary);
       transform: translateY(-2px);
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
+      .container {
+        padding: 0 1rem;
       }
 
-      .hero-subtitle {
-        font-size: 1.2rem;
+      .section {
+        padding: 4rem 0;
       }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
 
-      .experience-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-
-      #navbar-ul {
+      .nav-menu {
         gap: 1rem;
       }
 
-      .cta-buttons {
+      .hero-buttons {
         flex-direction: column;
         align-items: center;
       }
@@ -607,282 +700,265 @@
         max-width: 300px;
         justify-content: center;
       }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-header,
+      .education-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
     }
 
     @media (max-width: 480px) {
+      .hero-avatar {
+        width: 140px;
+        height: 140px;
+      }
+
       .hero-title {
         font-size: 2rem;
       }
 
-      .section-title {
-        font-size: 2rem;
+      .hero-subtitle {
+        font-size: 1.2rem;
       }
-
-      .container {
-        padding: 0 1rem;
-      }
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    /* Scroll animations */
-    .scroll-animate {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .scroll-animate.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
-
 <body>
-  <div class="main-content">
-    <div id="tsparticles"></div>
-    
-    <!-- Navigation -->
-    <nav id="navbar">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-6">
-            <a id="site-title" href="#">Soumil Chugh</a>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-container">
+        <a href="#" class="nav-brand">Soumil Chugh</a>
+        <ul class="nav-menu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="publications.html" class="nav-link">Publications</a></li>
+          <div class="social-links">
+            <a href="https://github.com/soumilchugh" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/soumil_chugh" target="_blank"><i class="fab fa-twitter"></i></a>
           </div>
-          <div class="col-6">
-            <ul id="navbar-ul" class="d-flex justify-content-end">
-              <li><a class="nav-link" href="publications.html">Publications</a></li>
-              <li><a class="nav-link" href="projects.html">Projects</a></li>
-              <li><a class="nav-link" target="_blank" href="/Resume.pdf">CV</a></li>
-              <li><a class="nav-link" target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Scholar</a></li>
-              <li class="social-media">
-                <a target="_blank" href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
-                <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-95b33652"><i class="fab fa-linkedin"></i></a>
-                <a target="_blank" href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
+          <li>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container">
-        <div class="hero-content">
-          <img src="img-self.png" alt="Soumil Chugh" class="hero-avatar">
-          <h1 class="hero-title">Soumil Chugh</h1>
-          <p class="hero-subtitle">AI Research Engineer</p>
-          <p class="hero-description">
-            Building reliable and trustworthy LLM systems through knowledge graphs, graph RAG approaches, and advanced AI architectures. 
-            Specializing in system-level LLM agents and multimodal AI solutions.
-          </p>
-          <div class="cta-buttons">
-            <a href="#about" class="btn btn-primary">
-              <i class="fas fa-user"></i>
-              Learn More
-            </a>
-            <a href="projects.html" class="btn btn-outline">
-              <i class="fas fa-code"></i>
-              View Projects
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title scroll-animate">About Me</h2>
-        <p class="section-subtitle scroll-animate">
-          AI Research Engineer focused on building reliable and trustworthy LLM systems
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <img src="img_self.png" alt="Soumil Chugh" class="hero-avatar">
+        <h1 class="hero-title">Soumil Chugh</h1>
+        <p class="hero-subtitle">AI Research Engineer</p>
+        <p class="hero-description">
+          Designing advanced AI agents and multimodal systems with a focus on reliability, scalability, and real-world impact.
         </p>
-        
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary">
+            <i class="fas fa-user"></i>
+            Learn More
+          </a>
+          <a href="projects.html" class="btn btn-outline">
+            <i class="fas fa-code"></i>
+            View Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+      </div>
+      
+      <div class="about-content">
         <div class="about-grid">
-          <div class="scroll-animate">
-            <div class="about-text">
-              <h3>Current Role</h3>
-              <p>
-                Leading AI research at Huawei's Human Machine Interaction Lab in Toronto, developing system-level LLM agents 
-                and multimodal AI solutions that integrate seamlessly with operating systems and user workflows.
-              </p>
-              
-              <h3>Core Expertise</h3>
-              <p>
-                My research focuses on <strong>knowledge graphs</strong> and <strong>graph RAG approaches</strong> to build more reliable, 
-                trustworthy, and interpretable LLM systems. I develop advanced architectures that combine structured knowledge 
-                with large language models for enhanced reasoning and decision-making capabilities.
-              </p>
-              
-              <h3>Research Vision</h3>
-              <p>
-                I'm engineering intelligent systems that leverage knowledge graphs and graph-based retrieval to create 
-                LLM agents that are not just powerful, but also reliable, explainable, and trustworthy for critical applications.
-              </p>
-            </div>
+          <div class="about-item">
+            <h3>Current Role</h3>
+            <p>
+              Senior AI/ML Engineer at Huawei’s Human–Computer Interaction Lab in Toronto, 
+              leading research on LLM-based agents and multimodal AI for seamless human–machine interaction.
+            </p>
+          </div>
+          
+          <div class="about-item">
+            <h3>Core Expertise</h3>
+            <p>
+              Focused on <strong>knowledge-driven AI</strong>, <strong>multi-agent systems</strong>, and 
+              <strong>human-centered design</strong>. Experienced in bridging structured knowledge, 
+              deep learning, and multimodal intelligence.
+            </p>
+          </div>
+          
+          <div class="about-item">
+            <h3>Research Vision</h3>
+            <p>
+              To build <strong>trustworthy AI</strong> that collaborates with people, adapts to real-world needs, 
+              and helps address society’s most important challenges.
+            </p>
           </div>
         </div>
       </div>
-    </section>
+      
+    </div>
+  </section>
 
-    <!-- Experience Section -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title scroll-animate">Experience</h2>
-        <p class="section-subtitle scroll-animate">
-          Professional journey in research engineering and machine learning
-        </p>
+  <!-- Experience Section -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Experience</h2>
+      </div>
+      
+      <div class="experience-grid">
+        <div class="experience-card">
+          <div class="experience-header">
+            <img src="Huawei-Logo.png" alt="Huawei" class="experience-logo">
+            <div class="experience-info">
+              <h3>AI Research Engineer</h3>
+              <p>Huawei - Human Machine Interaction Lab</p>
+              <p>2020 - Present</p>
+            </div>
+          </div>
+          <div class="experience-description">
+            Driving research in <strong>LLM agents</strong> and <strong>AI system design</strong>, 
+            with a focus on building reliable, scalable, and human-centered intelligent systems.
+          </div>
+        </div>
         
-        <div class="experience-grid">
-          <div class="experience-card scroll-animate">
-            <div class="experience-header">
-              <img src="Huawei-Logo.png" alt="Huawei" class="experience-logo">
-              <div class="experience-info">
-                <div class="experience-title">AI Research Engineer</div>
-                <div class="experience-company">Huawei - Human Machine Interaction Lab</div>
-                <div class="experience-period">2020 - Present</div>
-              </div>
-            </div>
-            <div class="experience-description">
-              Leading research in LLM agents and knowledge graph architectures. Developing system-level applications 
-              that integrate structured knowledge with large language models for enhanced reliability and trustworthiness.
+        <div class="experience-card">
+          <div class="experience-header">
+            <img src="janacare_logo.png" alt="Jana Care" class="experience-logo">
+            <div class="experience-info">
+              <h3>Software Engineer</h3>
+              <p>Jana Care</p>
+              <p>2015 - 2018</p>
             </div>
           </div>
-          
-          <div class="experience-card scroll-animate">
-            <div class="experience-header">
-              <img src="janacare_logo.png" alt="Jana Care" class="experience-logo">
-              <div class="experience-info">
-                <div class="experience-title">Software Engineer</div>
-                <div class="experience-company">Jana Care</div>
-                <div class="experience-period">2015 - 2018</div>
-              </div>
-            </div>
-            <div class="experience-description">
-              Designed FDA-approved portable medical devices including robotic systems for 
-              diabetes management and cardiovascular health monitoring.
+          <div class="experience-description">
+            Designed FDA-approved portable medical devices including robotic systems for 
+            diabetes management and cardiovascular health monitoring.
+          </div>
+        </div>
+        
+        <div class="experience-card">
+          <div class="experience-header">
+            <img src="general_prognostics_logo.png" alt="General Prognostics" class="experience-logo">
+            <div class="experience-info">
+              <h3>Machine Learning Consultant</h3>
+              <p>General Prognostics Inc.</p>
+              <p>2020 - 2023</p>
             </div>
           </div>
-          
-          <div class="experience-card scroll-animate">
-            <div class="experience-header">
-              <img src="general_prognostics_logo.png" alt="General Prognostics" class="experience-logo">
-              <div class="experience-info">
-                <div class="experience-title">Machine Learning Consultant</div>
-                <div class="experience-company">General Prognostics Inc.</div>
-                <div class="experience-period">2020 - 2023</div>
-              </div>
-            </div>
-            <div class="experience-description">
-              Developed machine learning pipeline for heart disease prediction using smartwatch data.
-              Implemented computer vision algorithms for biological sample quality control.
-            </div>
+          <div class="experience-description">
+            Developed machine learning pipeline for heart disease prediction using smartwatch data.
+            Implemented computer vision algorithms for biological sample quality control.
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Education Section -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title scroll-animate">Education</h2>
-        <div class="education-card scroll-animate">
-          <div class="education-header">
-            <img src="uoft-logo-2.png" alt="University of Toronto" class="education-logo">
-            <div class="education-info">
-              <h3>Master of Applied Science in Electrical and Computer Engineering</h3>
-              <p>University of Toronto</p>
-              <p>2018 - 2020</p>
-            </div>
-          </div>
-          <div class="education-details">
-            <p><strong>Supervisors:</strong> <a href="https://www.eecg.utoronto.ca/~jayar/" target="_blank">Prof. Jonathan Rose</a> and <a href="https://www.eecg.utoronto.ca/~eizenman/" target="_blank">Prof. Moshe Eizenman</a></p>
-            <p><strong>Research Focus:</strong> Eye tracking systems for virtual reality, computer vision, and human-computer interaction</p>
-            <p><strong>Thesis:</strong> "An Eye Tracking System for a Virtual Reality Headset" - Developed a novel head-mounted eye tracking system achieving 1.1° gaze accuracy, 100% better than current VR systems</p>
+  <!-- Education Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Education</h2>
+      </div>
+      
+      <div class="education-card">
+        <div class="education-header">
+          <img src="uoft-logo-2.png" alt="University of Toronto" class="education-logo">
+          <div class="education-info">
+            <h3>Master of Applied Science in Electrical and Computer Engineering</h3>
+            <p>University of Toronto</p>
+            <p>2018 - 2020</p>
           </div>
         </div>
+        <div class="education-details">
+          <p><strong>Supervisors:</strong> <a href="https://www.eecg.utoronto.ca/~jayar/" target="_blank">Prof. Jonathan Rose</a> and <a href="https://www.eecg.utoronto.ca/~eizenman/" target="_blank">Prof. Moshe Eizenman</a></p>
+          <p><strong>Research Focus:</strong> Eye tracking systems for virtual reality, computer vision, and human-computer interaction</p>
+          <p><strong>Thesis:</strong> "An Eye Tracking System for a Virtual Reality Headset" - Developed a novel head-mounted eye tracking system achieving 1.1° gaze accuracy, 100% better than current VR systems</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title scroll-animate">Expertise</h2>
-        <p class="section-subtitle scroll-animate">
-          Core competencies in building reliable and trustworthy AI systems
-        </p>
+  <!-- Skills Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Expertise</h2>
+      </div>
+      
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+          <div class="skill-title">AI Agent Systems</div>
+          <div class="skill-description">Designing multi-agent architectures for reasoning, collaboration, and decision-making</div>
+        </div>
         
-        <div class="skills-grid">
-          <div class="skill-card scroll-animate">
-            <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
-            <div class="skill-title">Knowledge Graphs</div>
-            <div class="skill-description">Graph databases, semantic relationships, structured knowledge representation</div>
-          </div>
-          
-          <div class="skill-card scroll-animate">
-            <div class="skill-icon"><i class="fas fa-robot"></i></div>
-            <div class="skill-title">Graph RAG Systems</div>
-            <div class="skill-description">Graph-based retrieval, enhanced reasoning, trustworthy information sources</div>
-          </div>
-          
-          <div class="skill-card scroll-animate">
-            <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
-            <div class="skill-title">Trustworthy LLMs</div>
-            <div class="skill-description">Reliability engineering, explainable AI, verification systems</div>
-          </div>
-          
-          <div class="skill-card scroll-animate">
-            <div class="skill-icon"><i class="fas fa-brain"></i></div>
-            <div class="skill-title">Deep Learning</div>
-            <div class="skill-description">Neural networks, PEFT, model fine-tuning</div>
-          </div>
-          
-          <div class="skill-card scroll-animate">
-            <div class="skill-icon"><i class="fas fa-eye"></i></div>
-            <div class="skill-title">Eye Tracking</div>
-            <div class="skill-description">VR, desktop, and mobile systems</div>
-          </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <div class="skill-title">Knowledge Graphs</div>
+          <div class="skill-description">Structured knowledge representation, semantic relationships, and graph databases</div>
+        </div>
         
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-robot"></i></div>
+          <div class="skill-title">Large Language Models</div>
+          <div class="skill-description">LLM integration, fine-tuning, retrieval-augmented generation, and applied NLP</div>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-brain"></i></div>
+          <div class="skill-title">Deep Learning & Vision</div>
+          <div class="skill-description">Neural networks, multimodal AI, and computer vision applications</div>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-users"></i></div>
+          <div class="skill-title">Human–AI Interaction</div>
+          <div class="skill-description">Eye tracking, user-centered design, and intelligent interfaces</div>
         </div>
       </div>
-    </section>
+      
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title scroll-animate">Get In Touch</h2>
-        <p class="section-subtitle scroll-animate">
-          Let's discuss opportunities, collaborations, or just say hello
-        </p>
-        
-        <div class="contact-info scroll-animate">
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            <div class="contact-text">soumil.chugh@gmail.com</div>
-          </div>
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+      
+      <div class="contact-content">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-text">soumil.chugh@gmail.com</div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-text">
@@ -899,52 +975,66 @@
     </div>
   </footer>
 
-  <!-- Initialize tsParticles -->
   <script>
-    tsParticles.load("tsparticles", {
-      background: {
-        color: "#667eea"
-      },
-      fpsLimit: 60,
-      particles: {
-        links: {
-          color: "#ffffff",
-          distance: 150,
-          opacity: 0.3
-        },
-        move: {
-          attract: {
-            rotate: {
-              x: 600,
-              y: 1200
-            }
-          },
-          enable: true,
-          outModes: {
-            bottom: "out",
-            left: "out",
-            right: "out",
-            top: "out"
-          },
-          speed: 0.8
-        },
-        number: {
-          value: 80
-        },
-        opacity: {
-          value: 0.4
-        },
-        shape: {
-          type: "circle"
-        },
-        size: {
-          value: 2
-        }
-      }
+    // Theme switching functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    // Ensure backgrounds are properly set on page load
+    updateThemeBackgrounds();
+    
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+      
+      // Force update background colors
+      document.body.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary');
+      document.documentElement.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary');
     });
-
+    
+    // Update theme icon
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+        themeIcon.setAttribute('title', 'Switch to light theme');
+      } else {
+        themeIcon.className = 'fas fa-moon';
+        themeIcon.setAttribute('title', 'Switch to dark theme');
+      }
+      
+      // Update all background elements
+      updateThemeBackgrounds();
+    }
+    
+    // Update all theme backgrounds
+    function updateThemeBackgrounds() {
+      const root = document.documentElement;
+      const computedStyle = getComputedStyle(root);
+      
+      // Update HTML and body backgrounds
+      const bgPrimary = computedStyle.getPropertyValue('--bg-primary');
+      document.documentElement.style.background = bgPrimary;
+      document.body.style.background = bgPrimary;
+      
+      // Update navbar background
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        navbar.style.background = computedStyle.getPropertyValue('--bg-navbar');
+      }
+    }
+    
     // Navbar scroll effect
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', () => {
       const navbar = document.getElementById('navbar');
       if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -952,25 +1042,7 @@
         navbar.classList.remove('scrolled');
       }
     });
-
-    // Scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-animate').forEach(el => {
-      observer.observe(el);
-    });
-
+    
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {

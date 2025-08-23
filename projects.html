@@ -1,29 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <title>Soumil Chugh - Research Projects</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css">
   
   <style>
     :root {
-      --primary-color: #2563eb;
-      --primary-dark: #1d4ed8;
-      --secondary-color: #64748b;
-      --accent-color: #06b6d4;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
+      /* Light Theme */
       --bg-primary: #ffffff;
       --bg-secondary: #f8fafc;
-      --bg-dark: #0f172a;
-      --border-color: #e2e8f0;
+      --bg-tertiary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-navbar: rgba(255, 255, 255, 0.95);
+      --bg-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --text-white: #ffffff;
+      
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      
       --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
       --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    [data-theme="dark"] {
+      /* Dark Theme */
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --bg-card: #1e293b;
+      --bg-navbar: rgba(15, 23, 42, 0.95);
+      --bg-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-white: #ffffff;
+      
+      --primary: #60a5fa;
+      --primary-dark: #3b82f6;
+      --accent: #22d3ee;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --error: #f87171;
+      
+      --border: #334155;
+      --border-light: #475569;
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
     }
 
     * {
@@ -33,93 +75,191 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-primary);
-      background-color: var(--bg-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.6;
-    }
-
-    /* Navigation */
-    .navbar {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .site-title {
-      color: var(--primary-color);
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-decoration: none;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-      align-items: center;
-      margin: 0;
-    }
-
-    .nav-link {
       color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      background: var(--bg-primary);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-x: hidden;
     }
 
-    .nav-link:hover {
-      color: var(--primary-color);
-    }
-
-    .social-media a {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      margin: 0 0.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-media a:hover {
-      color: var(--primary-color);
-      transform: translateY(-2px);
-    }
-
-    /* Header */
-    .header {
-      background: var(--gradient-primary);
-      color: white;
-      padding: 4rem 0;
-      text-align: center;
-    }
-
-    .header h1 {
-      font-size: 3rem;
-      font-weight: 700;
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.2;
       margin-bottom: 1rem;
     }
 
-    .header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto;
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.75rem; }
+    h4 { font-size: 1.5rem; }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
     }
 
-    /* Container */
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Layout */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* Projects Grid */
-    .projects-section {
+    .section {
+      padding: 6rem 0;
+      background: var(--bg-primary);
+      transition: background-color 0.3s ease;
+    }
+
+    .section:nth-child(even) {
+      background: var(--bg-secondary);
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: var(--bg-navbar);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      background: var(--bg-card);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    /* Header */
+    .header {
+      background: var(--bg-hero);
+      color: var(--text-white);
       padding: 4rem 0;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--text-white);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+      color: var(--text-white);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
     }
 
     .section-title {
@@ -130,20 +270,36 @@
       color: var(--text-primary);
     }
 
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.7;
+    }
+
+    /* Projects Grid */
+    .projects-section {
+      padding: 4rem 0;
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
-      margin-bottom: 4rem;
+      margin-top: 3rem;
     }
 
     .project-card {
-      background: white;
+      background: var(--bg-card);
       border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow-md);
       transition: all 0.3s ease;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
     }
 
     .project-card:hover {
@@ -153,30 +309,25 @@
 
     .project-image {
       width: 100%;
-      height: 250px;
+      height: 200px;
       object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover .project-image {
-      transform: scale(1.05);
     }
 
     .project-content {
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     .project-title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      color: var(--text-primary);
       margin-bottom: 1rem;
+      color: var(--text-primary);
     }
 
     .project-description {
       color: var(--text-secondary);
-      line-height: 1.7;
       margin-bottom: 1.5rem;
+      line-height: 1.6;
     }
 
     .project-tags {
@@ -187,8 +338,8 @@
     }
 
     .project-tag {
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
+      background: var(--bg-tertiary);
+      color: var(--text-muted);
       padding: 0.25rem 0.75rem;
       border-radius: 20px;
       font-size: 0.85rem;
@@ -197,7 +348,8 @@
 
     .project-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .project-link {
@@ -205,38 +357,39 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
-      background: var(--primary-color);
-      color: white;
+      background: var(--primary);
+      color: var(--text-white);
       text-decoration: none;
       border-radius: 8px;
       font-weight: 500;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
     .project-link:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
-      color: white;
+      color: var(--text-white);
       text-decoration: none;
     }
 
     .project-link.secondary {
       background: transparent;
-      color: var(--primary-color);
-      border: 1px solid var(--primary-color);
+      color: var(--primary);
+      border: 1px solid var(--primary);
     }
 
     .project-link.secondary:hover {
-      background: var(--primary-color);
-      color: white;
+      background: var(--primary);
+      color: var(--text-white);
     }
 
     /* Footer */
     footer {
-      background: var(--bg-dark);
-      color: white;
+      background: var(--bg-primary);
+      color: var(--text-secondary);
       text-align: center;
       padding: 3rem 0;
+      border-top: 1px solid var(--border);
     }
 
     .footer-content {
@@ -246,7 +399,11 @@
 
     .footer-text {
       margin-bottom: 2rem;
-      color: rgba(255,255,255,0.8);
+      color: var(--text-muted);
+    }
+
+    .footer-text p {
+      margin-bottom: 0.5rem;
     }
 
     .footer-social {
@@ -256,46 +413,49 @@
     }
 
     .footer-social a {
-      color: rgba(255,255,255,0.8);
+      color: var(--text-muted);
       font-size: 1.5rem;
       transition: all 0.3s ease;
     }
 
     .footer-social a:hover {
-      color: white;
+      color: var(--primary);
       transform: translateY(-2px);
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .header h1 {
-        font-size: 2.5rem;
+      .container {
+        padding: 0 1rem;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+
+      .nav-menu {
+        gap: 1rem;
       }
 
       .projects-grid {
         grid-template-columns: 1fr;
       }
 
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .project-links {
-        flex-direction: column;
+      .header h1 {
+        font-size: 2rem;
       }
     }
 
     @media (max-width: 480px) {
       .header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
 
       .section-title {
         font-size: 2rem;
-      }
-
-      .container {
-        padding: 0 1rem;
       }
     }
 
@@ -333,23 +493,24 @@
   <!-- Navigation -->
   <nav class="navbar">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-6">
-          <a href="index.html" class="site-title">Soumil Chugh</a>
-        </div>
-        <div class="col-6">
-          <ul class="nav-links d-flex justify-content-end">
-            <li><a class="nav-link" href="index.html">Home</a></li>
-            <li><a class="nav-link" href="publications.html">Publications</a></li>
-            <li><a class="nav-link" target="_blank" href="/Resume.pdf">CV</a></li>
-            <li><a class="nav-link" target="_blank" href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en">Scholar</a></li>
-            <li class="social-media">
-              <a target="_blank" href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
-              <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a>
-              <a target="_blank" href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
-            </li>
-          </ul>
-        </div>
+      <div class="nav-container">
+        <a href="index.html" class="nav-brand">Soumil Chugh</a>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+          <li><a href="publications.html" class="nav-link">Publications</a></li>
+          <li class="social-links">
+            <a target="_blank" href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/in/soumil-chugh-95b33652"><i class="fab fa-linkedin"></i></a>
+            <a target="_blank" href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
@@ -521,7 +682,7 @@
         </div>
         <div class="footer-social">
           <a href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/soumil-chugh-0b3a7b94"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/soumil-chugh-95b33652"><i class="fab fa-linkedin"></i></a>
           <a href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
           <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i></a>
         </div>
@@ -546,6 +707,69 @@
 
     document.querySelectorAll('.scroll-animate').forEach(el => {
       observer.observe(el);
+    });
+
+    // Theme switching functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    // Ensure backgrounds are properly set on page load
+    updateThemeBackgrounds();
+    
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+    
+    // Update theme icon
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+        themeIcon.setAttribute('title', 'Switch to light theme');
+      } else {
+        themeIcon.className = 'fas fa-moon';
+        themeIcon.setAttribute('title', 'Switch to dark theme');
+      }
+      
+      // Update all background elements
+      updateThemeBackgrounds();
+    }
+    
+    // Update all theme backgrounds
+    function updateThemeBackgrounds() {
+      const root = document.documentElement;
+      const computedStyle = getComputedStyle(root);
+      
+      // Update HTML and body backgrounds
+      const bgPrimary = computedStyle.getPropertyValue('--bg-primary');
+      document.documentElement.style.background = bgPrimary;
+      document.body.style.background = bgPrimary;
+      
+      // Update navbar background
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        navbar.style.background = computedStyle.getPropertyValue('--bg-navbar');
+      }
+    }
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     });
   </script>
 </body>

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soumil Chugh - AI Research Engineer</title>
-  <meta name="description" content="AI Research Engineer specializing in knowledge graphs, graph RAG approaches, and building reliable LLM systems">
-  <meta name="keywords" content="AI Research Engineer, LLM Agents, Knowledge Graphs, Graph RAG, Machine Learning, Computer Vision">
-  
+  <title>Soumil Chugh - AI Agent Engineer</title>
+  <meta name="description" content="AI Agent Engineer building intelligent systems that understand context, automate workflows, and create with purpose. Currently at Kyoso.">
+  <meta name="keywords" content="AI Agent Engineer, LLM Agents, RAG Systems, Multimodal AI, Computer Vision, Machine Learning">
+
   <!-- Open Graph tags -->
-  <meta property="og:title" content="Soumil Chugh - AI Research Engineer">
-  <meta property="og:description" content="Building reliable and trustworthy LLM systems through knowledge graphs and graph RAG approaches">
+  <meta property="og:title" content="Soumil Chugh - AI Agent Engineer">
+  <meta property="og:description" content="Building AI agents that understand market trends, creative designs, and help creators produce on-brand content">
   <meta property="og:type" content="website">
   
   <!-- Fonts -->
@@ -592,6 +592,141 @@
       line-height: 1.6;
     }
 
+    /* Featured Project Section */
+    .featured-project-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    }
+
+    .featured-project-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      color: white;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .featured-project-content {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .featured-project-icon {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .featured-project-info {
+      flex: 1;
+    }
+
+    .featured-project-info h3 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-right: 4rem;
+    }
+
+    .featured-project-description {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .featured-project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-project-tags .tag {
+      background: var(--bg-tertiary);
+      color: var(--text-muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .featured-project-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-project:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    .btn-project-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-project-secondary:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
     /* Contact Section */
     .contact-content {
       text-align: center;
@@ -711,6 +846,36 @@
         text-align: center;
         gap: 1rem;
       }
+
+      .featured-project-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .featured-project-icon {
+        margin: 0 auto;
+      }
+
+      .featured-project-info h3 {
+        padding-right: 0;
+      }
+
+      .featured-project-badge {
+        top: 1rem;
+        right: 1rem;
+      }
+
+      .featured-project-tags {
+        justify-content: center;
+      }
+
+      .featured-project-links {
+        justify-content: center;
+      }
+
+      .featured-project-card {
+        padding: 2rem 1.5rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -761,9 +926,9 @@
       <div class="hero-content">
         <img src="img_self.png" alt="Soumil Chugh" class="hero-avatar">
         <h1 class="hero-title">Soumil Chugh</h1>
-        <p class="hero-subtitle">AI Research Engineer</p>
+        <p class="hero-subtitle">Senior AI Agent Engineer @ Kyoso</p>
         <p class="hero-description">
-          Designing advanced AI agents and multimodal systems with a focus on reliability, scalability, and real-world impact.
+          Building AI agents that understand market trends, brand identity, and creative design to help creators produce compelling on-brand content through natural language.
         </p>
         <div class="hero-buttons">
           <a href="#about" class="btn btn-primary">
@@ -791,25 +956,26 @@
           <div class="about-item">
             <h3>Current Role</h3>
             <p>
-              Senior AI/ML Engineer at Huawei’s Human–Computer Interaction Lab in Toronto, 
-              leading research on LLM-based agents and multimodal AI for seamless human–machine interaction.
+              Senior AI Agent Engineer at <strong>Kyoso</strong>, building an AI agent platform for designers and creators.
+              Working with multimodal LLMs, deep research agents, Graph RAG, and OCR to help brands generate
+              unique ideas for images and video ads using natural language.
             </p>
           </div>
-          
+
           <div class="about-item">
             <h3>Core Expertise</h3>
             <p>
-              Focused on <strong>knowledge-driven AI</strong>, <strong>multi-agent systems</strong>, and 
-              <strong>human-centered design</strong>. Experienced in bridging structured knowledge, 
-              deep learning, and multimodal intelligence.
+              Specialized in <strong>LLM agents</strong>, <strong>RAG systems</strong>, and
+              <strong>multimodal AI</strong>. 4+ years building browser automation agents, deep-research systems,
+              gesture recognition, and intelligent image editing. 8 patents in AI/ML.
             </p>
           </div>
-          
+
           <div class="about-item">
-            <h3>Research Vision</h3>
+            <h3>Background</h3>
             <p>
-              To build <strong>trustworthy AI</strong> that collaborates with people, adapts to real-world needs, 
-              and helps address society’s most important challenges.
+              Previously at <strong>Huawei</strong> leading LLM agent development. MASc from <strong>University of Toronto</strong>
+              in eye tracking and computer vision. Published at ETRA and ICPR conferences.
             </p>
           </div>
         </div>
@@ -828,46 +994,106 @@
       <div class="experience-grid">
         <div class="experience-card">
           <div class="experience-header">
-            <img src="Huawei-Logo.png" alt="Huawei" class="experience-logo">
+            <img src="kyoso_logo.png" alt="Kyoso" class="experience-logo">
             <div class="experience-info">
-              <h3>AI Research Engineer</h3>
-              <p>Huawei - Human Machine Interaction Lab</p>
-              <p>2020 - Present</p>
+              <h3>Senior AI Agent Engineer</h3>
+              <p><a href="https://www.kyoso.com/" target="_blank">Kyoso</a></p>
+              <p>2025 - Present</p>
             </div>
           </div>
           <div class="experience-description">
-            Driving research in <strong>LLM agents</strong> and <strong>AI system design</strong>, 
-            with a focus on building reliable, scalable, and human-centered intelligent systems.
+            Building an <strong>AI agent platform</strong> for designers and creators using <strong>multimodal LLMs</strong>,
+            <strong>deep research agents</strong>, and <strong>Graph RAG</strong>. Developing agents with tools and memory
+            to understand market trends, brand data, and creative designs. Leveraging OCR for document understanding
+            to generate unique ad ideas for images and videos through natural language.
           </div>
         </div>
-        
+
         <div class="experience-card">
           <div class="experience-header">
-            <img src="janacare_logo.png" alt="Jana Care" class="experience-logo">
+            <img src="Huawei-Logo.png" alt="Huawei" class="experience-logo">
             <div class="experience-info">
-              <h3>Software Engineer</h3>
-              <p>Jana Care</p>
-              <p>2015 - 2018</p>
+              <h3>Senior AI/ML Research Engineer</h3>
+              <p><a href="https://www.huawei.com/ca/" target="_blank">Huawei</a> - Human Machine Interaction Lab</p>
+              <p>2020 - 2025</p>
             </div>
           </div>
           <div class="experience-description">
-            Designed FDA-approved portable medical devices including robotic systems for 
-            diabetes management and cardiovascular health monitoring.
+            Led development of <strong>LLM agents</strong> for intelligent image editing, browser automation (similar to GPT-Operator),
+            and deep-research RAG systems. Built gesture recognition with LLM function calling. Fine-tuned LLMs using LoRA/PEFT.
+            Advanced gaze tracking with 25% accuracy improvement.
           </div>
         </div>
-        
+
         <div class="experience-card">
           <div class="experience-header">
             <img src="general_prognostics_logo.png" alt="General Prognostics" class="experience-logo">
             <div class="experience-info">
               <h3>Machine Learning Consultant</h3>
-              <p>General Prognostics Inc.</p>
-              <p>2020 - 2023</p>
+              <p><a href="https://gpx.ai/" target="_blank">General Prognostics Inc.</a></p>
+              <p>2020 - 2024</p>
             </div>
           </div>
           <div class="experience-description">
-            Developed machine learning pipeline for heart disease prediction using smartwatch data.
-            Implemented computer vision algorithms for biological sample quality control.
+            Developed ML pipeline for heart disease prediction using smartwatch data achieving 70% accuracy.
+            Built computer vision algorithms for biological sample quality control. Contributed to multiple patents.
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <img src="janacare_logo.png" alt="Jana Care" class="experience-logo">
+            <div class="experience-info">
+              <h3>Senior Software Engineer</h3>
+              <p><a href="https://www.janacare.com/" target="_blank">Jana Care</a></p>
+              <p>2015 - 2018</p>
+            </div>
+          </div>
+          <div class="experience-description">
+            Spearheaded <strong>FDA-approved</strong> smartphone-controlled robotic system for automating blood tests.
+            Developed BLE stacks on Android and ARM Cortex-M4 platforms.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Project Section -->
+  <section id="featured-project" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Project</h2>
+      </div>
+
+      <div class="featured-project-card">
+        <div class="featured-project-badge">New</div>
+        <div class="featured-project-content">
+          <div class="featured-project-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="featured-project-info">
+            <h3>AI Interview - Multi-Agent Interview Practice</h3>
+            <p class="featured-project-description">
+              A multi-agentic system where candidates can practice real-life interviews for ML/Data Science roles.
+              AI agents represent different team members - business analysts, software engineers, and more -
+              simulating authentic interview dynamics with synchronous human-agent interaction.
+            </p>
+            <div class="featured-project-tags">
+              <span class="tag">Multi-Agent System</span>
+              <span class="tag">LLM Agents</span>
+              <span class="tag">ML Interviews</span>
+              <span class="tag">Real-time Interaction</span>
+            </div>
+            <div class="featured-project-links">
+              <a href="https://github.com/HopeLoom/AI-Interview" target="_blank" class="btn-project">
+                <i class="fab fa-github"></i>
+                View on GitHub
+              </a>
+              <a href="projects.html" class="btn-project-secondary">
+                <i class="fas fa-arrow-right"></i>
+                All Projects
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -908,33 +1134,39 @@
       
       <div class="skills-grid">
         <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
-          <div class="skill-title">AI Agent Systems</div>
-          <div class="skill-description">Designing multi-agent architectures for reasoning, collaboration, and decision-making</div>
-        </div>
-        
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-database"></i></div>
-          <div class="skill-title">Knowledge Graphs</div>
-          <div class="skill-description">Structured knowledge representation, semantic relationships, and graph databases</div>
-        </div>
-        
-        <div class="skill-card">
           <div class="skill-icon"><i class="fas fa-robot"></i></div>
-          <div class="skill-title">Large Language Models</div>
-          <div class="skill-description">LLM integration, fine-tuning, retrieval-augmented generation, and applied NLP</div>
+          <div class="skill-title">LLM Agents</div>
+          <div class="skill-description">Browser automation, workflow agents, deep-research systems, and function calling architectures</div>
         </div>
-        
+
         <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-brain"></i></div>
-          <div class="skill-title">Deep Learning & Vision</div>
-          <div class="skill-description">Neural networks, multimodal AI, and computer vision applications</div>
+          <div class="skill-icon"><i class="fas fa-search"></i></div>
+          <div class="skill-title">RAG Systems</div>
+          <div class="skill-description">Retrieval-augmented generation, multi-source content merging, and automated visualization</div>
         </div>
-        
+
         <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-users"></i></div>
-          <div class="skill-title">Human–AI Interaction</div>
-          <div class="skill-description">Eye tracking, user-centered design, and intelligent interfaces</div>
+          <div class="skill-icon"><i class="fas fa-sliders-h"></i></div>
+          <div class="skill-title">LLM Fine-Tuning</div>
+          <div class="skill-description">LoRA, adapter tuning, PEFT techniques for domain-specific model optimization</div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-images"></i></div>
+          <div class="skill-title">Multimodal AI</div>
+          <div class="skill-description">Intelligent image editing, gesture recognition, and vision-language models</div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-eye"></i></div>
+          <div class="skill-title">Computer Vision</div>
+          <div class="skill-description">Gaze tracking, pupil segmentation, deep learning for eye tracking systems</div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <div class="skill-title">Tech Stack</div>
+          <div class="skill-description">Python, PyTorch, LangChain, OpenAI, TypeScript, Docker, GCP</div>
         </div>
       </div>
       
@@ -963,7 +1195,7 @@
       <div class="footer-content">
         <div class="footer-text">
           <p>&copy; 2025 Soumil Chugh. All rights reserved.</p>
-          <p>AI Research Engineer | Eye Tracking Specialist | AI Systems Developer</p>
+          <p>AI Agent Engineer | LLM Systems | Multimodal AI | 8 Patents</p>
         </div>
         <div class="footer-social">
           <a href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>

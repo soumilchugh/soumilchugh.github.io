@@ -235,14 +235,6 @@
     .evidence-meta { color: var(--text-secondary); font-size: 0.92rem; }
     .evidence-link { font-weight: 700; white-space: nowrap; }
 
-    .note-band {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
-      color: var(--text-secondary);
-    }
-
     footer {
       border-top: 1px solid var(--border);
       padding: 2.5rem 0;
@@ -289,11 +281,11 @@
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">Work & Research</div>
-        <h1>AI agents, healthcare ML, and computer vision systems with proof beside the work.</h1>
-        <p>Projects, publications, patents, collaborations, and private case studies now live together. Each item is labeled by what a visitor can inspect: public code, formal paper, patent, private case study, or collaboration.</p>
+        <h1>AI agents, healthcare ML, and computer vision systems with evidence beside the work.</h1>
+        <p>A curated view of public projects, selected private case studies, collaboration work, publications, and patent-backed applied systems.</p>
         <div class="jump-links">
           <a class="jump-link" href="#ai-products">AI Products</a>
-          <a class="jump-link" href="#agent-case-studies">Agent Case Studies</a>
+          <a class="jump-link" href="#agent-case-studies">Agent Systems</a>
           <a class="jump-link" href="#healthcare">Healthcare ML</a>
           <a class="jump-link" href="#vision">Computer Vision</a>
           <a class="jump-link" href="#evidence">Papers & Patents</a>
@@ -301,7 +293,7 @@
       </div>
       <div class="hero-stats" aria-label="Portfolio summary">
         <div class="stat"><span>Public flagship</span><strong>HopeLoom</strong></div>
-        <div class="stat"><span>Research depth</span><strong>ETRA / ICPR</strong></div>
+        <div class="stat"><span>Research venues</span><strong>ETRA / ICPR</strong></div>
         <div class="stat"><span>Applied IP</span><strong>8 patents</strong></div>
         <div class="stat"><span>Focus</span><strong>Agents + ML</strong></div>
       </div>
@@ -313,8 +305,8 @@
       <div class="container">
         <div class="section-header">
           <div class="section-kicker">Featured AI Products</div>
-          <h2>Public and private AI systems.</h2>
-          <p>Current AI product work: agent orchestration, real-time interaction, multimodal understanding, and practical user workflows.</p>
+          <h2>Public projects and product case studies.</h2>
+          <p>AI systems spanning real-time interaction, agent orchestration, multimodal understanding, and practical user workflows.</p>
         </div>
         <div class="project-grid">
           <article class="project-card featured">
@@ -328,22 +320,21 @@
           </article>
 
           <article class="project-card">
-            <div class="project-meta"><span class="badge private">Private</span><span class="badge">AI agents</span><span class="badge">Education</span></div>
+            <div class="project-meta"><span class="badge private">Private project</span><span class="badge">AI education</span><span class="badge">Learning tools</span></div>
             <h3>ByteMentor</h3>
-            <p>A private AI education project that we are preparing for public release. The next step is a release-readiness pass: README, screenshots, setup flow, secrets audit, and public positioning.</p>
-            <div class="project-links"><a class="project-link secondary" href="https://github.com/soumilchugh/ByteMentor" target="_blank"><i class="fab fa-github"></i> Private Repo</a></div>
+            <p>An AI education platform focused on personalized technical learning support, structured practice, and mentor-style guidance for programming concepts.</p>
           </article>
 
           <article class="project-card">
             <div class="project-meta"><span class="badge private">Private case study</span><span class="badge">RAG</span><span class="badge">Multimodal AI</span></div>
             <h3>AI Agent Platform for Creative Workflows</h3>
-            <p>At Kyoso, building agents that use brand context, market research, OCR, multimodal LLMs, and Graph RAG to help designers and creators generate campaign ideas and on-brand visual concepts.</p>
+            <p>At Kyoso, building agents that use brand context, market research, OCR, multimodal LLMs, and Graph RAG to support creative ideation and on-brand visual concepting.</p>
           </article>
 
           <article class="project-card">
             <div class="project-meta"><span class="badge collab">Collaboration</span><span class="badge repo">Public repo</span><span class="badge">Presentations</span></div>
             <h3>Slideo AI</h3>
-            <p>A collaborative AI presentation-generation project that turns documents into slide decks with real-time collaboration, document parsing, AI content planning, and PowerPoint export workflows.</p>
+            <p>A collaborative AI presentation-generation project that turns documents into slide decks with document parsing, AI content planning, real-time collaboration, and PowerPoint export workflows.</p>
             <div class="project-links"><a class="project-link" href="https://github.com/bertovmill/slideo-ai" target="_blank"><i class="fab fa-github"></i> View Repo</a></div>
           </article>
         </div>
@@ -353,15 +344,15 @@
     <section id="agent-case-studies" class="section alt">
       <div class="container">
         <div class="section-header">
-          <div class="section-kicker">Research And Agent Case Studies</div>
-          <h2>LLM agents from production research environments.</h2>
-          <p>Some of the strongest work is private or proprietary, so these are framed as case studies rather than code repositories.</p>
+          <div class="section-kicker">Agent Systems</div>
+          <h2>LLM agents from applied research environments.</h2>
+          <p>Selected proprietary work is presented as case studies, with technical scope described at a public-safe level.</p>
         </div>
         <div class="project-grid">
           <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">LLM agents</span><span class="badge patent">Patent-linked</span></div><h3>System-Level LLM Agents</h3><p>Led LLM agent development for system applications such as intelligent image editing and color recommendation tools, combining open models, tool use, and user-context understanding.</p><div class="project-links"><a class="project-link secondary" href="#evidence"><i class="fas fa-certificate"></i> Related IP</a></div></article>
-          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Deep research</span><span class="badge">RAG</span></div><h3>Deep Research Agent With Smart Editing</h3><p>Designed a RAG-based research agent for report creation with smart editing, multi-source merging, automated visualization, and model routing across reasoning and generation models.</p></article>
-          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Browser automation</span><span class="badge">Workflow agents</span></div><h3>Workflow Automation Agent</h3><p>Built an LLM-based browser automation agent that interprets user-recorded workflows, reasons over HTML, identifies target elements, and executes actions across websites.</p></article>
-          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Function calling</span><span class="badge patent">Patent-linked</span></div><h3>Gesture Recognition With LLM Function Calling</h3><p>Integrated gesture recognition models with LLM function calling to interpret stylus gestures and map them to useful application actions in creative tablet workflows.</p><div class="project-links"><a class="project-link secondary" href="#evidence"><i class="fas fa-certificate"></i> Related IP</a></div></article>
+          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Deep research</span><span class="badge">RAG</span></div><h3>Deep Research Agent</h3><p>Designed a RAG-based research agent for report creation with smart editing, multi-source merging, automated visualization, and model routing across reasoning and generation models.</p></article>
+          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Browser automation</span><span class="badge">Workflow agents</span></div><h3>Workflow Automation Agent</h3><p>Built an LLM-based browser automation agent that interprets recorded workflows, reasons over HTML, identifies target elements, and executes actions across websites.</p></article>
+          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Function calling</span><span class="badge patent">Patent-linked</span></div><h3>Gesture Recognition With LLM Function Calling</h3><p>Integrated gesture recognition models with LLM function calling to interpret stylus gestures and map them to application actions in creative tablet workflows.</p><div class="project-links"><a class="project-link secondary" href="#evidence"><i class="fas fa-certificate"></i> Related IP</a></div></article>
         </div>
       </div>
     </section>
@@ -371,12 +362,12 @@
         <div class="section-header">
           <div class="section-kicker">Healthcare ML And Devices</div>
           <h2>Applied machine learning for medical and wearable systems.</h2>
-          <p>Private repositories, public code, papers, and patents are grouped with the related systems.</p>
+          <p>Healthcare work includes wearable biomarker modeling, medical imaging, firmware-adjacent systems, and patent-backed device pipelines.</p>
         </div>
         <div class="project-grid">
-          <article class="project-card"><div class="project-meta"><span class="badge private">Private repo</span><span class="badge patent">Patent-linked</span><span class="badge">Wearables</span></div><h3>Cardioid Algorithm ML</h3><p>Machine learning work for heart-risk and renal-risk monitoring using smartwatch biomarker data at General Prognostics.</p><div class="project-links"><a class="project-link secondary" href="https://github.com/generalprognostics/cardioid_algo_ml" target="_blank"><i class="fab fa-github"></i> Private Repo</a><a class="project-link secondary" href="#evidence"><i class="fas fa-certificate"></i> Patent</a></div></article>
-          <article class="project-card"><div class="project-meta"><span class="badge private">Private repo</span><span class="badge">Sampling algorithms</span><span class="badge">Healthcare</span></div><h3>Smart Sampling</h3><p>Algorithm work for smarter sampling strategies in medical/wearable data pipelines.</p><div class="project-links"><a class="project-link secondary" href="https://github.com/generalprognostics/Smart-Sampling" target="_blank"><i class="fab fa-github"></i> Private Repo</a></div></article>
-          <article class="project-card"><div class="project-meta"><span class="badge private">Private repo</span><span class="badge">Firmware</span><span class="badge">Wearables</span></div><h3>Watch Firmware</h3><p>Firmware work supporting smartwatch-based sensing and health-data collection workflows.</p><div class="project-links"><a class="project-link secondary" href="https://github.com/generalprognostics/Watch-Firmware" target="_blank"><i class="fab fa-github"></i> Private Repo</a></div></article>
+          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge patent">Patent-linked</span><span class="badge">Wearables</span></div><h3>Cardioid Algorithm ML</h3><p>Machine learning work for heart-risk and renal-risk monitoring using smartwatch biomarker data at General Prognostics.</p><div class="project-links"><a class="project-link secondary" href="#evidence"><i class="fas fa-certificate"></i> Related Patent</a></div></article>
+          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Sampling algorithms</span><span class="badge">Healthcare</span></div><h3>Smart Sampling</h3><p>Algorithm work for efficient sampling strategies in medical and wearable data pipelines.</p></article>
+          <article class="project-card"><div class="project-meta"><span class="badge private">Private</span><span class="badge">Firmware</span><span class="badge">Wearables</span></div><h3>Watch Firmware</h3><p>Firmware-adjacent work supporting smartwatch-based sensing and health-data collection workflows.</p></article>
           <article class="project-card"><div class="project-meta"><span class="badge repo">Public repo</span><span class="badge">Medical imaging</span><span class="badge">CNN</span></div><h3>RetiSpec Project</h3><p>CNN-based binary classification using RGB and near-infrared image inputs, with YACS configuration, TensorBoard logging, and evaluation artifacts.</p><div class="project-links"><a class="project-link" href="https://github.com/soumilchugh/RetiSpec-Project" target="_blank"><i class="fab fa-github"></i> View Code</a></div></article>
           <article class="project-card"><div class="project-meta"><span class="badge private">Case study</span><span class="badge patent">Patent-linked</span><span class="badge">Medical devices</span></div><h3>IoT-Enabled HbA1c Medical Device</h3><p>Robotic and IoT-enabled medical device work for remote HbA1c testing from finger-prick blood samples, including embedded and mobile integration.</p><div class="project-links"><a class="project-link secondary" href="#evidence"><i class="fas fa-certificate"></i> Related IP</a></div></article>
           <article class="project-card"><div class="project-meta"><span class="badge repo">Public repo</span><span class="badge paper">Paper-linked</span><span class="badge">Retinal imaging</span></div><h3>Diabetic Retinopathy</h3><p>Code related to exudate segmentation in retinal fundus images for diabetic retinopathy detection.</p><div class="project-links"><a class="project-link" href="https://github.com/soumilchugh/Diabetic-Retinopathy" target="_blank"><i class="fab fa-github"></i> View Code</a><a class="project-link secondary" href="#evidence"><i class="fas fa-file-alt"></i> Paper</a></div></article>
@@ -389,13 +380,13 @@
         <div class="section-header">
           <div class="section-kicker">Computer Vision And HCI</div>
           <h2>Eye tracking, gaze estimation, and visual perception projects.</h2>
-          <p>Public code, thesis work, papers, and patents are linked together rather than split across pages.</p>
+          <p>Computer vision work spanning VR eye tracking, pupil estimation, retinal imaging, scene perception, and human-computer interaction.</p>
         </div>
         <div class="project-grid">
           <article class="project-card"><div class="project-meta"><span class="badge paper">Publication-linked</span><span class="badge patent">Patent-linked</span><span class="badge">Eye tracking</span></div><h3>Advanced Computer Vision for Gaze Tracking</h3><p>Research and deployment of gaze tracking methods for VR, desktop, and mobile settings, including RGB/IR camera pipelines and accuracy improvements.</p><div class="project-links"><a class="project-link secondary" href="#evidence"><i class="fas fa-graduation-cap"></i> Papers & Patents</a></div></article>
           <article class="project-card"><div class="project-meta"><span class="badge repo">Public repo</span><span class="badge">Pupil center</span><span class="badge">CNN</span></div><h3>Pupil Center Estimation</h3><p>CNN architecture for estimating pupil centers from infrared smartphone eye images, including image enhancement experiments and mean pixel error analysis.</p><div class="project-links"><a class="project-link" href="https://github.com/soumilchugh/PupilCenterEstimation" target="_blank"><i class="fab fa-github"></i> View Code</a></div></article>
           <article class="project-card"><div class="project-meta"><span class="badge repo">Public repo</span><span class="badge">Lane detection</span><span class="badge">Segmentation</span></div><h3>Lane Detection</h3><p>Semantic-segmentation approach to lane detection using BDD100K images, generated labels, model outputs, and feature-map visualizations.</p><div class="project-links"><a class="project-link" href="https://github.com/soumilchugh/LaneDetection" target="_blank"><i class="fab fa-github"></i> View Code</a></div></article>
-          <article class="project-card"><div class="project-meta"><span class="badge repo">Public repo</span><span class="badge">Computer vision</span><span class="badge">Classification</span></div><h3>Emotion Classification</h3><p>Public computer-vision project that should be polished next with a stronger README, setup instructions, and examples before being promoted heavily.</p><div class="project-links"><a class="project-link" href="https://github.com/soumilchugh/EmotionClassification" target="_blank"><i class="fab fa-github"></i> View Code</a></div></article>
+          <article class="project-card"><div class="project-meta"><span class="badge repo">Public repo</span><span class="badge">Computer vision</span><span class="badge">Classification</span></div><h3>Emotion Classification</h3><p>Computer-vision project for emotion classification experiments and model evaluation.</p><div class="project-links"><a class="project-link" href="https://github.com/soumilchugh/EmotionClassification" target="_blank"><i class="fab fa-github"></i> View Code</a></div></article>
         </div>
       </div>
     </section>
@@ -405,7 +396,7 @@
         <div class="section-header">
           <div class="section-kicker">Formal Evidence</div>
           <h2>Papers, thesis, and patents.</h2>
-          <p>This replaces the separate Publications page. The list stays compact here, while project cards above point to the relevant evidence.</p>
+          <p>Selected publications and patent-backed systems connected to the project areas above.</p>
         </div>
         <div class="evidence-list">
           <div class="evidence-item"><div class="evidence-type">Conference</div><div><div class="evidence-title">CSA-CNN: A Contrastive Self-Attention Neural Network for Pupil Segmentation in Eye Gaze Tracking</div><div class="evidence-meta">Soumil Chugh, Juntao Ye, Yuqi Fu, Moshe Eizenman | Symposium on Eye Tracking Research and Applications</div></div><a class="evidence-link" href="https://dl.acm.org/doi/abs/10.1145/3649902.3653351" target="_blank">View paper</a></div>
@@ -415,7 +406,6 @@
           <div class="evidence-item"><div class="evidence-type">Conference</div><div><div class="evidence-title">Low Cost Calibration Free Pulse Oximeter</div><div class="evidence-meta">Soumil Chugh, Jaskirat Kaur | IEEE INDICON | 2015</div></div><a class="evidence-link" href="https://ieeexplore.ieee.org/abstract/document/7443576" target="_blank">View paper</a></div>
           <div class="evidence-item"><div class="evidence-type">Conference</div><div><div class="evidence-title">Non-invasive Hemoglobin Monitoring Device</div><div class="evidence-meta">Soumil Chugh, Jaskirat Kaur | ICCC India | 2015</div></div><a class="evidence-link" href="https://ieeexplore.ieee.org/abstract/document/7432925" target="_blank">View paper</a></div>
           <div class="evidence-item"><div class="evidence-type">Conference</div><div><div class="evidence-title">Effect of Different Signal Processing Techniques on a Calibration-Free Pulse Oximeter</div><div class="evidence-meta">S. Chugh, A. Akula | I2CT | 2018</div></div><a class="evidence-link" href="https://ieeexplore.ieee.org/abstract/document/8529537" target="_blank">View paper</a></div>
-
           <div class="evidence-item"><div class="evidence-type">Patent</div><div><div class="evidence-title">Multi-modal interaction for selecting semantic regions in agent-based image editing</div><div class="evidence-meta">Yu Zhao, Abby Lu, Soumil Chugh, Che Yan, Yuan Deng | Submitted</div></div><span class="evidence-link">Submitted</span></div>
           <div class="evidence-item"><div class="evidence-type">Patent</div><div><div class="evidence-title">Methods for cross-media configuration on virtual keyboard theme</div><div class="evidence-meta">Yu Zhao, Yuan Deng, Soumil Chugh, Che Yan, Wei Li | Submitted</div></div><span class="evidence-link">Submitted</span></div>
           <div class="evidence-item"><div class="evidence-type">Patent</div><div><div class="evidence-title">A method for cursor positioning with gaze-assisted pen interaction</div><div class="evidence-meta">Juntao Ye, Shuyang Teng, Soumil Chugh, Andy Chow, Yu Zhao | Submitted</div></div><span class="evidence-link">Submitted</span></div>
@@ -428,10 +418,6 @@
           <div class="evidence-item"><div class="evidence-type">Patent</div><div><div class="evidence-title">Quality control of user-generated biological sample cards</div><div class="evidence-meta">Michal Depa, Soumil Chugh, Javi, Sean, Sidhant, Theressa | WO2023091455A1</div></div><span class="evidence-link">Patent</span></div>
         </div>
       </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container"><div class="note-band"><strong>Blog-track work:</strong> forked repositories such as OpenHarness, nanoclaw, clawdbot, crewAI, LightRAG, RAG-Anything, nanochat, and related exploration repos are intentionally left out of portfolio cards. They are better suited for future technical blog posts once there are original contributions or architectural writeups.</div></div>
     </section>
   </main>
 

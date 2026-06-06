@@ -4,1323 +4,478 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soumil Chugh - AI Agent Engineer</title>
-  <meta name="description" content="AI Agent Engineer building intelligent systems that understand context, automate workflows, and create with purpose. Currently at Kyoso.">
-  <meta name="keywords" content="AI Agent Engineer, LLM Agents, RAG Systems, Multimodal AI, Computer Vision, Machine Learning">
-
-  <!-- Open Graph tags -->
+  <meta name="description" content="Soumil Chugh builds AI agents, healthcare ML systems, and computer vision products with research depth across LLMs, RAG, multimodal AI, and eye tracking.">
+  <meta name="keywords" content="AI Agent Engineer, LLM Agents, RAG Systems, Multimodal AI, Healthcare ML, Computer Vision, Eye Tracking">
   <meta property="og:title" content="Soumil Chugh - AI Agent Engineer">
-  <meta property="og:description" content="Building AI agents that understand market trends, creative designs, and help creators produce on-brand content">
+  <meta property="og:description" content="AI agents, healthcare ML, and computer vision systems with research depth and product focus.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://soumilchugh.github.io/">
-
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://soumilchugh.github.io/">
-  
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root {
-      /* Light Theme */
       --bg-primary: #ffffff;
-      --bg-secondary: #f8fafc;
-      --bg-tertiary: #f1f5f9;
+      --bg-secondary: #f7faf9;
       --bg-card: #ffffff;
       --bg-navbar: rgba(255, 255, 255, 0.95);
-      --bg-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
+      --text-primary: #10201d;
+      --text-secondary: #42534f;
+      --text-muted: #66756f;
       --text-white: #ffffff;
-      
-      --primary: #3b82f6;
-      --primary-dark: #2563eb;
-      --accent: #06b6d4;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --error: #ef4444;
-      
-      --border: #e2e8f0;
-      --border-light: #f1f5f9;
-      
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #0f766e;
+      --border: #dbe4e0;
+      --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+      --shadow-md: 0 10px 24px rgb(15 23 42 / 0.08);
     }
 
     [data-theme="dark"] {
-      /* Dark Theme */
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-tertiary: #334155;
-      --bg-card: #1e293b;
-      --bg-navbar: rgba(15, 23, 42, 0.95);
-      --bg-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      
-      --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
+      --bg-primary: #0b1413;
+      --bg-secondary: #111c1a;
+      --bg-card: #14211f;
+      --bg-navbar: rgba(11, 20, 19, 0.94);
+      --text-primary: #f5fbf8;
+      --text-secondary: #c4d3ce;
+      --text-muted: #91a39d;
       --text-white: #ffffff;
-      
       --primary: #60a5fa;
-      --primary-dark: #3b82f6;
-      --accent: #22d3ee;
-      --success: #34d399;
-      --warning: #fbbf24;
-      --error: #f87171;
-      
-      --border: #334155;
-      --border-light: #475569;
-      
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+      --primary-dark: #93c5fd;
+      --accent: #2dd4bf;
+      --border: #29403b;
+      --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.25);
+      --shadow-md: 0 14px 32px rgb(0 0 0 / 0.28);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg-primary); scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-primary);
       background: var(--bg-primary);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1.6;
       overflow-x: hidden;
-      min-height: 100vh;
     }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-dark); }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
 
-    html {
-      background: var(--bg-primary);
-    }
-
-    /* Typography */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2.5rem; }
-    h3 { font-size: 1.75rem; }
-    h4 { font-size: 1.5rem; }
-
-    p {
-      margin-bottom: 1rem;
-      color: var(--text-secondary);
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    a:hover {
-      color: var(--primary-dark);
-    }
-
-    /* Layout */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .section {
-      padding: 6rem 0;
-      background: var(--bg-primary);
-      transition: background-color 0.3s ease;
-    }
-
-    .section:nth-child(even) {
-      background: var(--bg-secondary);
-    }
-
-    /* Navigation */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: var(--bg-navbar);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
       z-index: 1000;
-      padding: 1rem 0;
-      transition: all 0.3s ease;
-    }
-
-    .navbar.scrolled {
       background: var(--bg-navbar);
-      box-shadow: var(--shadow-md);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
     }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
+    .nav-container { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
     .nav-brand {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.5rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--primary);
-      text-decoration: none;
+      white-space: nowrap;
     }
-
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    /* Mobile navigation scroll */
-    @media (max-width: 768px) {
-      .nav-container {
-        flex-wrap: nowrap;
-      }
-
-      .nav-menu {
-        gap: 1.25rem;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 0.5rem 0;
-        margin-right: -1rem;
-        padding-right: 1rem;
-      }
-
-      .nav-menu::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nav-menu li,
-      .nav-menu .social-links {
-        flex-shrink: 0;
-      }
-    }
-
-    .nav-link {
-      color: var(--text-primary);
-      font-weight: 500;
-      transition: color 0.2s ease;
-      position: relative;
-    }
-
-    .nav-link:hover {
-      color: var(--primary);
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.2s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-links a {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      transition: all 0.2s ease;
-    }
-
-    .social-links a:hover {
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
+    .nav-menu { display: flex; list-style: none; align-items: center; gap: 1.5rem; }
+    .nav-link { color: var(--text-primary); font-weight: 500; }
+    .social-links { display: flex; gap: 0.85rem; }
+    .social-links a { color: var(--text-secondary); font-size: 1.15rem; }
     .theme-toggle {
-      background: none;
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-      padding: 0.5rem;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
       background: var(--bg-card);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
     }
 
-    .theme-toggle:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: scale(1.05);
-    }
-
-    /* Hero Section */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: var(--bg-hero);
-      position: relative;
-      overflow: hidden;
-      padding-top: 80px;
+      background: linear-gradient(135deg, #10201d 0%, #173b35 58%, #1d4ed8 100%);
+      color: var(--text-white);
+      padding: 8rem 0 4rem;
     }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.3;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 3rem;
+      align-items: center;
     }
-
-    .hero-content {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
     .hero-avatar {
-      width: 180px;
-      height: 180px;
+      width: 210px;
+      height: 210px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid var(--text-white);
-      box-shadow: var(--shadow-xl);
-      margin-bottom: 2rem;
-      transition: transform 0.3s ease;
+      border: 3px solid rgba(255,255,255,0.8);
+      box-shadow: 0 24px 70px rgb(0 0 0 / 0.35);
+      justify-self: end;
     }
-
-    .hero-avatar:hover {
-      transform: scale(1.05);
-    }
-
-    .hero-title {
-      color: var(--text-white);
+    .eyebrow {
+      color: #a7f3d0;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.85rem;
       margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-
-    .hero-subtitle {
-      color: var(--text-white);
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
-    }
-
-    .hero-description {
-      color: var(--text-white);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto 3rem;
-      opacity: 0.8;
-      line-height: 1.7;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
+    h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.98; letter-spacing: 0; margin-bottom: 1.25rem; max-width: 900px; }
+    .hero-description { color: rgba(255,255,255,0.86); font-size: 1.17rem; max-width: 780px; margin-bottom: 2rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
     .btn {
-      padding: 0.875rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 1rem;
+      border-radius: 8px;
+      padding: 0.78rem 1.05rem;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.28);
     }
+    .btn-primary { background: #fff; color: #173b35; }
+    .btn-primary:hover { background: rgba(255,255,255,0.9); color: #173b35; }
+    .btn-outline { color: #fff; background: rgba(255,255,255,0.08); }
+    .btn-outline:hover { color: #fff; background: rgba(255,255,255,0.16); }
 
-    .btn-primary {
-      background: var(--text-white);
-      color: var(--primary);
-      border: 2px solid var(--text-white);
+    .section { padding: 4.5rem 0; }
+    .section.alt { background: var(--bg-secondary); }
+    .section-header { margin-bottom: 2rem; max-width: 780px; }
+    .section-kicker {
+      color: var(--accent);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
     }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05; margin-bottom: 0.75rem; }
+    .section-header p { color: var(--text-secondary); }
 
-    .btn-primary:hover {
-      background: transparent;
-      color: var(--text-white);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-white);
-      border: 2px solid var(--text-white);
-    }
-
-    .btn-outline:hover {
-      background: var(--text-white);
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* Section Headers */
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Cards */
-    .card {
+    .proof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .proof-card {
       background: var(--bg-card);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
       border: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* About Section */
-    .about-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .about-grid {
-      display: grid;
-      gap: 2rem;
-    }
-
-    .about-item {
-      background: var(--bg-card);
-      padding: 2rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem;
       box-shadow: var(--shadow-sm);
     }
+    .proof-card strong { display: block; font-size: 1.55rem; line-height: 1; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .proof-card span { color: var(--text-secondary); font-size: 0.92rem; }
 
-    .about-item h3 {
-      color: var(--primary);
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
+    .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+    .work-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow-sm);
       display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .work-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); transition: all 0.2s ease; }
+    .work-card.featured { grid-column: span 2; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1rem; }
+    .badge {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.22rem 0.62rem;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .badge.repo { color: var(--primary); border-color: color-mix(in srgb, var(--primary), transparent 55%); }
+    .badge.private { color: var(--text-muted); }
+    .badge.evidence { color: var(--accent); border-color: color-mix(in srgb, var(--accent), transparent 55%); }
+    .work-card h3 { font-size: 1.25rem; line-height: 1.25; margin-bottom: 0.7rem; }
+    .work-card p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .card-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .card-link {
+      display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-    }
-
-    .about-item h3::before {
-      content: '';
-      width: 4px;
-      height: 20px;
+      gap: 0.45rem;
+      color: var(--text-white);
       background: var(--primary);
-      border-radius: 2px;
+      padding: 0.55rem 0.85rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
     }
+    .card-link.secondary { color: var(--primary); background: transparent; border: 1px solid color-mix(in srgb, var(--primary), transparent 45%); }
+    .card-link:hover { color: var(--text-white); background: var(--primary-dark); }
+    .card-link.secondary:hover { color: var(--text-white); background: var(--primary); }
 
-    .about-item p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* Experience Section */
-    .experience-grid {
-      display: grid;
-      gap: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
+    .experience-grid { display: grid; gap: 1rem; }
     .experience-card {
       background: var(--bg-card);
-      padding: 2rem;
-      border-radius: 16px;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .experience-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .experience-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .experience-logo {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
       border-radius: 8px;
-      background: var(--bg-card);
-      padding: 0.5rem;
-      border: 1px solid var(--border);
-    }
-
-    [data-theme="dark"] .experience-logo {
-      background: white;
-      border-color: var(--border-light);
-    }
-
-    .experience-info h3 {
-      color: var(--text-primary);
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-info p {
-      color: var(--text-secondary);
-      margin-bottom: 0.25rem;
-    }
-
-    .experience-description {
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Education Section */
-    .education-card {
-      background: var(--bg-card);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .education-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .education-logo {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: var(--bg-card);
-      padding: 0.5rem;
-      border: 1px solid var(--border);
-    }
-
-    [data-theme="dark"] .education-logo {
-      background: white;
-      border-color: var(--border-light);
-    }
-
-    .education-info h3 {
-      color: var(--text-primary);
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .education-info p {
-      color: var(--text-secondary);
-      margin-bottom: 0.25rem;
-    }
-
-    .education-details {
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .education-details a {
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    /* Skills Section */
-    .skills-grid {
+      padding: 1.35rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 1.2rem;
+      box-shadow: var(--shadow-sm);
     }
+    .experience-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 0.45rem;
+    }
+    .experience-info h3 { margin-bottom: 0.2rem; font-size: 1.15rem; }
+    .experience-info p { color: var(--text-secondary); margin-bottom: 0.25rem; }
+    .experience-description { color: var(--text-secondary); }
 
+    .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
     .skill-card {
       background: var(--bg-card);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
+      border-radius: 8px;
+      padding: 1.15rem;
     }
+    .skill-card i { color: var(--accent); margin-right: 0.5rem; }
+    .skill-card strong { display: block; margin-bottom: 0.45rem; }
+    .skill-card p { color: var(--text-secondary); font-size: 0.94rem; }
 
-    .skill-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .skill-icon {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .skill-title {
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.75rem;
-      font-size: 1.1rem;
-    }
-
-    .skill-description {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Featured Project Section */
-    .featured-project-card {
+    .contact-card {
       background: var(--bg-card);
-      border-radius: 20px;
-      padding: 2.5rem;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow-lg);
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .featured-project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-    }
-
-    .featured-project-badge {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-      color: white;
-      padding: 0.35rem 0.9rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .featured-project-content {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-
-    .featured-project-icon {
-      flex-shrink: 0;
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      color: white;
-    }
-
-    .featured-project-info {
-      flex: 1;
-    }
-
-    .featured-project-info h3 {
-      color: var(--text-primary);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      padding-right: 4rem;
-    }
-
-    .featured-project-description {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    .featured-project-tags {
+      border-radius: 8px;
+      padding: 1.35rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .featured-project-tags .tag {
-      background: var(--bg-tertiary);
-      color: var(--text-muted);
-      padding: 0.4rem 0.9rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .featured-project-links {
-      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 1rem;
-      flex-wrap: wrap;
     }
+    .contact-card p { color: var(--text-secondary); }
 
-    .btn-project {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--primary);
-      color: white;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .btn-project:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      color: white;
-    }
-
-    .btn-project-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .btn-project-secondary:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Contact Section */
-    .contact-content {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 2rem;
-      background: var(--bg-card);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      margin: 1rem;
-      transition: all 0.2s ease;
-    }
-
-    [data-theme="light"] .contact-item {
-      background: var(--bg-secondary);
-      border-color: var(--border-light);
-      box-shadow: var(--shadow-md);
-    }
-
-    .contact-item:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .contact-icon {
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-
-    .contact-text {
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    /* Footer */
-    .footer {
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-      text-align: center;
-      padding: 3rem 0;
+    footer {
       border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .footer-text {
-      margin-bottom: 2rem;
-    }
-
-    .footer-text p {
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-social {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .footer-social a {
+      padding: 2.5rem 0;
       color: var(--text-muted);
-      font-size: 1.5rem;
-      transition: all 0.2s ease;
+      background: var(--bg-primary);
+      text-align: center;
     }
+    .footer-social { display: flex; justify-content: center; gap: 1.25rem; margin-top: 1rem; }
+    .footer-social a { color: var(--text-muted); font-size: 1.3rem; }
 
-    .footer-social a:hover {
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 1rem;
-      }
-
-      .section {
-        padding: 4rem 0;
-      }
-
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 2rem; }
-
-      .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .experience-header,
-      .education-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-      }
-
-      .featured-project-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .featured-project-icon {
-        margin: 0 auto;
-      }
-
-      .featured-project-info h3 {
-        padding-right: 0;
-      }
-
-      .featured-project-badge {
-        top: 1rem;
-        right: 1rem;
-      }
-
-      .featured-project-tags {
-        justify-content: center;
-      }
-
-      .featured-project-links {
-        justify-content: center;
-      }
-
-      .featured-project-card {
-        padding: 2rem 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero {
-        padding-top: 100px;
-        padding-bottom: 2rem;
-      }
-
-      .hero-avatar {
-        width: 140px;
-        height: 140px;
-      }
-
-      .hero-title {
-        font-size: 2rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
+    @media (max-width: 900px) {
+      .container { padding: 0 1rem; }
+      .nav-menu { overflow-x: auto; gap: 1rem; padding-bottom: 0.3rem; }
+      .social-links { display: none; }
+      .hero { min-height: auto; padding: 7rem 0 3.5rem; }
+      .hero-grid, .proof-grid, .work-grid, .skills-grid { grid-template-columns: 1fr; }
+      .hero-avatar { justify-self: start; width: 150px; height: 150px; }
+      .work-card.featured { grid-column: span 1; }
+      .experience-card { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <nav class="navbar" id="navbar">
-    <div class="container">
-      <div class="nav-container">
-        <a href="#" class="nav-brand">Soumil Chugh</a>
-        <ul class="nav-menu">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="publications.html" class="nav-link">Publications</a></li>
-          <div class="social-links">
-            <a href="https://github.com/soumilchugh" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/soumil_chugh" target="_blank"><i class="fab fa-twitter"></i></a>
-          </div>
-          <li>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-              <i class="fas fa-moon"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
+    <div class="container nav-container">
+      <a href="#" class="nav-brand">Soumil Chugh</a>
+      <ul class="nav-menu">
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li class="social-links">
+          <a href="https://github.com/soumilchugh" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        </li>
+        <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <img src="img_self.png" alt="Soumil Chugh" class="hero-avatar">
-        <h1 class="hero-title">Soumil Chugh</h1>
-        <p class="hero-subtitle">Senior AI Agent Engineer @ Kyoso</p>
-        <p class="hero-description">
-          Building AI agents that understand market trends, brand identity, and creative design to help creators produce compelling on-brand content through natural language.
-        </p>
-        <div class="hero-buttons">
-          <a href="#about" class="btn btn-primary">
-            <i class="fas fa-user"></i>
-            Learn More
-          </a>
-          <a href="projects.html" class="btn btn-outline">
-            <i class="fas fa-code"></i>
-            View Projects
-          </a>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">AI Agent Engineer | Healthcare ML | Computer Vision</div>
+        <h1>I build AI systems that move from research ideas into useful products.</h1>
+        <p class="hero-description">Senior AI Agent Engineer at Kyoso, with experience across LLM agents, RAG, multimodal AI, healthcare ML, medical devices, and eye-tracking research. My work spans public products, private case studies, papers, and patents.</p>
+        <div class="hero-actions">
+          <a href="projects.html" class="btn btn-primary"><i class="fas fa-code"></i> View Projects</a>
+          <a href="publications.html" class="btn btn-outline"><i class="fas fa-graduation-cap"></i> Papers & Patents</a>
+          <a href="#experience" class="btn btn-outline"><i class="fas fa-briefcase"></i> Experience</a>
         </div>
       </div>
+      <img src="img_self.png" alt="Soumil Chugh" class="hero-avatar">
     </div>
-  </section>
+  </header>
 
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">About Me</h2>
-      </div>
-      
-      <div class="about-content">
-        <div class="about-grid">
-          <div class="about-item">
-            <h3>Current Role</h3>
-            <p>
-              Senior AI Agent Engineer at <strong>Kyoso</strong>, building an AI agent platform for designers and creators.
-              Working with multimodal LLMs, deep research agents, Graph RAG, and OCR to help brands generate
-              unique ideas for images and video ads using natural language.
-            </p>
-          </div>
-
-          <div class="about-item">
-            <h3>Core Expertise</h3>
-            <p>
-              Specialized in <strong>LLM agents</strong>, <strong>RAG systems</strong>, and
-              <strong>multimodal AI</strong>. 4+ years building browser automation agents, deep-research systems,
-              gesture recognition, and intelligent image editing. 8 patents in AI/ML.
-            </p>
-          </div>
-
-          <div class="about-item">
-            <h3>Background</h3>
-            <p>
-              Previously at <strong>Huawei</strong> leading LLM agent development. MASc from <strong>University of Toronto</strong>
-              in eye tracking and computer vision. Published at ETRA and ICPR conferences.
-            </p>
-          </div>
+  <main>
+    <section class="section alt">
+      <div class="container">
+        <div class="proof-grid">
+          <div class="proof-card"><strong>8</strong><span>AI/ML patents and patent-linked applied systems</span></div>
+          <div class="proof-card"><strong>ETRA</strong><span>Eye-tracking research and VR gaze-estimation work</span></div>
+          <div class="proof-card"><strong>ICPR</strong><span>Computer vision and pattern-recognition publication record</span></div>
+          <div class="proof-card"><strong>Public</strong><span>HopeLoom AI Interview and selected GitHub projects</span></div>
         </div>
       </div>
-      
-    </div>
-  </section>
+    </section>
 
-  <!-- Experience Section -->
-  <section id="experience" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Experience</h2>
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Selected Work</div>
+          <h2>Flagship projects and case studies.</h2>
+          <p>The main portfolio emphasizes projects with public code, strong product scope, research evidence, or meaningful applied impact.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card featured">
+            <div class="meta"><span class="badge repo">Public repo</span><span class="badge">AI agents</span><span class="badge">Full stack</span></div>
+            <h3>HopeLoom AI Interview</h3>
+            <p>An open-source AI-powered interview simulation platform with real-time AI interviewers, multi-LLM support, WebSocket communication, and distinct modes for candidate practice and company screening.</p>
+            <div class="card-links">
+              <a class="card-link" href="https://github.com/HopeLoom/AI-Interview" target="_blank"><i class="fab fa-github"></i> View Code</a>
+              <a class="card-link secondary" href="projects.html"><i class="fas fa-arrow-right"></i> Project Details</a>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="meta"><span class="badge private">Preparing for public</span><span class="badge">Education AI</span></div>
+            <h3>ByteMentor</h3>
+            <p>A private AI education project that we are preparing for public release with a README, screenshots, setup flow, secrets audit, and clearer product positioning.</p>
+            <div class="card-links"><a class="card-link secondary" href="projects.html"><i class="fas fa-list"></i> Roadmap</a></div>
+          </article>
+          <article class="work-card">
+            <div class="meta"><span class="badge private">Private case study</span><span class="badge">RAG</span><span class="badge">Multimodal AI</span></div>
+            <h3>Creative AI Agent Platform</h3>
+            <p>At Kyoso, building agents that combine brand context, market research, OCR, multimodal LLMs, and Graph RAG to support creative ideation workflows.</p>
+          </article>
+          <article class="work-card">
+            <div class="meta"><span class="badge evidence">Healthcare ML</span><span class="badge">Wearables</span><span class="badge">Patents</span></div>
+            <h3>Smartwatch Heart-Risk Monitoring</h3>
+            <p>Machine learning and firmware-adjacent work for smartwatch biomarker data, including private General Prognostics repositories and patent-linked applied systems.</p>
+            <div class="card-links"><a class="card-link secondary" href="projects.html"><i class="fas fa-arrow-right"></i> Healthcare Projects</a></div>
+          </article>
+          <article class="work-card">
+            <div class="meta"><span class="badge evidence">Research</span><span class="badge">Eye tracking</span><span class="badge">Computer vision</span></div>
+            <h3>VR Eye Tracking and Gaze Estimation</h3>
+            <p>MASc research and follow-on computer vision work in eye tracking, pupil estimation, VR gaze accuracy, and RGB/IR vision pipelines.</p>
+            <div class="card-links"><a class="card-link secondary" href="publications.html"><i class="fas fa-graduation-cap"></i> Publications</a></div>
+          </article>
+        </div>
       </div>
-      
-      <div class="experience-grid">
-        <div class="experience-card">
-          <div class="experience-header">
+    </section>
+
+    <section id="experience" class="section alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Experience</div>
+          <h2>Applied AI across product, research, and regulated systems.</h2>
+        </div>
+        <div class="experience-grid">
+          <article class="experience-card">
             <img src="kyoso_logo.png" alt="Kyoso" class="experience-logo">
-            <div class="experience-info">
-              <h3>Senior AI Agent Engineer</h3>
-              <p><a href="https://www.kyoso.com/" target="_blank">Kyoso</a></p>
-              <p>2025 - Present</p>
+            <div>
+              <div class="experience-info"><h3>Senior AI Agent Engineer</h3><p><a href="https://www.kyoso.com/" target="_blank">Kyoso</a> | 2025 - Present</p></div>
+              <div class="experience-description">Building an AI agent platform for designers and creators using multimodal LLMs, deep research agents, Graph RAG, OCR, tools, and memory.</div>
             </div>
-          </div>
-          <div class="experience-description">
-            Building an <strong>AI agent platform</strong> for designers and creators using <strong>multimodal LLMs</strong>,
-            <strong>deep research agents</strong>, and <strong>Graph RAG</strong>. Developing agents with tools and memory
-            to understand market trends, brand data, and creative designs. Leveraging OCR for document understanding
-            to generate unique ad ideas for images and videos through natural language.
-          </div>
-        </div>
-
-        <div class="experience-card">
-          <div class="experience-header">
+          </article>
+          <article class="experience-card">
             <img src="Huawei-Logo.png" alt="Huawei" class="experience-logo">
-            <div class="experience-info">
-              <h3>Senior AI/ML Research Engineer</h3>
-              <p><a href="https://www.huawei.com/ca/" target="_blank">Huawei</a> - Human Machine Interaction Lab</p>
-              <p>2020 - 2025</p>
+            <div>
+              <div class="experience-info"><h3>Senior AI/ML Research Engineer</h3><p><a href="https://www.huawei.com/ca/" target="_blank">Huawei</a> - Human Machine Interaction Lab | 2020 - 2025</p></div>
+              <div class="experience-description">Led LLM agent development for intelligent image editing, browser automation, deep-research RAG systems, gesture recognition with function calling, PEFT fine-tuning, and gaze tracking.</div>
             </div>
-          </div>
-          <div class="experience-description">
-            Led development of <strong>LLM agents</strong> for intelligent image editing, browser automation (similar to GPT-Operator),
-            and deep-research RAG systems. Built gesture recognition with LLM function calling. Fine-tuned LLMs using LoRA/PEFT.
-            Advanced gaze tracking with 25% accuracy improvement.
-          </div>
-        </div>
-
-        <div class="experience-card">
-          <div class="experience-header">
+          </article>
+          <article class="experience-card">
             <img src="general_prognostics_logo.png" alt="General Prognostics" class="experience-logo">
-            <div class="experience-info">
-              <h3>Machine Learning Consultant</h3>
-              <p><a href="https://gpx.ai/" target="_blank">General Prognostics Inc.</a></p>
-              <p>2020 - 2024</p>
+            <div>
+              <div class="experience-info"><h3>Machine Learning Consultant</h3><p><a href="https://gpx.ai/" target="_blank">General Prognostics Inc.</a> | 2020 - 2024</p></div>
+              <div class="experience-description">Developed ML pipelines for heart disease prediction using smartwatch data and computer vision algorithms for biological sample quality control. Contributed to multiple patents.</div>
             </div>
-          </div>
-          <div class="experience-description">
-            Developed ML pipeline for heart disease prediction using smartwatch data achieving 70% accuracy.
-            Built computer vision algorithms for biological sample quality control. Contributed to multiple patents.
-          </div>
-        </div>
-
-        <div class="experience-card">
-          <div class="experience-header">
+          </article>
+          <article class="experience-card">
             <img src="janacare_logo.png" alt="Jana Care" class="experience-logo">
-            <div class="experience-info">
-              <h3>Senior Software Engineer</h3>
-              <p><a href="https://www.janacare.com/" target="_blank">Jana Care</a></p>
-              <p>2015 - 2018</p>
+            <div>
+              <div class="experience-info"><h3>Senior Software Engineer</h3><p><a href="https://www.janacare.com/" target="_blank">Jana Care</a> | 2015 - 2018</p></div>
+              <div class="experience-description">Built FDA-approved smartphone-controlled robotic systems for automating blood tests, including BLE stacks on Android and ARM Cortex-M4 platforms.</div>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Expertise</div>
+          <h2>Where I tend to work best.</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><strong><i class="fas fa-robot"></i>LLM Agents</strong><p>Tool use, browser automation, deep-research systems, function calling, and workflow agents.</p></div>
+          <div class="skill-card"><strong><i class="fas fa-search"></i>RAG Systems</strong><p>Graph RAG, document understanding, OCR, multi-source synthesis, and report generation.</p></div>
+          <div class="skill-card"><strong><i class="fas fa-sliders-h"></i>Fine-Tuning</strong><p>LoRA, adapters, PEFT, custom datasets, and domain-specific model behavior.</p></div>
+          <div class="skill-card"><strong><i class="fas fa-images"></i>Multimodal AI</strong><p>Vision-language systems, image editing, gesture understanding, and creative tools.</p></div>
+          <div class="skill-card"><strong><i class="fas fa-eye"></i>Computer Vision</strong><p>Gaze tracking, pupil estimation, medical imaging, segmentation, and camera pipelines.</p></div>
+          <div class="skill-card"><strong><i class="fas fa-microchip"></i>Systems</strong><p>Python, PyTorch, TypeScript, Docker, embedded/firmware-adjacent workflows, and cloud deployment.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="contact-card">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2>Let’s talk about AI systems that need to actually work.</h2>
+            <p>Email: <a href="mailto:soumil.chugh@gmail.com">soumil.chugh@gmail.com</a></p>
           </div>
-          <div class="experience-description">
-            Spearheaded <strong>FDA-approved</strong> smartphone-controlled robotic system for automating blood tests.
-            Developed BLE stacks on Android and ARM Cortex-M4 platforms.
-          </div>
+          <a href="projects.html" class="card-link"><i class="fas fa-arrow-right"></i> Browse Projects</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Featured Project Section -->
-  <section id="featured-project" class="section">
+  <footer>
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Featured Project</h2>
-      </div>
-
-      <div class="featured-project-card">
-        <div class="featured-project-badge">New</div>
-        <div class="featured-project-content">
-          <div class="featured-project-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <div class="featured-project-info">
-            <h3>AI Interview - Multi-Agent Interview Practice</h3>
-            <p class="featured-project-description">
-              A multi-agentic system where candidates can practice real-life interviews for ML/Data Science roles.
-              AI agents represent different team members - business analysts, software engineers, and more -
-              simulating authentic interview dynamics with synchronous human-agent interaction.
-            </p>
-            <div class="featured-project-tags">
-              <span class="tag">Multi-Agent System</span>
-              <span class="tag">LLM Agents</span>
-              <span class="tag">ML Interviews</span>
-              <span class="tag">Real-time Interaction</span>
-            </div>
-            <div class="featured-project-links">
-              <a href="https://github.com/HopeLoom/AI-Interview" target="_blank" class="btn-project">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
-              <a href="projects.html" class="btn-project-secondary">
-                <i class="fas fa-arrow-right"></i>
-                All Projects
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Education</h2>
-      </div>
-      
-      <div class="education-card">
-        <div class="education-header">
-          <img src="uoft-logo-2.png" alt="University of Toronto" class="education-logo">
-          <div class="education-info">
-            <h3>Master of Applied Science in Electrical and Computer Engineering</h3>
-            <p>University of Toronto</p>
-            <p>2018 - 2020</p>
-          </div>
-        </div>
-        <div class="education-details">
-          <p><strong>Supervisors:</strong> <a href="https://www.eecg.utoronto.ca/~jayar/" target="_blank">Prof. Jonathan Rose</a> and <a href="https://www.eecg.utoronto.ca/~eizenman/" target="_blank">Prof. Moshe Eizenman</a></p>
-          <p><strong>Research Focus:</strong> Eye tracking systems for virtual reality, computer vision, and human-computer interaction</p>
-          <p><strong>Thesis:</strong> "An Eye Tracking System for a Virtual Reality Headset" - Developed a novel head-mounted eye tracking system achieving 1.1° gaze accuracy, 100% better than current VR systems</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Expertise</h2>
-      </div>
-      
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-robot"></i></div>
-          <div class="skill-title">LLM Agents</div>
-          <div class="skill-description">Browser automation, workflow agents, deep-research systems, and function calling architectures</div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-search"></i></div>
-          <div class="skill-title">RAG Systems</div>
-          <div class="skill-description">Retrieval-augmented generation, multi-source content merging, and automated visualization</div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-sliders-h"></i></div>
-          <div class="skill-title">LLM Fine-Tuning</div>
-          <div class="skill-description">LoRA, adapter tuning, PEFT techniques for domain-specific model optimization</div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-images"></i></div>
-          <div class="skill-title">Multimodal AI</div>
-          <div class="skill-description">Intelligent image editing, gesture recognition, and vision-language models</div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-eye"></i></div>
-          <div class="skill-title">Computer Vision</div>
-          <div class="skill-description">Gaze tracking, pupil segmentation, deep learning for eye tracking systems</div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-code"></i></div>
-          <div class="skill-title">Tech Stack</div>
-          <div class="skill-description">Python, PyTorch, LangChain, OpenAI, TypeScript, Docker, GCP</div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Get In Touch</h2>
-      </div>
-      
-      <div class="contact-content">
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contact-text">soumil.chugh@gmail.com</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-text">
-          <p>&copy; 2025 Soumil Chugh. All rights reserved.</p>
-          <p>AI Agent Engineer | LLM Systems | Multimodal AI | 8 Patents</p>
-        </div>
-        <div class="footer-social">
-          <a href="https://github.com/soumilchugh"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/soumil-chugh-95b33652"><i class="fab fa-linkedin"></i></a>
-          <a href="https://twitter.com/soumil_chugh"><i class="fab fa-twitter"></i></a>
-          <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i></a>
-        </div>
+      <p>&copy; 2026 Soumil Chugh. AI Agent Engineer | Healthcare ML | Computer Vision | 8 Patents</p>
+      <div class="footer-social">
+        <a href="https://github.com/soumilchugh" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/soumil-chugh-95b33652" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Theme switching functionality
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
-    
-    // Check for saved theme preference or default to dark
     const currentTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
-    
-    // Ensure backgrounds are properly set on page load
-    updateThemeBackgrounds();
-    
-    // Theme toggle click handler
+
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
-      
-      // Force update background colors
-      document.body.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary');
-      document.documentElement.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary');
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon(next);
     });
-    
-    // Update theme icon
+
     function updateThemeIcon(theme) {
-      if (theme === 'dark') {
-        themeIcon.className = 'fas fa-sun';
-        themeIcon.setAttribute('title', 'Switch to light theme');
-      } else {
-        themeIcon.className = 'fas fa-moon';
-        themeIcon.setAttribute('title', 'Switch to dark theme');
-      }
-      
-      // Update all background elements
-      updateThemeBackgrounds();
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      themeIcon.setAttribute('title', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
     }
-    
-    // Update all theme backgrounds
-    function updateThemeBackgrounds() {
-      const root = document.documentElement;
-      const computedStyle = getComputedStyle(root);
-      
-      // Update HTML and body backgrounds
-      const bgPrimary = computedStyle.getPropertyValue('--bg-primary');
-      document.documentElement.style.background = bgPrimary;
-      document.body.style.background = bgPrimary;
-      
-      // Update navbar background
-      const navbar = document.getElementById('navbar');
-      if (navbar) {
-        navbar.style.background = computedStyle.getPropertyValue('--bg-navbar');
-      }
-    }
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
   </script>
 </body>
 </html>

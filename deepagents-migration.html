@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Migrating an agent runtime: Claude Agent SDK to Deep Agents — Soumil Chugh</title>
-<meta name="description" content="A concise architecture case study on migrating from the Claude Agent SDK to LangChain Deep Agents while preserving tools, state, streaming, interrupts, and product behavior.">
+<title>Moving an AI agent to a new framework — Soumil Chugh</title>
+<meta name="description" content="A simple explanation of moving an AI agent from the Claude Agent SDK to LangChain Deep Agents without changing how the product works.">
 <meta name="theme-color" content="#08111f">
 <link rel="canonical" href="https://soumilchugh.github.io/deepagents-migration.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://soumilchugh.github.io/deepagents-migration.html">
-<meta property="og:title" content="Migrating an agent runtime without changing the product">
-<meta property="og:description" content="The ten decisions behind moving from the Claude Agent SDK to LangChain Deep Agents.">
+<meta property="og:title" content="Moving an AI agent to a new framework">
+<meta property="og:description" content="Ten practical decisions for changing an agent framework without breaking the product.">
 <meta property="article:author" content="Soumil Chugh">
 <meta property="article:published_time" content="2026-09-15">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,119 +43,120 @@ nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-fil
 <header class="hero">
   <div class="wrap hero-inner">
     <div class="eyebrow mono">Agent systems · Runtime migration</div>
-    <h1>Changing the agent engine without changing the <span style="color:#ff7547">product.</span></h1>
-    <p class="dek">The decisions behind moving a production co-creator from the Claude Agent SDK to LangChain Deep Agents—while preserving tools, state, streaming, interrupts, and user-visible behavior.</p>
-    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>7 minute read</span></div>
+    <h1>Moving an AI agent without breaking the <span style="color:#ff7547">product.</span></h1>
+    <p class="dek">A simple look at moving a production AI agent from the Claude Agent SDK to LangChain Deep Agents while keeping the same tools, memory, responses, and user experience.</p>
+    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>5 minute read</span></div>
   </div>
 </header>
 
 <main class="wrap layout">
   <aside class="toc" aria-label="Article contents">
     <div class="toc-title mono">On this page</div>
-    <a href="#migration">The real migration</a>
+    <a href="#migration">What changed</a>
     <a href="#decisions">Ten decisions</a>
-    <a href="#architecture">Architecture choices</a>
-    <a href="#order">Dependency order</a>
-    <a href="#cutover">Safe cutover</a>
-    <a href="#lessons">What I learned</a>
+    <a href="#architecture">What we kept</a>
+    <a href="#order">What came first</a>
+    <a href="#cutover">How we switched</a>
+    <a href="#lessons">Key lessons</a>
   </aside>
 
   <article class="article" id="article">
     <section id="migration">
-      <span class="label mono">01 · The real migration</span>
-      <h2>An SDK replacement is really a contract migration.</h2>
-      <p class="lead">The easy part was creating a Deep Agent. The hard part was preserving everything the product already expected from the old runtime.</p>
-      <div class="swap" role="img" aria-label="Claude Agent SDK runtime replaced by LangChain Deep Agents while a stable product contract remains">
-        <div class="runtime"><div><strong>Claude Agent SDK</strong><span>Existing execution runtime</span></div></div>
+      <span class="label mono">01 · What changed</span>
+      <h2>We changed the framework, not the product.</h2>
+      <p class="lead">Creating an agent with the new framework was easy. Making it behave like the existing product was the real work.</p>
+      <div class="swap" role="img" aria-label="Claude Agent SDK replaced by LangChain Deep Agents while product behavior stays the same">
+        <div class="runtime"><div><strong>Claude Agent SDK</strong><span>Old agent framework</span></div></div>
         <div class="swap-arrow" aria-hidden="true">→</div>
-        <div class="runtime new"><div><strong>LangChain Deep Agents</strong><span>New execution runtime</span></div></div>
-        <div class="contract">Stable contract: tools · events · history · state · interrupts · results</div>
+        <div class="runtime new"><div><strong>LangChain Deep Agents</strong><span>New agent framework</span></div></div>
+        <div class="contract">Must stay the same: tools · messages · memory · interruptions · results</div>
       </div>
-      <p>The migration reused a transport-neutral tool pipeline rather than rebuilding every integration. Claude remained the first model, while model construction and runtime seams stayed neutral enough for other providers to become configuration choices later.</p>
-      <div class="callout"><span class="label mono">Migration principle</span><p>Preserve product behavior at the boundary. Change the mechanism behind it.</p></div>
+      <p>The old framework did much more than call a model. It managed tool calls, conversation history, images, user questions, errors, and final results. Every one of those behaviors needed a clear replacement.</p>
+      <p>We kept the shared tool system underneath both frameworks. We also kept model-specific code separate, so Claude could remain the first model without making future model changes difficult.</p>
+      <div class="callout"><span class="label mono">Simple rule</span><p>Keep the experience the same for the user. Change only how the agent runs behind the scenes.</p></div>
     </section>
 
     <section id="decisions">
       <span class="label mono">02 · Scope</span>
-      <h2>Ten decisions defined the migration.</h2>
+      <h2>The migration came down to ten decisions.</h2>
       <div class="decision-grid">
-        <div class="decision"><div class="decision-num">01</div><div><h3>Turn contract</h3><p>How calls, tool events, interrupts, and the final run result correlate.</p></div></div>
-        <div class="decision"><div class="decision-num">02</div><div><h3>Conversation state</h3><p>How history replays, context is summarized, and one runtime stays pinned to a conversation.</p></div></div>
-        <div class="decision"><div class="decision-num">03</div><div><h3>Usage and billing</h3><p>Where provider usage enters a common accounting model, including prompt caching behavior.</p></div></div>
-        <div class="decision"><div class="decision-num">04</div><div><h3>Runtime limits</h3><p>Turn caps, timeouts, retries, error translation, and production telemetry.</p></div></div>
-        <div class="decision"><div class="decision-num">05</div><div><h3>Sight and voice</h3><p>How rendered images reach the model and how the agent asks the user for input.</p></div></div>
-        <div class="decision"><div class="decision-num">06</div><div><h3>Documents</h3><p>How search and inspection become explicit tools after removing shell and filesystem access.</p></div></div>
-        <div class="decision"><div class="decision-num">07</div><div><h3>User context</h3><p>How brand information and user-specific state enter each run safely.</p></div></div>
-        <div class="decision"><div class="decision-num">08</div><div><h3>Subagents and skills</h3><p>How delegation limits tools and how eligible skills enter the prompt.</p></div></div>
-        <div class="decision"><div class="decision-num">09</div><div><h3>Evaluation</h3><p>How the existing eval system measures the new path instead of silently testing the old one.</p></div></div>
-        <div class="decision"><div class="decision-num">10</div><div><h3>Cutover</h3><p>When to flip the default, how to roll back, and when the old runtime can be deleted.</p></div></div>
+        <div class="decision"><div class="decision-num">01</div><div><h3>One agent run</h3><p>How to connect a request, its tool calls, interruptions, and final answer.</p></div></div>
+        <div class="decision"><div class="decision-num">02</div><div><h3>Conversation memory</h3><p>How to replay older messages and keep one framework for the whole conversation.</p></div></div>
+        <div class="decision"><div class="decision-num">03</div><div><h3>Cost tracking</h3><p>How to count model usage and keep billing accurate.</p></div></div>
+        <div class="decision"><div class="decision-num">04</div><div><h3>Safety limits</h3><p>How long an agent can run, when it retries, and what happens after an error.</p></div></div>
+        <div class="decision"><div class="decision-num">05</div><div><h3>Images and questions</h3><p>How the agent sees a rendered image and pauses to ask the user something.</p></div></div>
+        <div class="decision"><div class="decision-num">06</div><div><h3>Documents</h3><p>How the agent searches and reads documents without direct file or shell access.</p></div></div>
+        <div class="decision"><div class="decision-num">07</div><div><h3>User information</h3><p>How brand details and saved user preferences reach the agent.</p></div></div>
+        <div class="decision"><div class="decision-num">08</div><div><h3>Helper agents</h3><p>What smaller agents can do and which instructions and tools they receive.</p></div></div>
+        <div class="decision"><div class="decision-num">09</div><div><h3>Tests</h3><p>How to prove that tests are actually measuring the new framework.</p></div></div>
+        <div class="decision"><div class="decision-num">10</div><div><h3>The final switch</h3><p>When to make the new framework the default and remove the old one.</p></div></div>
       </div>
-      <p>This list mattered because it turned a vague “port the agent” project into independently testable contracts.</p>
+      <p>Writing these decisions down made the project easier to split, build, and test.</p>
     </section>
 
     <section id="architecture">
-      <span class="label mono">03 · Architecture choices</span>
-      <h2>Some features moved. Others disappeared by design.</h2>
+      <span class="label mono">03 · What we kept</span>
+      <h2>We reused useful parts and removed old assumptions.</h2>
       <div class="choice-list">
-        <div class="choice"><b>Tools</b><span>Reuse the existing dispatcher and execution pipeline behind a new adapter.<em>One tool contract, two runtime transports.</em></span></div>
-        <div class="choice"><b>Shell and files</b><span>Do not recreate the old sandbox. Anything previously reached through a command becomes an explicit tool. Operations requiring local paths do not belong on the new surface.<em>Move capability into APIs, not materialized files.</em></span></div>
-        <div class="choice"><b>Skills</b><span>Render only eligible skills into the prompt instead of writing skill files into a runtime-specific directory.<em>Policy decides visibility; the transport only receives text.</em></span></div>
-        <div class="choice"><b>Images</b><span>Return rendered images to the main agent for the current turn, then exclude image blocks from later history replay.<em>Vision stays available without compounding image tokens.</em></span></div>
-        <div class="choice"><b>Interrupts</b><span>Use exceptions to unwind the graph for user questions and cancellation rather than adding a parallel cancellation channel.<em>Follow the new runtime's natural control flow.</em></span></div>
-        <div class="choice"><b>Providers</b><span>Ship Claude first, but isolate model creation, usage, caching, and configuration from the agent contract.<em>Provider choice becomes configuration, not another migration.</em></span></div>
+        <div class="choice"><b>Tool system</b><span>Both frameworks call the same shared tools through a small adapter.<em>We did not rebuild every integration.</em></span></div>
+        <div class="choice"><b>No shell or local files</b><span>The new agent does not get broad computer access. Document search, reading, and other actions become clear tools.<em>Each capability is limited and easier to control.</em></span></div>
+        <div class="choice"><b>Instructions</b><span>The system adds only the instructions that are useful for the current task directly to the prompt.<em>No temporary instruction files are needed.</em></span></div>
+        <div class="choice"><b>Images</b><span>The agent can see a rendered image during the current turn, but old images are not repeatedly added to later prompts.<em>This prevents image costs from growing every turn.</em></span></div>
+        <div class="choice"><b>Pausing the agent</b><span>When the agent needs the user or must stop, it exits the current run cleanly and waits.<em>No second cancellation system is needed.</em></span></div>
+        <div class="choice"><b>Model choice</b><span>Claude ships first, but model setup and usage tracking stay separate from the rest of the agent.<em>Another model can be added without repeating the migration.</em></span></div>
       </div>
     </section>
 
     <section id="order">
-      <span class="label mono">04 · Dependency order</span>
-      <h2>One bottleneck made the rest of the work measurable.</h2>
-      <p>The turn core had to land first. Without correlated tool calls, events, history, and run results, tests could appear green while observing nothing from the new runtime.</p>
-      <div class="dependency" role="img" aria-label="Turn core enables four parallel cutover blockers, while billing, subagents, and evaluation can progress alongside; all paths converge at cutover">
-        <div class="dep-core">Turn core · correlation · observable results</div>
+      <span class="label mono">04 · What came first</span>
+      <h2>First, make the new agent visible to the tests.</h2>
+      <p>The first important job was recording each tool call, event, interruption, and result from the new framework. Without that record, a test could pass simply because it saw no activity.</p>
+      <div class="dependency" role="img" aria-label="Recording each agent run enables four groups of work, and all groups lead to the final switch">
+        <div class="dep-core">Record one complete agent run</div>
         <div class="dep-line"></div>
         <div class="dep-branches">
-          <div class="dep-node">History + context</div>
-          <div class="dep-node">Runtime hardening</div>
-          <div class="dep-node">Vision + user input</div>
-          <div class="dep-node">Documents + user context</div>
+          <div class="dep-node">Memory + history</div>
+          <div class="dep-node">Errors + time limits</div>
+          <div class="dep-node">Images + user questions</div>
+          <div class="dep-node">Documents + user information</div>
         </div>
         <div class="dep-trail">
-          <div class="dep-node optional">Usage + billing</div>
-          <div class="dep-node optional">Subagents + skills</div>
-          <div class="dep-node optional">Eval instrumentation</div>
+          <div class="dep-node optional">Cost tracking</div>
+          <div class="dep-node optional">Helper agents</div>
+          <div class="dep-node optional">Evaluation</div>
         </div>
         <div class="dep-line"></div>
-        <div class="dep-cutover">Integration gate → default flip → delete old path</div>
+        <div class="dep-cutover">Full test suite → make new framework the default</div>
       </div>
-      <p>The important lesson was that test observability is itself a prerequisite. A test that cannot see tool calls can pass for the wrong reason.</p>
+      <p>Once tests could see a complete run, several teams could close the remaining gaps in parallel.</p>
     </section>
 
     <section id="cutover">
-      <span class="label mono">05 · Cutover</span>
-      <h2>Run both paths only long enough to prove parity.</h2>
+      <span class="label mono">05 · How we switched</span>
+      <h2>The rollout stayed easy to reverse until the end.</h2>
       <div class="sequence">
-        <div class="phase"><div class="phase-num">01</div><div><b>Create the seam</b><span>Add the new runtime behind a per-user feature flag.</span></div><div class="status">reversible</div></div>
-        <div class="phase"><div class="phase-num">02</div><div><b>Pin per conversation</b><span>Resolve the runtime once so a thread cannot switch engines midway.</span></div><div class="status">consistent</div></div>
-        <div class="phase"><div class="phase-num">03</div><div><b>Make tests observe it</b><span>Populate the same tool-call and event ledger used by assertions.</span></div><div class="status">measurable</div></div>
-        <div class="phase"><div class="phase-num">04</div><div><b>Close parity gaps</b><span>Land blockers in parallel once the core contract is visible.</span></div><div class="status">parallel</div></div>
-        <div class="phase"><div class="phase-num">05</div><div><b>Flip the integration gate</b><span>Require the full integration suite on the new runtime.</span></div><div class="status">gated</div></div>
-        <div class="phase"><div class="phase-num">06</div><div><b>Remove the old path</b><span>Delete runtime-specific apparatus after the default is stable.</span></div><div class="status">simpler</div></div>
+        <div class="phase"><div class="phase-num">01</div><div><b>Add a feature flag</b><span>Let selected users try the new framework while the old one remains available.</span></div><div class="status">safe</div></div>
+        <div class="phase"><div class="phase-num">02</div><div><b>Choose once per conversation</b><span>A conversation cannot switch frameworks halfway through.</span></div><div class="status">stable</div></div>
+        <div class="phase"><div class="phase-num">03</div><div><b>Record everything tests need</b><span>Make tool calls and results visible on the new path.</span></div><div class="status">testable</div></div>
+        <div class="phase"><div class="phase-num">04</div><div><b>Close the important gaps</b><span>Finish memory, errors, images, documents, and user information.</span></div><div class="status">parallel</div></div>
+        <div class="phase"><div class="phase-num">05</div><div><b>Run the full test suite</b><span>The new path must pass the same product checks.</span></div><div class="status">verified</div></div>
+        <div class="phase"><div class="phase-num">06</div><div><b>Make the switch</b><span>Set the new framework as the default, then delete the old path.</span></div><div class="status">simpler</div></div>
       </div>
-      <p>A flag is useful for rollout, not as a permanent architecture. Keeping both implementations indefinitely doubles the number of states the team must understand.</p>
+      <p>The feature flag was temporary. Keeping both systems forever would double the code and make future changes harder.</p>
     </section>
 
     <section id="lessons">
-      <span class="label mono">06 · Lessons</span>
-      <h2>The durable value was in the seams, not the SDK choice.</h2>
+      <span class="label mono">06 · Key lessons</span>
+      <h2>The best result was a cleaner system, not just a new framework.</h2>
       <div class="lessons">
-        <div class="lesson"><b>Map behavior before code.</b><span>Inventory the contracts users and tests depend on before choosing equivalents in the new runtime.</span></div>
-        <div class="lesson"><b>Reuse below the transport.</b><span>A shared tool pipeline removes most of the migration surface and keeps behavior consistent.</span></div>
-        <div class="lesson"><b>Delete assumptions.</b><span>Do not port a filesystem, shell, or sandbox simply because the previous SDK happened to expose one.</span></div>
-        <div class="lesson"><b>Test the observer.</b><span>Negative assertions are meaningless when the telemetry ledger is empty.</span></div>
-        <div class="lesson"><b>Separate blockers from follow-ups.</b><span>Explicitly accept temporary gaps such as billing drift or delayed subagents instead of discovering them during cutover.</span></div>
-        <div class="lesson"><b>Design the exit.</b><span>The migration is complete only when the old path and its special cases are gone.</span></div>
+        <div class="lesson"><b>List behavior before writing code.</b><span>Understand everything the old framework provides before replacing it.</span></div>
+        <div class="lesson"><b>Share the important parts.</b><span>Keep tools and product rules outside the framework-specific code.</span></div>
+        <div class="lesson"><b>Do not copy old limitations.</b><span>A new framework does not need to recreate every feature of the old one.</span></div>
+        <div class="lesson"><b>Make sure tests can see the new path.</b><span>A passing test means little if it observed no tool calls or results.</span></div>
+        <div class="lesson"><b>Name acceptable gaps.</b><span>Decide which smaller features may arrive later instead of finding out during launch.</span></div>
+        <div class="lesson"><b>Remove the old path.</b><span>The migration is finished only when the temporary switch and duplicate code are gone.</span></div>
       </div>
-      <div class="callout"><span class="label mono">Bottom line</span><p>The migration was not one decision between two frameworks. It was ten smaller decisions about the product contract—and an order that made each one testable.</p></div>
+      <div class="callout"><span class="label mono">Bottom line</span><p>This was not one choice between two frameworks. It was ten smaller choices about how the product should work.</p></div>
     </section>
   </article>
 </main>

@@ -1,486 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soumil Chugh - AI Agent Engineer</title>
-  <meta name="description" content="Soumil Chugh builds AI agents, healthcare ML systems, and computer vision products with research depth across LLMs, RAG, multimodal AI, and eye tracking.">
-  <meta name="keywords" content="AI Agent Engineer, LLM Agents, RAG Systems, Multimodal AI, Healthcare ML, Computer Vision, Eye Tracking">
-  <meta property="og:title" content="Soumil Chugh - AI Agent Engineer">
-  <meta property="og:description" content="AI agents, healthcare ML, and computer vision systems with research depth and product focus.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://soumilchugh.github.io/">
-  <link rel="canonical" href="https://soumilchugh.github.io/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f7faf9;
-      --bg-card: #ffffff;
-      --bg-navbar: rgba(255, 255, 255, 0.95);
-      --text-primary: #10201d;
-      --text-secondary: #42534f;
-      --text-muted: #66756f;
-      --text-white: #ffffff;
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --accent: #0f766e;
-      --border: #dbe4e0;
-      --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
-      --shadow-md: 0 10px 24px rgb(15 23 42 / 0.08);
-    }
-
-    [data-theme="dark"] {
-      --bg-primary: #0b1413;
-      --bg-secondary: #111c1a;
-      --bg-card: #14211f;
-      --bg-navbar: rgba(11, 20, 19, 0.94);
-      --text-primary: #f5fbf8;
-      --text-secondary: #c4d3ce;
-      --text-muted: #91a39d;
-      --text-white: #ffffff;
-      --primary: #60a5fa;
-      --primary-dark: #93c5fd;
-      --accent: #2dd4bf;
-      --border: #29403b;
-      --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.25);
-      --shadow-md: 0 14px 32px rgb(0 0 0 / 0.28);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg-primary); scroll-behavior: smooth; }
-    body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text-primary);
-      background: var(--bg-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: var(--primary); text-decoration: none; }
-    a:hover { color: var(--primary-dark); }
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: var(--bg-navbar);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 0;
-    }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-    .nav-brand {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--primary);
-      white-space: nowrap;
-    }
-    .nav-menu { display: flex; list-style: none; align-items: center; gap: 1.5rem; }
-    .nav-link { color: var(--text-primary); font-weight: 500; }
-    .social-links { display: flex; gap: 0.85rem; }
-    .social-links a { color: var(--text-secondary); font-size: 1.15rem; }
-    .theme-toggle {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      background: var(--bg-card);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #10201d 0%, #173b35 58%, #1d4ed8 100%);
-      color: var(--text-white);
-      padding: 8rem 0 4rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 3rem;
-      align-items: center;
-    }
-    .hero-avatar {
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.8);
-      box-shadow: 0 24px 70px rgb(0 0 0 / 0.35);
-      justify-self: end;
-    }
-    .eyebrow {
-      color: #a7f3d0;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.98; letter-spacing: 0; margin-bottom: 1.25rem; max-width: 900px; }
-    .hero-description { color: rgba(255,255,255,0.86); font-size: 1.17rem; max-width: 780px; margin-bottom: 2rem; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 8px;
-      padding: 0.78rem 1.05rem;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.28);
-    }
-    .btn-primary { background: #fff; color: #173b35; }
-    .btn-primary:hover { background: rgba(255,255,255,0.9); color: #173b35; }
-    .btn-outline { color: #fff; background: rgba(255,255,255,0.08); }
-    .btn-outline:hover { color: #fff; background: rgba(255,255,255,0.16); }
-
-    .section { padding: 4.5rem 0; }
-    .section.alt { background: var(--bg-secondary); }
-    .section-header { margin-bottom: 2rem; max-width: 780px; }
-    .section-kicker {
-      color: var(--accent);
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.75rem;
-    }
-    h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05; margin-bottom: 0.75rem; }
-    .section-header p { color: var(--text-secondary); }
-
-    .proof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
-    .proof-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.1rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .proof-card strong { display: block; font-size: 1.55rem; line-height: 1; margin-bottom: 0.5rem; color: var(--text-primary); }
-    .proof-card span { color: var(--text-secondary); font-size: 0.92rem; }
-
-    .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-    .work-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.35rem;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-    .work-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); transition: all 0.2s ease; }
-    .work-card.featured { grid-column: span 2; }
-    .meta { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1rem; }
-    .badge {
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.22rem 0.62rem;
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-    .badge.repo { color: var(--primary); border-color: color-mix(in srgb, var(--primary), transparent 55%); }
-    .badge.private { color: var(--text-muted); }
-    .badge.evidence { color: var(--accent); border-color: color-mix(in srgb, var(--accent), transparent 55%); }
-    .work-card h3 { font-size: 1.25rem; line-height: 1.25; margin-bottom: 0.7rem; }
-    .work-card p { color: var(--text-secondary); margin-bottom: 1rem; }
-    .card-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.65rem; }
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--text-white);
-      background: var(--primary);
-      padding: 0.55rem 0.85rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    .card-link.secondary { color: var(--primary); background: transparent; border: 1px solid color-mix(in srgb, var(--primary), transparent 45%); }
-    .card-link:hover { color: var(--text-white); background: var(--primary-dark); }
-    .card-link.secondary:hover { color: var(--text-white); background: var(--primary); }
-
-    .experience-grid { display: grid; gap: 1rem; }
-    .experience-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.35rem;
-      display: grid;
-      grid-template-columns: 72px minmax(0, 1fr);
-      gap: 1.2rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .experience-logo {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      border: 1px solid var(--border);
-      padding: 0.45rem;
-    }
-    .experience-info h3 { margin-bottom: 0.2rem; font-size: 1.15rem; }
-    .experience-info p { color: var(--text-secondary); margin-bottom: 0.25rem; }
-    .experience-description { color: var(--text-secondary); }
-
-    .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-    .skill-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.15rem;
-    }
-    .skill-card i { color: var(--accent); margin-right: 0.5rem; }
-    .skill-card strong { display: block; margin-bottom: 0.45rem; }
-    .skill-card p { color: var(--text-secondary); font-size: 0.94rem; }
-
-    .contact-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.35rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .contact-card p { color: var(--text-secondary); }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 0;
-      color: var(--text-muted);
-      background: var(--bg-primary);
-      text-align: center;
-    }
-    .footer-social { display: flex; justify-content: center; gap: 1.25rem; margin-top: 1rem; }
-    .footer-social a { color: var(--text-muted); font-size: 1.3rem; }
-
-    @media (max-width: 900px) {
-      .container { padding: 0 1rem; }
-      .nav-menu { overflow-x: auto; gap: 1rem; padding-bottom: 0.3rem; }
-      .social-links { display: none; }
-      .hero { min-height: auto; padding: 7rem 0 3.5rem; }
-      .hero-grid, .proof-grid, .work-grid, .skills-grid { grid-template-columns: 1fr; }
-      .hero-avatar { justify-self: start; width: 150px; height: 150px; }
-      .work-card.featured { grid-column: span 1; }
-      .experience-card { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soumil Chugh — Senior AI & Agent Systems Engineer</title>
+<meta name="description" content="Soumil Chugh is a senior AI engineer in Toronto building production agent systems: orchestration, tools, memory, context, multimodal workflows, evaluations, and reliable execution.">
+<meta name="theme-color" content="#08111f"><link rel="canonical" href="https://soumilchugh.github.io/">
+<meta property="og:type" content="website"><meta property="og:url" content="https://soumilchugh.github.io/"><meta property="og:title" content="Soumil Chugh — Senior AI & Agent Systems Engineer"><meta property="og:description" content="Production AI agents that reason, use tools, remember context, and complete complex work."><meta property="og:image" content="https://soumilchugh.github.io/img_self.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Soumil Chugh","url":"https://soumilchugh.github.io/","jobTitle":"Senior AI and Agent Systems Engineer","homeLocation":{"@type":"Place","name":"Toronto, Canada"},"alumniOf":{"@type":"CollegeOrUniversity","name":"University of Toronto"},"sameAs":["https://github.com/soumilchugh","https://www.linkedin.com/in/soumil-chugh-95b33652","https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en"]}</script>
+<style>
+:root{--ink:#102033;--copy:#516174;--muted:#748397;--paper:#f3f0e9;--surface:#faf8f3;--card:#fff;--line:#d9d5cc;--accent:#d7562c;--green:#0d776a;--nav:rgba(243,240,233,.9);--shadow:0 22px 60px rgba(16,32,51,.1)}
+[data-theme=dark]{--ink:#eef3f7;--copy:#b2becc;--muted:#7f8ea1;--paper:#08111f;--surface:#0d1929;--card:#112033;--line:#26384c;--accent:#ff7547;--green:#50d1bd;--nav:rgba(8,17,31,.88);--shadow:0 24px 70px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}body{margin:0;color:var(--ink);background:var(--paper);font:400 16px/1.65 "DM Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}.mono{font:500 .76rem "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase}.accent{color:var(--accent)}.skip{position:fixed;left:1rem;top:-5rem;z-index:200;padding:.7rem 1rem;background:var(--accent);color:#fff}.skip:focus{top:1rem}
+nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.brand{display:flex;align-items:center;gap:.8rem;font:700 1rem Manrope}.mark{width:36px;height:36px;display:grid;place-items:center;color:#fff;background:var(--accent);border-radius:10px;font:500 .77rem "DM Mono"}.links{display:flex;align-items:center;gap:1.4rem;color:var(--copy);font-size:.9rem;font-weight:600}.links a:hover{color:var(--accent)}#theme{width:38px;height:38px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:50%;cursor:pointer}
+.hero{position:relative;min-height:830px;display:grid;align-items:center;overflow:hidden;color:#eef3f7;background:radial-gradient(circle at 80% 25%,rgba(42,104,158,.3),transparent 34%),linear-gradient(135deg,#060d17,#10243f);padding:145px 0 120px}.hero:before{content:"";position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:62px 62px;mask-image:linear-gradient(#000,transparent 82%)}.hero-grid{position:relative;display:grid;grid-template-columns:1fr 310px;gap:5rem;align-items:center}.availability{display:inline-flex;align-items:center;gap:.65rem;color:#aab8c8;border:1px solid rgba(255,255,255,.15);padding:.48rem .75rem;border-radius:999px;margin-bottom:1.6rem}.dot{width:8px;height:8px;background:#62d4b4;border-radius:50%;box-shadow:0 0 0 5px rgba(98,212,180,.12)}
+h1,h2,h3{font-family:Manrope,sans-serif;margin:0;letter-spacing:-.035em}h1{max-width:850px;font-size:clamp(3.15rem,7vw,6.5rem);line-height:.98}.hero-copy{max-width:760px;margin:1.7rem 0 2rem;color:#b6c2cf;font-size:clamp(1.04rem,1.7vw,1.24rem)}.hero-copy strong{color:#fff}.actions{display:flex;flex-wrap:wrap;gap:.75rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.72rem 1rem;border:1px solid currentColor;border-radius:10px;font-weight:700}.btn.primary{color:#fff;background:var(--accent);border-color:var(--accent)}.btn.ghost{color:#e5ebf1;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.2)}.btn:hover{transform:translateY(-2px)}
+.portrait{aspect-ratio:4/5;object-fit:cover;border-radius:160px 160px 24px 24px;border:1px solid rgba(255,255,255,.24);box-shadow:0 28px 80px rgba(0,0,0,.34);filter:saturate(.82)}.portrait-shell{position:relative}.note{position:absolute;left:-32px;bottom:28px;width:190px;background:rgba(8,17,31,.88);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:.85rem 1rem}.note strong{display:block;font-family:Manrope}.note span{color:#aebdca}
+.stats{position:absolute;inset:auto 0 0;border-top:1px solid rgba(255,255,255,.12);background:rgba(5,12,22,.55)}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr)}.stat{min-height:106px;padding:1.35rem;border-right:1px solid rgba(255,255,255,.12)}.stat:first-child{border-left:1px solid rgba(255,255,255,.12)}.stat strong{display:block;font:700 1.65rem Manrope;color:#fff}.stat span{color:#94a5b7;font-size:.86rem}
+section{padding:105px 0}.head{display:grid;grid-template-columns:180px 1fr;gap:2rem;margin-bottom:3.2rem}.head h2{max-width:820px;font-size:clamp(2.2rem,4.2vw,4rem);line-height:1.08}.head p{max-width:670px;color:var(--copy);font-size:1.05rem}.intro{display:grid;grid-template-columns:1.15fr .85fr;gap:5rem}.lede{font:600 clamp(1.5rem,2.7vw,2.3rem)/1.35 Manrope;letter-spacing:-.03em}.body p{color:var(--copy);margin:0 0 1.1rem}.principles{display:grid;gap:.8rem;margin-top:2rem}.principle{display:grid;grid-template-columns:42px 1fr;gap:1rem;padding-top:1rem;border-top:1px solid var(--line)}.principle b{display:block;font-family:Manrope}.principle small{color:var(--copy)}.surface{background:var(--surface);border-block:1px solid var(--line)}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}.case{min-height:390px;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:2rem;box-shadow:0 0 0 rgba(0,0,0,0);transition:.2s}.case:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.case.featured{grid-column:1/-1;min-height:450px;display:grid;grid-template-columns:1.2fr .8fr;gap:3rem}.case-index{color:var(--accent);margin-bottom:2.5rem}.case h3{font-size:clamp(1.55rem,2.6vw,2.4rem);line-height:1.12;margin-bottom:1rem}.case p{color:var(--copy);margin:0 0 1.4rem}.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:auto}.chip{color:var(--copy);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.3rem .62rem;font-size:.75rem;font-weight:600}.architecture{align-self:center;display:grid;gap:.62rem}.architecture>div{position:relative;color:#dce6ef;background:#0c1928;border:1px solid #293d52;border-radius:10px;padding:.72rem .85rem;font:500 .77rem "DM Mono"}.architecture>div:not(:last-child):after{content:"↓";position:absolute;left:50%;bottom:-21px;color:var(--accent);z-index:2}.architecture .row{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;background:none;border:0;padding:0}.architecture .row:after{display:none}.row span{text-align:center;color:#9fb0c2;background:#112238;border:1px solid #293d52;padding:.62rem .3rem;border-radius:8px}.result{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:baseline;margin:auto 0 1rem}.result strong{color:var(--accent);font:700 2.4rem Manrope}.result span{color:var(--copy)}
+.operating{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden}.op{min-height:275px;padding:2rem;background:var(--card);border-right:1px solid var(--line)}.op:last-child{border:0}.icon{width:42px;height:42px;display:grid;place-items:center;margin-bottom:4rem;color:#fff;background:var(--green);border-radius:12px;font:500 .8rem "DM Mono"}.op h3{font-size:1.2rem}.op p{color:var(--copy)}
+.timeline{border-top:1px solid var(--line)}.role{display:grid;grid-template-columns:170px 1fr 2fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--line)}.role time{color:var(--muted);font:500 .8rem "DM Mono"}.role h3{font-size:1.1rem}.company{color:var(--accent);font-size:.9rem}.role p{color:var(--copy);margin:0}
+.research{display:grid;grid-template-columns:.8fr 1.2fr;gap:5rem}.big{color:var(--accent);font:800 clamp(5rem,11vw,9rem)/.85 Manrope;letter-spacing:-.09em}.research p{color:var(--copy)}.evidence-list{border-top:1px solid var(--line)}.evidence{display:grid;grid-template-columns:100px 1fr auto;gap:1.2rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid var(--line)}.evidence span:first-child{color:var(--green)}.evidence a{color:var(--copy)}
+.cta{color:#eff4f8;background:linear-gradient(135deg,#0b1726,#173553)}.cta-grid{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end}.cta h2{max-width:800px;font-size:clamp(2.5rem,5vw,4.8rem);line-height:1.02}.cta p{color:#aebdca}footer{padding:2rem 0;color:var(--muted);border-top:1px solid var(--line);font-size:.88rem}.footer{display:flex;justify-content:space-between;gap:2rem}.footer div{display:flex;gap:1rem}.reveal{opacity:0;transform:translateY(16px);transition:.55s}.reveal.visible{opacity:1;transform:none}
+@media(max-width:900px){.links a:not(.essential){display:none}.hero{min-height:auto;padding-bottom:0}.hero-grid,.intro,.case.featured,.research,.cta-grid{grid-template-columns:1fr}.hero-grid{gap:3rem;padding-bottom:3rem}.portrait-shell{width:min(320px,88%)}.stats{position:relative}.stat-grid{grid-template-columns:repeat(2,1fr)}.head{grid-template-columns:1fr;gap:.8rem}.cases,.operating{grid-template-columns:1fr}.case.featured{grid-column:auto}.op{border-right:0;border-bottom:1px solid var(--line)}.role{grid-template-columns:120px 1fr}.role p{grid-column:2}}
+@media(max-width:600px){.wrap{width:calc(100% - 28px)}.brand span:last-child{display:none}h1{font-size:clamp(2.8rem,15vw,4.2rem)}section{padding:76px 0}.stat-grid{grid-template-columns:1fr}.stat,.stat:first-child{min-height:82px;border-left:0;border-right:0}.case{min-height:auto;padding:1.4rem}.row{grid-template-columns:1fr!important}.role{grid-template-columns:1fr;gap:.4rem}.role p{grid-column:auto}.evidence{grid-template-columns:1fr;gap:.3rem}.footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="container nav-container">
-      <a href="#" class="nav-brand">Soumil Chugh</a>
-      <ul class="nav-menu">
-        <li><a href="#work" class="nav-link">Work</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="projects.html" class="nav-link">Projects</a></li>
-        <li><a href="projects.html#evidence" class="nav-link">Evidence</a></li>
-        <li><a href="Resume.pdf" class="nav-link" target="_blank">Resume</a></li>
-        <li class="social-links">
-          <a href="https://github.com/soumilchugh" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-        </li>
-        <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button></li>
-      </ul>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">AI Agent Engineer | Healthcare ML | Computer Vision</div>
-        <h1>I build AI systems that move from research ideas into useful products.</h1>
-        <p class="hero-description">Senior AI Agent Engineer at Kyoso, with experience across LLM agents, RAG, multimodal AI, healthcare ML, medical devices, and eye-tracking research. My work spans public products, applied research, papers, and patents.</p>
-        <div class="hero-actions">
-          <a href="projects.html" class="btn btn-primary"><i class="fas fa-code"></i> View Work</a>
-          <a href="projects.html#evidence" class="btn btn-outline"><i class="fas fa-graduation-cap"></i> Papers & Patents</a>
-          <a href="Resume.pdf" class="btn btn-outline" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
-          <a href="#experience" class="btn btn-outline"><i class="fas fa-briefcase"></i> Experience</a>
-        </div>
-      </div>
-      <img src="img_self.png" alt="Soumil Chugh" class="hero-avatar">
-    </div>
-  </header>
-
-  <main>
-    <section class="section alt">
-      <div class="container">
-        <div class="proof-grid">
-          <div class="proof-card"><strong>8</strong><span>AI/ML patents and patent-linked applied systems</span></div>
-          <div class="proof-card"><strong>ETRA</strong><span>Eye-tracking research and VR gaze-estimation work</span></div>
-          <div class="proof-card"><strong>ICPR</strong><span>Computer vision and pattern-recognition publication record</span></div>
-          <div class="proof-card"><strong>Public</strong><span>HopeLoom AI Interview and selected GitHub projects</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work" class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">Selected Work</div>
-          <h2>Flagship projects and case studies.</h2>
-          <p>Selected work with public code, strong product scope, research evidence, or applied impact.</p>
-        </div>
-        <div class="work-grid">
-          <article class="work-card featured">
-            <div class="meta"><span class="badge repo">Public repo</span><span class="badge">AI agents</span><span class="badge">Full stack</span></div>
-            <h3>HopeLoom AI Interview</h3>
-            <p>An open-source AI-powered interview simulation platform with real-time AI interviewers, multi-LLM support, WebSocket communication, and distinct modes for candidate practice and company screening.</p>
-            <div class="card-links">
-              <a class="card-link" href="https://github.com/HopeLoom/AI-Interview" target="_blank"><i class="fab fa-github"></i> View Code</a>
-              <a class="card-link secondary" href="projects.html#ai-products"><i class="fas fa-arrow-right"></i> Details</a>
-            </div>
-          </article>
-          <article class="work-card">
-            <div class="meta"><span class="badge private">Private case study</span><span class="badge">RAG</span><span class="badge">Multimodal AI</span></div>
-            <h3>Creative AI Agent Platform</h3>
-            <p>At Kyoso, developing an AI agent platform for designers and creators that combines brand context, market research, OCR, multimodal LLMs, Graph RAG, tool use, memory, and deep-research workflows to support creative ideation and on-brand concept generation.</p>
-          </article>
-          <article class="work-card">
-            <div class="meta"><span class="badge evidence">Healthcare ML</span><span class="badge">Wearables</span><span class="badge">Patents</span></div>
-            <h3>Smartwatch Heart-Risk Monitoring</h3>
-            <p>Machine learning and firmware-adjacent work for smartwatch biomarker data, including private General Prognostics systems and patent-linked applied research.</p>
-            <div class="card-links"><a class="card-link secondary" href="projects.html#healthcare"><i class="fas fa-arrow-right"></i> Healthcare Projects</a></div>
-          </article>
-          <article class="work-card">
-            <div class="meta"><span class="badge evidence">Research</span><span class="badge">Eye tracking</span><span class="badge">Computer vision</span></div>
-            <h3>VR Eye Tracking and Gaze Estimation</h3>
-            <p>MASc research and follow-on computer vision work in eye tracking, pupil estimation, VR gaze accuracy, and RGB/IR vision pipelines.</p>
-            <div class="card-links"><a class="card-link secondary" href="projects.html#evidence"><i class="fas fa-graduation-cap"></i> Research Evidence</a></div>
-          </article>
-          <article class="work-card">
-            <div class="meta"><span class="badge private">Private project</span><span class="badge">AI education</span></div>
-            <h3>ByteMentor</h3>
-            <p>An AI education platform focused on personalized technical learning support, structured practice, and mentor-style guidance for programming concepts.</p>
-            <div class="card-links"><a class="card-link secondary" href="projects.html#ai-products"><i class="fas fa-arrow-right"></i> Details</a></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="section alt">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">Experience</div>
-          <h2>Applied AI across product, research, and regulated systems.</h2>
-        </div>
-        <div class="experience-grid">
-          <article class="experience-card">
-            <img src="kyoso_logo.png" alt="Kyoso" class="experience-logo">
-            <div>
-              <div class="experience-info"><h3>Senior AI Agent Engineer</h3><p><a href="https://www.kyoso.com/" target="_blank">Kyoso</a> | 2025 - Present</p></div>
-              <div class="experience-description">Building an AI agent platform for designers and creators that combines multimodal LLMs, deep-research agents, Graph RAG, OCR, tool use, and memory to support brand-aware creative ideation and visual concept generation.</div>
-            </div>
-          </article>
-          <article class="experience-card">
-            <img src="Huawei-Logo.png" alt="Huawei" class="experience-logo">
-            <div>
-              <div class="experience-info"><h3>Senior AI/ML Research Engineer</h3><p><a href="https://www.huawei.com/ca/" target="_blank">Huawei</a> - Human Machine Interaction Lab | 2020 - 2025</p></div>
-              <div class="experience-description">Led LLM agent development for intelligent image editing, browser automation, deep-research RAG systems, gesture recognition with function calling, PEFT fine-tuning, and gaze tracking.</div>
-            </div>
-          </article>
-          <article class="experience-card">
-            <img src="general_prognostics_logo.png" alt="General Prognostics" class="experience-logo">
-            <div>
-              <div class="experience-info"><h3>Machine Learning Consultant</h3><p><a href="https://gpx.ai/" target="_blank">General Prognostics Inc.</a> | 2020 - 2024</p></div>
-              <div class="experience-description">Developed ML pipelines for heart disease prediction using smartwatch data and computer vision algorithms for biological sample quality control. Contributed to multiple patents.</div>
-            </div>
-          </article>
-          <article class="experience-card">
-            <img src="janacare_logo.png" alt="Jana Care" class="experience-logo">
-            <div>
-              <div class="experience-info"><h3>Senior Software Engineer</h3><p><a href="https://www.janacare.com/" target="_blank">Jana Care</a> | 2015 - 2018</p></div>
-              <div class="experience-description">Built FDA-approved smartphone-controlled robotic systems for automating blood tests, including BLE stacks on Android and ARM Cortex-M4 platforms.</div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">Expertise</div>
-          <h2>Where I tend to work best.</h2>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-card"><strong><i class="fas fa-robot"></i>LLM Agents</strong><p>Tool use, browser automation, deep-research systems, function calling, and workflow agents.</p></div>
-          <div class="skill-card"><strong><i class="fas fa-search"></i>RAG Systems</strong><p>Graph RAG, document understanding, OCR, multi-source synthesis, and report generation.</p></div>
-          <div class="skill-card"><strong><i class="fas fa-sliders-h"></i>Fine-Tuning</strong><p>LoRA, adapters, PEFT, custom datasets, and domain-specific model behavior.</p></div>
-          <div class="skill-card"><strong><i class="fas fa-images"></i>Multimodal AI</strong><p>Vision-language systems, image editing, gesture understanding, and creative tools.</p></div>
-          <div class="skill-card"><strong><i class="fas fa-eye"></i>Computer Vision</strong><p>Gaze tracking, pupil estimation, medical imaging, segmentation, and camera pipelines.</p></div>
-          <div class="skill-card"><strong><i class="fas fa-microchip"></i>Systems</strong><p>Python, PyTorch, TypeScript, Docker, embedded/firmware-adjacent workflows, and cloud deployment.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container">
-        <div class="contact-card">
-          <div>
-            <div class="section-kicker">Contact</div>
-            <h2>Let's talk about AI systems that need to actually work.</h2>
-            <p>Email: <a href="mailto:soumil.chugh@gmail.com">soumil.chugh@gmail.com</a></p>
-          </div>
-          <div class="card-links">
-            <a href="Resume.pdf" class="card-link secondary" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
-            <a href="projects.html" class="card-link"><i class="fas fa-arrow-right"></i> Browse Work</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Soumil Chugh. AI Agent Engineer | Healthcare ML | Computer Vision | 8 Patents</p>
-      <div class="footer-social">
-        <a href="https://github.com/soumilchugh" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/soumil-chugh-95b33652" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeIcon(next);
-    });
-
-    function updateThemeIcon(theme) {
-      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-      themeIcon.setAttribute('title', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-    }
-  </script>
-</body>
-</html>
+<a class="skip" href="#main">Skip to content</a>
+<nav><div class="wrap nav"><a class="brand" href="#top"><span class="mark">SC</span><span>Soumil Chugh</span></a><div class="links"><a href="#work">Selected work</a><a href="#approach">Approach</a><a href="#experience">Experience</a><a href="projects.html">Research & projects</a><a class="essential" href="Resume.pdf" target="_blank" rel="noopener">Résumé</a><button id="theme" aria-label="Switch color theme">◐</button></div></div></nav>
+<header class="hero" id="top"><div class="wrap hero-grid"><div><div class="availability mono"><span class="dot"></span>Toronto · Joining Kanu, September 2026</div><h1>I build AI agents that <span class="accent">finish the job.</span></h1><p class="hero-copy">Senior engineer working across <strong>agent architecture, subagent orchestration, custom models, memory, context, skills, and tool execution</strong>—turning ambiguous product ideas into reliable production systems.</p><div class="actions"><a class="btn primary" href="#work">Explore selected work ↓</a><a class="btn ghost" href="Resume.pdf" target="_blank" rel="noopener">View résumé ↗</a><a class="btn ghost" href="mailto:soumil.chugh@gmail.com">Email me ↗</a></div></div><div class="portrait-shell"><img class="portrait" src="img_self.png" alt="Portrait of Soumil Chugh" width="620" height="775"><div class="note"><strong>Research → systems → product</strong><span class="mono">My operating range</span></div></div></div><div class="stats"><div class="wrap stat-grid"><div class="stat"><strong>15+</strong><span>filed and granted patents</span></div><div class="stat"><strong>7</strong><span>peer-reviewed publications</span></div><div class="stat"><strong>5 yrs</strong><span>at Huawei Research</span></div><div class="stat"><strong>10+ yrs</strong><span>across AI, software, and devices</span></div></div></div></header>
+<main id="main">
+<section><div class="wrap intro reveal"><div><div class="mono accent">Engineering profile</div><p class="lede">I work where probabilistic AI meets dependable software: deciding what an agent should reason about, what the system should control, and how the whole loop stays observable, efficient, and useful.</p></div><div class="body"><p>My recent work centers on long-running, context-aware agents that understand intent, delegate work, interact with tools, maintain state, and complete creative or research workflows autonomously.</p><p>My foundation is broader: multimodal AI and computer vision at Huawei Research, healthcare ML and wearable sensing, and regulated robotic medical systems.</p><div class="principles"><div class="principle"><span class="mono accent">01</span><div><b>Own the system, not just the model.</b><small>Architecture, state, tools, evaluation, observability, latency, cost, and user experience.</small></div></div><div class="principle"><span class="mono accent">02</span><div><b>Use agents where uncertainty earns them.</b><small>Keep deterministic control around open-ended reasoning and make failure recoverable.</small></div></div><div class="principle"><span class="mono accent">03</span><div><b>Measure realistic behavior.</b><small>Build evals from production-shaped conversations, tasks, and failure modes.</small></div></div></div></div></div></section>
+<section class="surface" id="work"><div class="wrap"><div class="head reveal"><div class="mono accent">Selected work / 01—04</div><div><h2>Production systems, through the decisions that mattered.</h2><p>Public-safe case studies spanning agent infrastructure, long-context memory, research agents, and applied AI.</p></div></div><div class="cases">
+<article class="case featured reveal"><div><div class="case-index mono">01 · Production agent platform</div><h3>Autonomous creative agents at Kyoso</h3><p>Built and advanced an agent system that translated high-level creative requests into multi-step work across brand context, canvas state, visual assets, image and video generation, and editing tools. The runtime repeatedly observed state, chose an action, executed a tool, and adapted until completion.</p><p>The harder work was around the model: tool boundaries, subagent and model coordination, context and state, evaluations, and improving reliability, latency, personalization, and cost.</p><div class="chips"><span class="chip">Agent architecture</span><span class="chip">Subagents</span><span class="chip">Tool routing</span><span class="chip">Multimodal AI</span><span class="chip">Context</span><span class="chip">Evals</span></div></div><div class="architecture"><div>User intent + current state</div><div>Agent runtime · context · policy</div><div class="row"><span>Subagents</span><span>Models</span><span>Skills</span></div><div class="row"><span>Canvas</span><span>Media tools</span><span>Brand data</span></div><div>Observe · evaluate · continue or finish</div></div></article>
+<article class="case reveal"><div class="case-index mono">02 · Long-context memory</div><h3>Hierarchical memory that scales with the conversation</h3><p>Designed a tiered summary tree that indexes older turns. The agent navigates summaries and drills into original turns for evidence instead of carrying one ever-growing transcript.</p><div class="result"><strong>136</strong><span>turns in the deepest early evaluation</span></div><p>Across questions hidden behind two summary levels, successful answers consistently recovered the original source turn.</p><div class="chips"><span class="chip">Memory architecture</span><span class="chip">Retrieval</span><span class="chip">Context efficiency</span><span class="chip">Eval design</span></div></article>
+<article class="case reveal"><div class="case-index mono">03 · Research and workflow agents</div><h3>Agents that research, browse, and act</h3><p>At Huawei Research, led work on deep-research RAG, browser workflow automation, intelligent image editing, function calling, and domain-adapted models—combining models, tools, retrieval, and application context.</p><div class="chips"><span class="chip">Deep research</span><span class="chip">Browser automation</span><span class="chip">RAG</span><span class="chip">PEFT / LoRA</span></div></article>
+<article class="case reveal"><div class="case-index mono">04 · Vision and healthcare</div><h3>Research translated into deployable systems</h3><p>Led gaze-tracking work across VR, mobile, and desktop, improving accuracy by 25% and reducing latency by 50%. Built healthcare ML around smartwatch biomarkers and biological-sample quality, alongside smartphone-controlled robotic blood-testing systems.</p><div class="chips"><span class="chip">Computer vision</span><span class="chip">Eye tracking</span><span class="chip">Healthcare ML</span><span class="chip">Embedded systems</span></div></article>
+<article class="case reveal"><div class="case-index mono">Open source · Product engineering</div><h3>HopeLoom AI Interview</h3><p>An open-source interview platform with real-time AI interviewers, multiple model providers, WebSocket communication, candidate practice, and company screening workflows.</p><div class="actions" style="margin-top:auto"><a class="btn primary" href="https://github.com/HopeLoom/AI-Interview" target="_blank" rel="noopener">View repository ↗</a><a class="btn" href="projects.html#ai-products">More projects →</a></div></article>
+</div></div></section>
+<section id="approach"><div class="wrap"><div class="head reveal"><div class="mono accent">How I operate</div><div><h2>Staff-level leverage means making the whole team’s system better.</h2><p>I bring research depth, production judgment, and clear technical framing to ambiguous AI product work.</p></div></div><div class="operating reveal"><article class="op"><div class="icon">A→Z</div><h3>Architecture across boundaries</h3><p>Connect model behavior, tools, memory, queues, state, interfaces, and product workflows into one execution model.</p></article><article class="op"><div class="icon">SLO</div><h3>Reliability over demos</h3><p>Design for retries, idempotency, recoverable failure, evaluation, observability, latency, and cost.</p></article><article class="op"><div class="icon">0→1</div><h3>Research into product</h3><p>Reduce open-ended problems into testable bets, prototype quickly, and turn what works into maintainable capability.</p></article></div></div></section>
+<section class="surface" id="experience"><div class="wrap"><div class="head reveal"><div class="mono accent">Experience</div><div><h2>Agents, applied research, healthcare, and physical systems.</h2></div></div><div class="timeline reveal">
+<article class="role"><time>SEP 2026 —</time><div><h3>Agent Engineering</h3><div class="company">Kanu</div></div><p>Joining an early-stage team building autonomous agents for cloud and DevOps work.</p></article>
+<article class="role"><time>2025 — 2026</time><div><h3>Senior AI Agent Engineer</h3><div class="company">Kyoso</div></div><p>Built production creative agents across orchestration, subagents, models, memory, context, skills, tools, multimodal generation, evaluations, reliability, latency, and cost.</p></article>
+<article class="role"><time>2020 — 2025</time><div><h3>Senior AI/ML Research Engineer</h3><div class="company">Huawei · HMI Lab</div></div><p>Led agent, multimodal, and computer-vision programs spanning browser automation, deep research, image editing, fine-tuning, gesture interaction, and gaze tracking.</p></article>
+<article class="role"><time>2020 — 2024</time><div><h3>Machine Learning Consultant</h3><div class="company">General Prognostics</div></div><p>Developed healthcare ML pipelines for wearable-data risk prediction and computer-vision quality control.</p></article>
+<article class="role"><time>2015 — 2018</time><div><h3>Senior Software Engineer</h3><div class="company">Jana Care</div></div><p>Built smartphone-controlled robotic blood-testing systems, including Android BLE and ARM Cortex-M4 software.</p></article>
+</div></div></section>
+<section id="research"><div class="wrap research reveal"><div><div class="mono accent">Research record</div><div class="big">15+</div><p>Filed and granted patents across agent interaction, gaze tracking, healthcare ML, and computer vision—alongside seven peer-reviewed publications.</p><div class="actions"><a class="btn primary" href="projects.html#evidence">View papers & patents →</a></div></div><div class="evidence-list"><div class="evidence"><span class="mono">MASc</span><strong>Computer Engineering · University of Toronto</strong><span>VR eye tracking</span></div><div class="evidence"><span class="mono">ETRA</span><strong>Contrastive self-attention for pupil segmentation</strong><a href="https://dl.acm.org/doi/abs/10.1145/3649902.3653351" target="_blank" rel="noopener">Paper ↗</a></div><div class="evidence"><span class="mono">ICPR</span><strong>Corneal-reflection detection and matching</strong><a href="https://ieeexplore.ieee.org/abstract/document/9412066" target="_blank" rel="noopener">Paper ↗</a></div><div class="evidence"><span class="mono">Thesis</span><strong>An Eye Tracking System for a Virtual Reality Headset</strong><a href="projects.html#evidence">Details ↗</a></div><div class="evidence"><span class="mono">Work</span><strong>Agent, healthcare, and vision case studies</strong><a href="projects.html">Explore ↗</a></div></div></div></section>
+<section class="cta" id="contact"><div class="wrap cta-grid reveal"><div><div class="mono accent">Build what comes next</div><h2>Hard AI systems are usually systems problems.</h2><p>I’m interested in ambitious agent products where architecture, model behavior, reliability, and product judgment all matter.</p></div><div class="actions"><a class="btn primary" href="mailto:soumil.chugh@gmail.com">Start a conversation ↗</a><a class="btn ghost" href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>
+</main>
+<footer><div class="wrap footer"><span>© 2026 Soumil Chugh · Toronto, Canada</span><div><a href="https://github.com/soumilchugh" target="_blank" rel="noopener">GitHub</a><a href="https://scholar.google.ca/citations?user=MqaoEVwAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a><a href="mailto:soumil.chugh@gmail.com">Email</a></div></div></footer>
+<script>const r=document.documentElement,t=document.querySelector("#theme"),s=localStorage.getItem("theme");if(s)r.dataset.theme=s;t.onclick=()=>{r.dataset.theme=r.dataset.theme==="dark"?"light":"dark";localStorage.setItem("theme",r.dataset.theme)};const els=document.querySelectorAll(".reveal");if("IntersectionObserver"in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");o.unobserve(e.target)}}),{threshold:.1});els.forEach(e=>o.observe(e))}else els.forEach(e=>e.classList.add("visible"));</script>
+</body></html>

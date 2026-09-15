@@ -28,10 +28,10 @@ nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-fil
 .graph-wrap{margin:2rem 0;padding:1rem;background:var(--code);border:1px solid #2c4055;border-radius:16px}.graph-svg{display:block;width:100%;height:auto}.graph-svg line{stroke:#50677d;stroke-width:2}.graph-svg .relation{stroke:#ff7547}.graph-svg circle{stroke-width:2}.graph-svg text{fill:#dfe8f0;font:500 13px "DM Sans"}.graph-svg .edge-label{fill:#8fa4b8;font:400 10px "DM Mono"}.graph-svg .source{fill:#17334c;stroke:#68b5e8}.graph-svg .claim{fill:#3d2936;stroke:#ff7547}.graph-svg .concept{fill:#15403e;stroke:#50d1bd}.graph-svg .community{fill:none;stroke:#b29aeb;stroke-dasharray:7 5}
 .router{margin:2rem 0;padding:1.25rem;background:var(--card);border:1px solid var(--line);border-radius:16px}.router-controls{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.2rem}.route-btn{padding:.55rem .75rem;color:var(--copy);background:var(--surface);border:1px solid var(--line);border-radius:9px;cursor:pointer;font-weight:700}.route-btn[aria-pressed=true]{color:#fff;background:var(--accent);border-color:var(--accent)}.route-path{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}.route-node{position:relative;min-height:82px;display:grid;place-items:center;text-align:center;padding:.65rem;color:var(--copy);background:var(--surface);border:1px solid var(--line);border-radius:9px;font-size:.78rem}.route-node:not(:last-child):after{content:"→";position:absolute;right:-.43rem;z-index:2;color:var(--accent);font-weight:800}
 .maintenance{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr 28px 1fr;gap:.45rem;align-items:center;margin:2rem 0}.maint-node{min-height:90px;display:grid;place-items:center;text-align:center;padding:.55rem;background:var(--card);border:1px solid var(--line);border-radius:10px;font-size:.77rem}.maint-node b{display:block;font-family:Manrope}.maint-node span{display:block;margin-top:.2rem;color:var(--muted);font-size:.7rem}.control-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:2rem 0}.control{padding:1.1rem;background:var(--card);border:1px solid var(--line);border-radius:13px}.control b{display:block;margin-bottom:.3rem;font-family:Manrope}.control span{color:var(--copy);font-size:.9rem}
-.citation-chain{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;align-items:center;margin:2rem 0}.cite-node{position:relative;min-height:100px;display:grid;place-items:center;text-align:center;padding:.7rem;background:var(--card);border:1px solid var(--line);border-radius:11px}.cite-node:not(:last-child):after{content:"→";position:absolute;right:-.43rem;z-index:2;color:var(--accent);font-weight:800}.cite-node b{display:block;font-family:Manrope}.cite-node span{display:block;margin-top:.3rem;color:var(--muted);font-size:.72rem}.sources{padding-top:1.3rem;border-top:1px solid var(--line)}.sources li{margin:.55rem 0}
+.time-eval{display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr;gap:.45rem;align-items:center;margin:2rem 0}.snapshot{min-height:128px;display:grid;place-items:center;text-align:center;padding:1rem;background:var(--card);border:1px solid var(--line);border-radius:13px}.snapshot b{display:block;font-family:Manrope}.snapshot span{display:block;margin-top:.35rem;color:var(--muted);font-size:.76rem}.snapshot.hidden{color:#fff;background:linear-gradient(135deg,#4b3041,#71402f);border-color:transparent}.snapshot.hidden b{color:#fff}.snapshot.hidden span{color:#ead6d0}.eval-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:2rem 0}.eval-metric{padding:1.05rem;background:var(--card);border:1px solid var(--line);border-radius:12px}.eval-metric b{display:block;margin-bottom:.3rem;font-family:Manrope}.eval-metric span{color:var(--copy);font-size:.88rem}.citation-chain{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;align-items:center;margin:2rem 0}.cite-node{position:relative;min-height:100px;display:grid;place-items:center;text-align:center;padding:.7rem;background:var(--card);border:1px solid var(--line);border-radius:11px}.cite-node:not(:last-child):after{content:"→";position:absolute;right:-.43rem;z-index:2;color:var(--accent);font-weight:800}.cite-node b{display:block;font-family:Manrope}.cite-node span{display:block;margin-top:.3rem;color:var(--muted);font-size:.72rem}.sources{padding-top:1.3rem;border-top:1px solid var(--line)}.sources li{margin:.55rem 0}
 .cta{padding:70px 0;color:#eef3f7;background:#0c1a2b;border-top:1px solid #26384c}.cta-grid{display:flex;align-items:end;justify-content:space-between;gap:2rem}.cta h2{max-width:720px;margin:0;font:700 clamp(2rem,4vw,3.6rem)/1.05 Manrope;letter-spacing:-.04em}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.72rem 1rem;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:10px;font-weight:700}.btn:hover{transform:translateY(-2px)}footer{padding:2rem 0;color:var(--muted);border-top:1px solid var(--line);font-size:.87rem}.footer{display:flex;justify-content:space-between;gap:2rem}.footer-links{display:flex;gap:1rem}
 @media(max-width:950px){.layout{grid-template-columns:1fr;gap:45px}.toc{position:relative;top:0;padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}.toc a{display:inline-block;margin:.25rem}.cta-grid{align-items:start;flex-direction:column}.hybrid{grid-template-columns:repeat(3,1fr)}.hybrid .arrow{transform:rotate(90deg)}.hybrid .fuse,.hybrid .rank{grid-column:1/-1}.maintenance{grid-template-columns:1fr}.maintenance .arrow{transform:rotate(90deg)}}
-@media(max-width:680px){.wrap{width:calc(100% - 28px)}.graph-wrap{overflow-x:auto}.graph-svg{min-width:680px}.nav-links a:not(.essential){display:none}.brand span:last-child{display:none}.hero{padding:125px 0 70px}.layout{padding:64px 0 90px}.article section{margin-bottom:4.5rem}.meta span+span:before{display:none}.meta{display:grid}.two-speed{grid-template-columns:1fr}.inputs{grid-template-columns:1fr 1fr}.lane:before{display:none}.lane{grid-template-columns:1fr}.hybrid{grid-template-columns:1fr}.hybrid .fuse,.hybrid .rank{grid-column:auto}.route-path,.citation-chain{grid-template-columns:1fr}.route-node:not(:last-child):after,.cite-node:not(:last-child):after{right:auto;bottom:-.45rem;transform:rotate(90deg)}.control-grid{grid-template-columns:1fr}.footer{flex-direction:column}}
+@media(max-width:680px){.wrap{width:calc(100% - 28px)}.graph-wrap{overflow-x:auto}.graph-svg{min-width:680px}.nav-links a:not(.essential){display:none}.brand span:last-child{display:none}.hero{padding:125px 0 70px}.layout{padding:64px 0 90px}.article section{margin-bottom:4.5rem}.meta span+span:before{display:none}.meta{display:grid}.two-speed{grid-template-columns:1fr}.inputs{grid-template-columns:1fr 1fr}.lane:before{display:none}.lane{grid-template-columns:1fr}.hybrid{grid-template-columns:1fr}.hybrid .fuse,.hybrid .rank{grid-column:auto}.route-path,.citation-chain,.time-eval{grid-template-columns:1fr}.time-eval .arrow{transform:rotate(90deg)}.eval-grid{grid-template-columns:1fr}.route-node:not(:last-child):after,.cite-node:not(:last-child):after{right:auto;bottom:-.45rem;transform:rotate(90deg)}.control-grid{grid-template-columns:1fr}.footer{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.progress{display:none}}
 </style>
 </head>
@@ -45,7 +45,7 @@ nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-fil
     <div class="eyebrow mono">Agent systems · Retrieval</div>
     <h1>From documents to a <span style="color:#ff7547">living knowledge system.</span></h1>
     <p class="dek">Hybrid RAG makes new sources searchable immediately. GraphRAG connects knowledge in the background. An agent uses both—with citations at every step.</p>
-    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>8 minute read</span></div>
+    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>9 minute read</span></div>
   </div>
 </header>
 
@@ -58,6 +58,7 @@ nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-fil
     <a href="#routing">Choosing a search path</a>
     <a href="#maintenance">Keeping the graph useful</a>
     <a href="#control">Personal knowledge</a>
+    <a href="#evaluation">Evaluating knowledge growth</a>
     <a href="#reports">Reports and citations</a>
   </aside>
 
@@ -172,8 +173,35 @@ nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-fil
       <p>Each user's graph needs its own access boundary or namespace. Shared public knowledge can be referenced, but private sources must never cross users or projects.</p>
     </section>
 
+    <section id="evaluation">
+      <span class="label mono">07 · Evaluation</span>
+      <h2>Use Wikipedia history to test whether knowledge grows correctly.</h2>
+      <p>Wikipedia provides page histories with revision metadata and page content. That makes it useful for a time-based evaluation: give the system only what existed at one date, then compare its later research with revisions that appeared afterward. Wikimedia's <a class="source-link" href="https://meta.wikimedia.org/wiki/Data_dumps/What%27s_available_for_download" target="_blank" rel="noopener">pages-meta-history dumps</a> contain the revision history needed for this setup.</p>
+      <div class="time-eval" role="img" aria-label="Freeze knowledge at an earlier Wikipedia revision, let the agent research new sources, then compare the learned graph with later revisions">
+        <div class="snapshot"><div><b>Knowledge at time T₀</b><span>Only earlier revisions and sources are visible</span></div></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="snapshot"><div><b>Agent researches</b><span>Find, extract, connect, cite, and stay in scope</span></div></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="snapshot hidden"><div><b>Hidden future at T₁</b><span>Later revisions become the reference</span></div></div>
+      </div>
+      <p>This tests more than question answering. It shows how a topic expands, which new concepts matter, what relationships should be created, and whether the agent ignores unrelated material.</p>
+      <div class="eval-grid">
+        <div class="eval-metric"><b>Knowledge gained</b><span>Did the graph add the important new concepts, claims, and relationships found in later revisions?</span></div>
+        <div class="eval-metric"><b>Research scope</b><span>Did exploration stay inside the allowed topic, depth, time range, and source rules?</span></div>
+        <div class="eval-metric"><b>Entity resolution</b><span>Were new mentions joined to the correct concept instead of creating duplicates?</span></div>
+        <div class="eval-metric"><b>Temporal accuracy</b><span>Were changed facts updated while older claims kept their dates and provenance?</span></div>
+        <div class="eval-metric"><b>Retrieval quality</b><span>Can the system answer direct, multi-hop, and corpus-level questions from the updated graph?</span></div>
+        <div class="eval-metric"><b>Citation support</b><span>Does every extracted claim point to a passage that actually supports it?</span></div>
+      </div>
+      <h3>A clean benchmark needs a strict timeline</h3>
+      <p>Models, prompts, and retrieval indexes must not see revisions or sources published after T₀. Topics should be split by time—and preferably by page or topic family—to reduce memorization and leakage. The same frozen inputs must be used when comparing two systems.</p>
+      <h3>Revision history is a reference signal, not perfect truth</h3>
+      <p>Wikipedia edits include corrections, reverts, style changes, vandalism, and community judgment. The benchmark should focus on stable content changes, use later accepted revisions rather than every edit, and send unclear cases for human review. Evaluation data must also keep Wikimedia attribution and license information with each example.</p>
+      <div class="callout"><span class="label mono">A good result</span><p>The system discovers the useful knowledge that appeared later, connects it to the right concepts, stays within scope, preserves conflicts over time, and cites the sources that support each change.</p></div>
+    </section>
+
     <section id="reports">
-      <span class="label mono">07 · Reports and citations</span>
+      <span class="label mono">08 · Reports and citations</span>
       <h2>Citations are part of the graph, not decoration added later.</h2>
       <div class="citation-chain" role="img" aria-label="Every report sentence maps to a claim, source chunk, and original document or webpage">
         <div class="cite-node"><div><b>Report sentence</b><span>Generated text</span></div></div>
@@ -187,6 +215,7 @@ nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-fil
       <div class="sources">
         <h3>Technical references</h3>
         <ul>
+          <li><a class="source-link" href="https://meta.wikimedia.org/wiki/Data_dumps/What%27s_available_for_download" target="_blank" rel="noopener">Wikimedia: full page revision-history dumps</a></li>
           <li><a class="source-link" href="https://neo4j.com/docs/cypher-manual/25/indexes/semantic-indexes/" target="_blank" rel="noopener">Neo4j: full-text and vector semantic indexes</a></li>
           <li><a class="source-link" href="https://neo4j.com/docs/neo4j-graphrag-python/current/user_guide_rag.html" target="_blank" rel="noopener">Neo4j GraphRAG: hybrid and graph-aware retrievers</a></li>
           <li><a class="source-link" href="https://github.com/microsoft/graphrag/blob/main/docs/index/default_dataflow.md" target="_blank" rel="noopener">Microsoft GraphRAG: entities, claims, relationships, communities, and embeddings</a></li>

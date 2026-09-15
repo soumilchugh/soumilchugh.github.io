@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent evals should explain why, not just score what — Soumil Chugh</title>
+<meta name="description" content="A practical framework for evaluating AI agents across outcomes, tools, traces, context, regressions, cost, latency, and the reliability of the eval system itself.">
+<meta name="theme-color" content="#08111f">
+<link rel="canonical" href="https://soumilchugh.github.io/agent-evals.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soumilchugh.github.io/agent-evals.html">
+<meta property="og:title" content="Agent evals should explain why, not just score what">
+<meta property="og:description" content="How to turn agent evaluation from a scorecard into a diagnostic and regression system.">
+<meta property="article:author" content="Soumil Chugh">
+<meta property="article:published_time" content="2026-09-15">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Agent evals should explain why, not just score what","description":"A practical framework for evaluating AI agents across outcomes, tools, traces, context, regressions, cost, latency, and evaluator reliability.","author":{"@type":"Person","name":"Soumil Chugh","url":"https://soumilchugh.github.io/"},"datePublished":"2026-09-15","mainEntityOfPage":"https://soumilchugh.github.io/agent-evals.html"}</script>
+<style>
+:root{--ink:#102033;--copy:#4e6073;--muted:#728196;--paper:#f3f0e9;--surface:#faf8f3;--card:#fff;--line:#d8d4ca;--accent:#d7562c;--green:#0d776a;--nav:rgba(243,240,233,.91);--code:#15263a;--shadow:0 24px 70px rgba(16,32,51,.11)}
+[data-theme=dark]{--ink:#eef3f7;--copy:#b3bfcd;--muted:#8190a3;--paper:#08111f;--surface:#0d1929;--card:#112033;--line:#26384c;--accent:#ff7547;--green:#50d1bd;--nav:rgba(8,17,31,.9);--code:#07111e;--shadow:0 28px 80px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;color:var(--ink);background:var(--paper);font:400 17px/1.72 "DM Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.mono{font:500 .75rem "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase}.skip{position:fixed;left:1rem;top:-6rem;z-index:300;padding:.7rem 1rem;color:#fff;background:var(--accent)}.skip:focus{top:1rem}
+nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.brand{display:flex;align-items:center;gap:.8rem;font:700 1rem Manrope}.mark{width:36px;height:36px;display:grid;place-items:center;color:#fff;background:var(--accent);border-radius:10px;font:500 .77rem "DM Mono"}.nav-links{display:flex;align-items:center;gap:1.3rem;color:var(--copy);font-size:.9rem;font-weight:600}.nav-links a:hover{color:var(--accent)}#theme{width:38px;height:38px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:50%;cursor:pointer}.progress{position:fixed;z-index:120;top:72px;left:0;width:var(--progress,0%);height:2px;background:linear-gradient(90deg,var(--accent),var(--green));box-shadow:0 0 14px var(--accent)}
+.hero{position:relative;overflow:hidden;padding:150px 0 92px;color:#eef3f7;background:radial-gradient(circle at 80% 15%,rgba(59,132,179,.27),transparent 33%),linear-gradient(135deg,#060d17,#10243f)}.hero:before{content:"";position:absolute;inset:0;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:62px 62px;mask-image:linear-gradient(#000,transparent 90%)}.hero-inner{position:relative;max-width:980px}.eyebrow{display:flex;align-items:center;gap:.7rem;color:#8fe0d1}.eyebrow:before{content:"";width:28px;height:2px;background:#50d1bd}.hero h1{max-width:950px;margin:1.2rem 0 1.5rem;font:800 clamp(3rem,7vw,6.5rem)/.98 Manrope;letter-spacing:-.055em}.dek{max-width:800px;margin:0;color:#b7c4d1;font-size:clamp(1.1rem,2vw,1.35rem)}.meta{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;margin-top:2rem;color:#91a2b4;font-size:.86rem}.meta span+span:before{content:"•";margin-right:1.2rem;color:#ff7547}
+.layout{display:grid;grid-template-columns:250px minmax(0,760px);gap:80px;align-items:start;padding:88px 0 120px}.toc{position:sticky;top:108px}.toc-title{margin-bottom:1rem;color:var(--muted)}.toc a{display:block;padding:.42rem 0;color:var(--muted);font-size:.86rem;border-left:2px solid var(--line);padding-left:1rem;transition:.2s}.toc a:hover,.toc a.active{color:var(--accent);border-color:var(--accent)}.article{min-width:0}.article section{margin-bottom:6rem}.article h2{margin:0 0 1.4rem;font:700 clamp(2rem,4vw,3.2rem)/1.08 Manrope;letter-spacing:-.04em}.article h3{margin:2.2rem 0 .75rem;font:700 1.25rem/1.3 Manrope;letter-spacing:-.02em}.article p{margin:0 0 1.3rem;color:var(--copy)}.article strong{color:var(--ink)}.article ul,.article ol{padding-left:1.2rem;color:var(--copy)}.article li{margin:.55rem 0}.lead{font:600 clamp(1.45rem,2.8vw,2.1rem)/1.42 Manrope;letter-spacing:-.025em;color:var(--ink)!important}.callout{margin:2rem 0;padding:1.5rem 1.6rem;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 14px 14px 0;box-shadow:var(--shadow)}.callout p:last-child{margin:0}.label{display:block;margin-bottom:.55rem;color:var(--accent)}
+.stack{display:grid;gap:.7rem;margin:2rem 0}.layer{display:grid;grid-template-columns:54px 1fr;gap:1rem;padding:1.15rem;background:var(--card);border:1px solid var(--line);border-radius:13px}.layer-num{width:42px;height:42px;display:grid;place-items:center;color:var(--accent);background:var(--surface);border-radius:10px;font:500 .74rem "DM Mono"}.layer h3{margin:0 0 .2rem}.layer p{margin:0;font-size:.94rem}
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:.65rem;margin:2rem 0}.node{position:relative;min-height:112px;padding:1rem .85rem;background:var(--code);border:1px solid #2c4055;border-radius:12px;color:#dce6ef}.node:not(:last-child):after{content:"→";position:absolute;right:-.55rem;top:40%;z-index:2;color:#ff7547;font-weight:700}.node b{display:block;margin-bottom:.4rem;font:600 .86rem Manrope}.node span{display:block;color:#93a7ba;font-size:.75rem;line-height:1.45}
+.record{margin:2rem 0;padding:1.2rem 1.3rem;color:#b9c7d4;background:var(--code);border:1px solid #2c4055;border-radius:14px;font:400 .82rem/1.75 "DM Mono"}.record .key{color:#72dcc9}.record .value{color:#ff956f}.record .indent{padding-left:1.2rem}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2rem 0}.card{padding:1.4rem;background:var(--card);border:1px solid var(--line);border-radius:14px}.card h3{margin:0 0 .55rem}.card p{margin:0;font-size:.94rem}
+details{margin:.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:13px}summary{display:flex;align-items:center;gap:1rem;padding:1.15rem 1.25rem;cursor:pointer;font:700 1rem Manrope;list-style:none}summary::-webkit-details-marker{display:none}summary:before{content:"+";width:28px;height:28px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent);background:var(--surface);border-radius:7px;font:500 1rem "DM Mono"}details[open] summary:before{content:"−"}details .detail{padding:0 1.25rem 1.25rem 4.95rem}details .detail p:last-child{margin:0}.steps{counter-reset:steps;margin:2rem 0}.step{position:relative;display:grid;grid-template-columns:54px 1fr;gap:1rem;padding:0 0 1.6rem}.step:not(:last-child):before{content:"";position:absolute;left:21px;top:42px;bottom:0;width:1px;background:var(--line)}.step:after{counter-increment:steps;content:counter(steps,decimal-leading-zero);width:43px;height:43px;display:grid;place-items:center;color:#fff;background:var(--green);border-radius:50%;font:500 .72rem "DM Mono"}.step-body{grid-column:2;grid-row:1}.step h3{margin:0 0 .25rem}.step p{margin:0;font-size:.94rem}
+.done{padding:2.2rem;color:#eef3f7;background:linear-gradient(135deg,#10273b,#153d45);border-radius:18px}.done h2{color:#fff}.done p{color:#b8c8d3}.done ul{color:#c9d5de}.cta{padding:70px 0;color:#eef3f7;background:#0c1a2b;border-top:1px solid #26384c}.cta-grid{display:flex;align-items:end;justify-content:space-between;gap:2rem}.cta h2{max-width:720px;margin:0;font:700 clamp(2rem,4vw,3.6rem)/1.05 Manrope;letter-spacing:-.04em}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.72rem 1rem;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:10px;font-weight:700}.btn:hover{transform:translateY(-2px)}footer{padding:2rem 0;color:var(--muted);border-top:1px solid var(--line);font-size:.87rem}.footer{display:flex;justify-content:space-between;gap:2rem}.footer-links{display:flex;gap:1rem}
+@media(max-width:950px){.layout{grid-template-columns:1fr;gap:45px}.toc{position:relative;top:0;padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}.toc a{display:inline-block;margin:.25rem}.pipeline{grid-template-columns:1fr}.node:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-1rem}.cta-grid{align-items:start;flex-direction:column}}
+@media(max-width:620px){.wrap{width:calc(100% - 28px)}.nav-links a:not(.essential){display:none}.brand span:last-child{display:none}.hero{padding:125px 0 70px}.layout{padding:64px 0 90px}.grid{grid-template-columns:1fr}.article section{margin-bottom:4.5rem}.meta span+span:before{display:none}.meta{display:grid}.layer{grid-template-columns:42px 1fr}.detail{padding-left:1.25rem!important}.footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.progress{display:none}}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<a class="skip" href="#article">Skip to article</a>
+<nav><div class="wrap nav"><a class="brand" href="index.html"><span class="mark">SC</span><span>Soumil Chugh</span></a><div class="nav-links"><a href="index.html#work">Engineering work</a><a href="projects.html">Research & projects</a><a class="essential" href="Resume.pdf" target="_blank" rel="noopener">Résumé</a><button id="theme" aria-label="Switch color theme">◐</button></div></div></nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow mono">Agent systems · Evaluation</div>
+    <h1>Agent evals should explain <span style="color:#ff7547">why</span>, not just score what.</h1>
+    <p class="dek">A practical framework for turning evaluation from an outcome scorecard into a diagnostic system—one that shows what regressed, where the failure began, and what the improvement cost.</p>
+    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>14 minute read</span></div>
+  </div>
+</header>
+
+<main class="wrap layout">
+  <aside class="toc" aria-label="Article contents">
+    <div class="toc-title mono">On this page</div>
+    <a href="#problem">The missing why</a>
+    <a href="#layers">Evaluation layers</a>
+    <a href="#record">What to record</a>
+    <a href="#scenarios">Realistic scenarios</a>
+    <a href="#verdicts">Tools vs outcomes</a>
+    <a href="#diagnosis">Trace diagnosis</a>
+    <a href="#regressions">Regression gates</a>
+    <a href="#comparisons">Fair comparisons</a>
+    <a href="#trust">Test the eval</a>
+    <a href="#workstreams">Eight workstreams</a>
+    <a href="#sequence">Execution order</a>
+    <a href="#done">Definition of done</a>
+  </aside>
+
+  <article class="article" id="article">
+    <section id="problem">
+      <span class="label mono">01 · The missing why</span>
+      <h2>A score without attribution is only half an evaluation.</h2>
+      <p class="lead">Most agent evals can tell us that one run scored lower than another. They are much less capable of telling us whether the model misunderstood the task, chose the wrong tool, received incomplete context, executed a reasonable plan badly, or produced a weak final artifact.</p>
+      <p>That distinction matters because agents are systems, not single model calls. A run combines prompts, models, context assembly, memory, tool schemas, tool implementations, state transitions, retries, infrastructure, and judges. The final score compresses all of those decisions into one number. Compression is useful for a dashboard; it is insufficient for debugging.</p>
+      <p>Hand-written scenarios create a second blind spot. They are valuable for stable coverage, but they tend to describe the workflows the team already understands. Real users discover combinations, long conversations, malformed state, and ambiguous goals that a small curated suite rarely anticipates.</p>
+      <div class="callout"><span class="label mono">Core principle</span><p><strong>An agent evaluation system should answer three questions:</strong> Was the result good? Why did the run behave that way? Did a specific change make the system better or worse?</p></div>
+      <p>The goal is not simply more graders. It is an evidence chain from scenario to execution to artifact to diagnosis, with enough control to support a credible regression decision.</p>
+    </section>
+
+    <section id="layers">
+      <span class="label mono">02 · Evaluation layers</span>
+      <h2>Evaluate the run at every layer where quality can be lost.</h2>
+      <p>A single end-to-end judge is important because the user experiences the final result. It should be the top of the stack, not the entire stack.</p>
+      <div class="stack">
+        <div class="layer"><div class="layer-num">L1</div><div><h3>Outcome quality</h3><p>Did the final artifact satisfy the request? Judge correctness, completeness, visual or functional quality, constraint adherence, and usefulness against explicit criteria.</p></div></div>
+        <div class="layer"><div class="layer-num">L2</div><div><h3>Tool correctness</h3><p>Was each tool call valid, necessary, correctly parameterized, and successful? Distinguish transport success from semantic success.</p></div></div>
+        <div class="layer"><div class="layer-num">L3</div><div><h3>Execution trajectory</h3><p>Did the agent choose a coherent path, recover from failures, avoid loops, and stop at the right time? Evaluate observable decisions and state transitions rather than relying on the final response alone.</p></div></div>
+        <div class="layer"><div class="layer-num">L4</div><div><h3>Context and state</h3><p>Did the agent receive the right history, user information, artifacts, and tool results at the moment it needed them? Missing evidence can make reasonable reasoning fail.</p></div></div>
+        <div class="layer"><div class="layer-num">L5</div><div><h3>System performance</h3><p>How many tokens, tool round trips, retries, and wall-clock seconds did the task consume? Quality improvements have to be understood alongside cost and latency.</p></div></div>
+        <div class="layer"><div class="layer-num">L6</div><div><h3>Evaluator reliability</h3><p>Is the signal repeatable, calibrated, covered by tests, and aligned with human judgment? An untested eval can produce precise-looking but misleading results.</p></div></div>
+      </div>
+    </section>
+
+    <section id="record">
+      <span class="label mono">03 · The run record</span>
+      <h2>Diagnosis begins with recording what actually happened.</h2>
+      <p>If a failed run only stores the conversation and the final score, the investigator has to reconstruct the execution from fragments. A useful run record keeps the scenario, configuration, context, calls, results, artifacts, timings, errors, and judge evidence connected by stable identifiers.</p>
+      <div class="pipeline" aria-label="Evaluation pipeline">
+        <div class="node"><b>Scenario</b><span>Goal, starting state, constraints, success criteria</span></div>
+        <div class="node"><b>Instrumented run</b><span>Turns, decisions, tool calls, state transitions</span></div>
+        <div class="node"><b>Layered judges</b><span>Artifact, tools, trace, context, performance</span></div>
+        <div class="node"><b>Diagnosis</b><span>Failure class, first divergence, supporting evidence</span></div>
+        <div class="node"><b>Regression signal</b><span>Baseline delta, confidence, ownership</span></div>
+      </div>
+      <div class="record" role="img" aria-label="Example structured evaluation run record">
+        <div><span class="key">run</span>: <span class="value">scenario + configuration + version</span></div>
+        <div class="indent"><span class="key">inputs</span>: user goal, starting state, available context</div>
+        <div class="indent"><span class="key">trajectory</span>: decisions, actions, retries, checkpoints</div>
+        <div class="indent"><span class="key">tools</span>: normalized inputs, outputs, errors, duration</div>
+        <div class="indent"><span class="key">artifacts</span>: final and intermediate renderable outputs</div>
+        <div class="indent"><span class="key">judges</span>: rubric, evidence shown, verdict, confidence</div>
+        <div class="indent"><span class="key">metrics</span>: tokens, latency, cost, calls, failure class</div>
+      </div>
+      <p>For public or production traffic, recording must be designed with privacy from the start: consent or approved use, de-identification, strict access controls, purpose-limited retention, and a clear deletion path. Raw hidden chain-of-thought is neither required nor desirable; observable actions, concise decision summaries, state transitions, and tool evidence provide a safer diagnostic record.</p>
+    </section>
+
+    <section id="scenarios">
+      <span class="label mono">04 · Scenario strategy</span>
+      <h2>Combine stable coverage with the shape of real work.</h2>
+      <p>A healthy suite has two complementary sources. A curated set gives repeatable coverage of core capabilities and known failure modes. Traffic-derived scenarios reveal what users actually ask, including long conversations and unexpected combinations.</p>
+      <div class="grid">
+        <div class="card"><h3>Curated scenarios</h3><p>Small, reviewed, versioned, and tied to explicit capabilities. They become dependable smoke tests and regression anchors.</p></div>
+        <div class="card"><h3>Traffic-derived scenarios</h3><p>Sampled from approved telemetry, de-identified, assembled into complete task histories, and reviewed before joining the evaluation set.</p></div>
+        <div class="card"><h3>Adversarial scenarios</h3><p>Designed around ambiguity, missing context, tool failures, interruptions, retries, and other boundaries where the runtime must recover.</p></div>
+        <div class="card"><h3>Long-horizon scenarios</h3><p>Multi-turn tasks that stress memory, state, handoffs, resumability, and the compounding effects of small early mistakes.</p></div>
+      </div>
+      <p>Sampling should be explicit. Useful axes include workflow type, task length, tool mix, failure frequency, model configuration, user segment, and recency. The goal is not to mirror traffic volume exactly; it is to represent important behavior and preserve enough rare failures to learn from them.</p>
+    </section>
+
+    <section id="verdicts">
+      <span class="label mono">05 · Two kinds of truth</span>
+      <h2>A successful tool call and a successful outcome are different claims.</h2>
+      <p>Infrastructure often marks a tool call successful when it returns without an exception. For evaluation, that definition is too weak. A call can complete yet use the wrong object, produce an empty artifact, apply a change in the wrong location, or add no value to the task.</p>
+      <div class="grid">
+        <div class="card"><h3>Tool verdict</h3><p>Validate schema, permissions, target, parameters, execution result, state mutation, and whether the call contributed to the plan.</p></div>
+        <div class="card"><h3>Output verdict</h3><p>Evaluate the final artifact against the user's intent, reference material, explicit constraints, and domain-specific quality criteria.</p></div>
+      </div>
+      <p>These verdicts should remain separate. A good output can mask wasteful or risky execution; a technically correct sequence of calls can still create a poor result. Together they narrow the search space for the failure.</p>
+    </section>
+
+    <section id="diagnosis">
+      <span class="label mono">06 · Trace analysis</span>
+      <h2>Find the first meaningful divergence, not just the last visible defect.</h2>
+      <p>Failures often surface late. The final artifact may be wrong because the agent retrieved the wrong input ten actions earlier, silently accepted an empty tool result, or carried a stale state snapshot into the next step. Trace analysis should identify the earliest decision or event that made failure likely.</p>
+      <p>A useful diagnostic view aligns the intended subgoal, observable agent decision, tool input, tool result, resulting state, and judge evidence on one timeline. It should classify likely causes—planning, context, tool selection, parameters, tool implementation, recovery, stopping, or judging—and link each claim to evidence from the record.</p>
+      <div class="callout"><span class="label mono">Analysis policy</span><p>Run expensive trace diagnosis primarily on failed, borderline, or newly regressed cases. Sample successful cases as a control so the analyzer does not learn that every trace must contain a defect.</p></div>
+    </section>
+
+    <section id="regressions">
+      <span class="label mono">07 · Regression gates</span>
+      <h2>Make changes answerable: what moved, by how much, and in which capability?</h2>
+      <p>Regression testing needs more than a before-and-after average. Each scenario should map to the capabilities and components it exercises. Baselines must be versioned. Thresholds must account for the natural variance of model and judge outputs.</p>
+      <div class="grid">
+        <div class="card"><h3>Coverage map</h3><p>Connect prompts, tools, runtime components, memory behavior, and model choices to the scenarios that exercise them.</p></div>
+        <div class="card"><h3>Versioned baseline</h3><p>Record configuration, model, judge, fixtures, environment, and suite version so a comparison can be reproduced.</p></div>
+        <div class="card"><h3>Noise-aware threshold</h3><p>Block on meaningful deltas, not random movement. Use repeated runs and confidence intervals where variance is material.</p></div>
+        <div class="card"><h3>Owned decision</h3><p>Define who updates baselines, who can approve an exception, and what evidence is required to accept a regression.</p></div>
+      </div>
+      <p>The regression gate belongs late in the build sequence. Automating an unreliable metric only makes unreliable decisions faster.</p>
+    </section>
+
+    <section id="comparisons">
+      <span class="label mono">08 · Controlled comparisons</span>
+      <h2>Compare models, prompts, tools, cost, and latency one variable at a time.</h2>
+      <p>Agent experiments become difficult to interpret when the model, prompt, tool schema, judge, and scenario set all change together. Every comparison should declare its independent variable and freeze the rest of the configuration.</p>
+      <p>Report quality beside operational metrics: input and output tokens, cached tokens, number of model calls, tool round trips, retries, wall-clock latency, and estimated cost. Segment results by task type because a configuration that wins on short retrieval work may lose on long creative workflows.</p>
+      <p>Use the same recorded evidence for both quality diagnosis and efficiency analysis. Then a cheaper run can be understood as genuinely more efficient, rather than merely doing less work or receiving an easier scenario.</p>
+    </section>
+
+    <section id="trust">
+      <span class="label mono">09 · Evaluate the evaluator</span>
+      <h2>The eval system is production software. Test it like production software.</h2>
+      <p>Filters, defaults, fixtures, data joins, rendering, and judge prompts can drift while still returning plausible numbers. That is particularly dangerous: a broken evaluator often fails silently.</p>
+      <div class="steps">
+        <div class="step"><div class="step-body"><h3>Measure the noise floor</h3><p>Run the same unchanged scenario and configuration multiple times. Quantify score variance, judge variance, latency variance, and failure-class stability before interpreting small deltas.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Test data and defaults</h3><p>Add unit and integration tests for filters, joins, scenario assembly, missing fields, configuration inheritance, schema changes, and stale fixtures.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Calibrate judges</h3><p>Compare automated verdicts with reviewed human labels, test repeated judgments, inspect disagreement, and use criteria that describe observable evidence.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Keep comparisons single-variable</h3><p>Reject reports that accidentally mix changes in model, prompt, tool, judge, scenario set, or environment unless the experiment explicitly studies the combination.</p></div></div>
+      </div>
+    </section>
+
+    <section id="workstreams">
+      <span class="label mono">10 · Implementation plan</span>
+      <h2>Eight workstreams turn the framework into an operating system for quality.</h2>
+      <details open><summary>01 · Scenarios from real traffic</summary><div class="detail"><p>Define privacy and sampling policy, mine approved telemetry, reconstruct complete conversations, de-identify content, review examples, and version the resulting scenario set.</p></div></details>
+      <details><summary>02 · Complete run recording</summary><div class="detail"><p>Capture configuration, context, observable decisions, tool inputs and outputs, state transitions, artifacts, judge inputs, errors, tokens, and timings under stable run identifiers.</p></div></details>
+      <details><summary>03 · Tool-level verdicts</summary><div class="detail"><p>Give each tool a semantic success contract. Evaluate parameter correctness, target selection, resulting state, necessity, and recovery behavior—not only whether the call returned.</p></div></details>
+      <details><summary>04 · Output-quality evaluation</summary><div class="detail"><p>Build task-specific rubrics, references or goldens where appropriate, rendered artifact inspection, constraint checks, and calibrated automated judges with human review.</p></div></details>
+      <details><summary>05 · Trace analysis and attribution</summary><div class="detail"><p>Align subgoals, actions, results, and state on a timeline. Find the first meaningful divergence and classify the likely cause with evidence links and confidence.</p></div></details>
+      <details><summary>06 · Regression gates</summary><div class="detail"><p>Map code and capabilities to scenarios, create versioned baselines, establish noise-aware thresholds, report scoped deltas, and define baseline ownership and exception policy.</p></div></details>
+      <details><summary>07 · Model, cost, and latency comparison</summary><div class="detail"><p>Run controlled experiments with one declared variable, consistent scenarios and judges, and segmented reporting across quality, tokens, calls, retries, cost, and latency.</p></div></details>
+      <details><summary>08 · Trust in the evaluation system</summary><div class="detail"><p>Test evaluator code, fixtures, schemas, filters, defaults, and renderers. Measure repeatability and calibrate judge agreement before using the results to block releases.</p></div></details>
+    </section>
+
+    <section id="sequence">
+      <span class="label mono">11 · Execution order</span>
+      <h2>Build the evidence chain before the release gate.</h2>
+      <div class="steps">
+        <div class="step"><div class="step-body"><h3>Establish the noise floor</h3><p>Run one representative scenario repeatedly without changing the system. Learn how much movement is normal.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Harden evaluator code</h3><p>Test filters, defaults, fixtures, configuration, and data contracts in parallel with the initial measurement.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Complete run recording</h3><p>Make every later verdict traceable to a consistent, privacy-aware evidence record.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Add tool verdicts</h3><p>Start with tools that mutate state or dominate failures, then broaden semantic success checks.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Mine realistic scenarios</h3><p>Develop the telemetry pipeline alongside instrumentation and review the first traffic-derived set.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Improve output judging</h3><p>Add goldens where they make sense, explicit criteria elsewhere, and calibration against human review.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Build trace attribution</h3><p>Use the now-complete records and verdicts to locate the first meaningful divergence.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Enable regression gates</h3><p>Only after repeatability, coverage, attribution, and ownership are strong enough to support an automated decision.</p></div></div>
+      </div>
+      <p>Controlled model and efficiency comparisons become useful once attribution works; otherwise a lower score or higher cost remains difficult to explain.</p>
+    </section>
+
+    <section id="done" class="done">
+      <span class="label mono">12 · Definition of done</span>
+      <h2>What a mature eval should make possible.</h2>
+      <p>After changing a prompt, model, tool, memory strategy, or runtime component, an engineer should be able to run the suite and answer:</p>
+      <ul>
+        <li>Which workflows improved or regressed?</li>
+        <li>Was the first failure in context, planning, tool use, execution, recovery, output, or judging?</li>
+        <li>What trace evidence supports that diagnosis?</li>
+        <li>How confident are we that the movement exceeds normal variance?</li>
+        <li>What did the change do to tokens, cost, latency, retries, and tool round trips?</li>
+        <li>Can the result be reproduced from a versioned scenario and configuration?</li>
+      </ul>
+      <p><strong>That is the shift:</strong> from a test that says a run was bad to an evaluation system that helps the team understand, fix, and prevent the failure.</p>
+    </section>
+  </article>
+</main>
+
+<section class="cta"><div class="wrap cta-grid"><div><div class="mono" style="color:#50d1bd;margin-bottom:.8rem">More engineering work</div><h2>Agent systems are only useful when they can be understood and improved.</h2></div><a class="btn" href="index.html#work">Explore the portfolio →</a></div></section>
+<footer><div class="wrap footer"><span>© 2026 Soumil Chugh</span><div class="footer-links"><a href="projects.html">Projects</a><a href="https://github.com/soumilchugh" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank" rel="noopener">LinkedIn</a></div></div></footer>
+
+<script>
+const root=document.documentElement;
+const theme=document.getElementById('theme');
+const saved=localStorage.getItem('theme')||'dark';
+root.setAttribute('data-theme',saved);
+theme.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',next);localStorage.setItem('theme',next)});
+const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;root.style.setProperty('--progress',max?Math.min(100,scrollY/max*100)+'%':'0%')};
+addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+const links=[...document.querySelectorAll('.toc a')];
+const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id))}})},{rootMargin:'-18% 0px -70% 0px'});
+sections.forEach(section=>observer.observe(section));
+</script>
+</body>
+</html>

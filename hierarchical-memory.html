@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hierarchical memory for long-running agents — Soumil Chugh</title>
+<meta name="description" content="A visual explanation of tiered, exponentially decaying agent memory: recent turns stay exact, older history becomes progressively coarser, and every original turn remains recoverable.">
+<meta name="theme-color" content="#08111f">
+<link rel="canonical" href="https://soumilchugh.github.io/hierarchical-memory.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soumilchugh.github.io/hierarchical-memory.html">
+<meta property="og:title" content="Hierarchical memory for long-running agents">
+<meta property="og:description" content="Keep recent context exact, compress older history gradually, and preserve every original turn.">
+<meta property="article:author" content="Soumil Chugh">
+<meta property="article:published_time" content="2026-09-15">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hierarchical memory for long-running agents","description":"A visual explanation of tiered, exponentially decaying agent memory.","author":{"@type":"Person","name":"Soumil Chugh","url":"https://soumilchugh.github.io/"},"datePublished":"2026-09-15","mainEntityOfPage":"https://soumilchugh.github.io/hierarchical-memory.html"}</script>
+<style>
+:root{--ink:#102033;--copy:#4e6073;--muted:#728196;--paper:#f3f0e9;--surface:#faf8f3;--card:#fff;--line:#d8d4ca;--accent:#d7562c;--green:#0d776a;--blue:#286f9e;--nav:rgba(243,240,233,.91);--code:#15263a;--shadow:0 24px 70px rgba(16,32,51,.11)}
+[data-theme=dark]{--ink:#eef3f7;--copy:#b3bfcd;--muted:#8190a3;--paper:#08111f;--surface:#0d1929;--card:#112033;--line:#26384c;--accent:#ff7547;--green:#50d1bd;--blue:#68b5e8;--nav:rgba(8,17,31,.9);--code:#07111e;--shadow:0 28px 80px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;color:var(--ink);background:var(--paper);font:400 17px/1.7 "DM Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.mono{font:500 .75rem "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase}.skip{position:fixed;left:1rem;top:-6rem;z-index:300;padding:.7rem 1rem;color:#fff;background:var(--accent)}.skip:focus{top:1rem}
+nav{position:fixed;inset:0 0 auto;z-index:100;background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.brand{display:flex;align-items:center;gap:.8rem;font:700 1rem Manrope}.mark{width:36px;height:36px;display:grid;place-items:center;color:#fff;background:var(--accent);border-radius:10px;font:500 .77rem "DM Mono"}.nav-links{display:flex;align-items:center;gap:1.3rem;color:var(--copy);font-size:.9rem;font-weight:600}.nav-links a:hover{color:var(--accent)}#theme{width:38px;height:38px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:50%;cursor:pointer}.progress{position:fixed;z-index:120;top:72px;left:0;width:var(--progress,0%);height:2px;background:linear-gradient(90deg,var(--accent),var(--green));box-shadow:0 0 14px var(--accent)}
+.hero{position:relative;overflow:hidden;padding:150px 0 92px;color:#eef3f7;background:radial-gradient(circle at 82% 14%,rgba(80,209,189,.2),transparent 31%),linear-gradient(135deg,#060d17,#10243f)}.hero:before{content:"";position:absolute;inset:0;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:62px 62px;mask-image:linear-gradient(#000,transparent 90%)}.hero-inner{position:relative;max-width:1000px}.eyebrow{display:flex;align-items:center;gap:.7rem;color:#8fe0d1}.eyebrow:before{content:"";width:28px;height:2px;background:#50d1bd}.hero h1{max-width:980px;margin:1.2rem 0 1.5rem;font:800 clamp(3rem,7vw,6.25rem)/.98 Manrope;letter-spacing:-.055em}.dek{max-width:790px;margin:0;color:#b7c4d1;font-size:clamp(1.1rem,2vw,1.35rem)}.meta{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;margin-top:2rem;color:#91a2b4;font-size:.86rem}.meta span+span:before{content:"•";margin-right:1.2rem;color:#ff7547}
+.layout{display:grid;grid-template-columns:230px minmax(0,800px);gap:76px;align-items:start;padding:88px 0 120px}.toc{position:sticky;top:108px}.toc-title{margin-bottom:1rem;color:var(--muted)}.toc a{display:block;padding:.42rem 0 .42rem 1rem;color:var(--muted);font-size:.86rem;border-left:2px solid var(--line);transition:.2s}.toc a:hover,.toc a.active{color:var(--accent);border-color:var(--accent)}.article{min-width:0}.article section{margin-bottom:5.5rem}.article h2{margin:0 0 1.4rem;font:700 clamp(2rem,4vw,3.2rem)/1.08 Manrope;letter-spacing:-.04em}.article h3{margin:2rem 0 .7rem;font:700 1.2rem/1.3 Manrope;letter-spacing:-.02em}.article p{margin:0 0 1.25rem;color:var(--copy)}.article strong{color:var(--ink)}.lead{font:600 clamp(1.4rem,2.7vw,2rem)/1.42 Manrope;letter-spacing:-.025em;color:var(--ink)!important}.label{display:block;margin-bottom:.55rem;color:var(--accent)}.callout{margin:2rem 0;padding:1.45rem 1.55rem;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 14px 14px 0;box-shadow:var(--shadow)}.callout p:last-child{margin:0}
+.figure{margin:2.2rem 0}.figure figcaption{margin-top:.8rem;color:var(--muted);font-size:.82rem}.memory-bands{display:grid;gap:.7rem;padding:1.2rem;background:var(--code);border:1px solid #2c4055;border-radius:16px}.band{display:grid;grid-template-columns:130px 1fr;gap:1rem;align-items:center}.band-label{color:#dce6ef;font:500 .78rem "DM Mono"}.band-label small{display:block;margin-top:.2rem;color:#8499ad;font:400 .7rem "DM Sans"}.units{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:.4rem}.unit{min-height:48px;display:grid;place-items:center;text-align:center;padding:.35rem;color:#b8c8d6;background:rgba(104,181,232,.12);border:1px solid rgba(104,181,232,.3);border-radius:8px;font:500 .69rem "DM Mono"}.tier3 .unit{background:rgba(255,117,71,.14);border-color:rgba(255,117,71,.35)}.tier2 .unit{background:rgba(80,209,189,.12);border-color:rgba(80,209,189,.3)}.live .unit{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.25);color:#fff}.age-axis{display:flex;justify-content:space-between;padding-left:146px;color:#71869a;font:500 .68rem "DM Mono";text-transform:uppercase}
+.rollup{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;gap:.4rem;align-items:stretch}.stage{padding:1rem;background:var(--card);border:1px solid var(--line);border-radius:13px}.stage-title{margin-bottom:.8rem;color:var(--ink);font:700 .9rem Manrope}.mini-units{display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem}.mini{min-height:36px;display:grid;place-items:center;color:var(--copy);background:var(--surface);border:1px solid var(--line);border-radius:6px;font:500 .66rem "DM Mono"}.mini.old{color:var(--accent);border-color:var(--accent)}.summary-node{min-height:50px;display:grid;place-items:center;text-align:center;padding:.5rem;color:#fff;background:var(--green);border-radius:8px;font:500 .7rem "DM Mono"}.arrow{display:grid;place-items:center;color:var(--accent);font-weight:800}.stage-note{margin-top:.7rem;color:var(--muted);font-size:.75rem;line-height:1.4}
+.zoom{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;gap:.45rem;align-items:center}.zoom-node{min-height:118px;display:grid;place-items:center;text-align:center;padding:1rem;background:var(--card);border:1px solid var(--line);border-radius:14px}.zoom-node b{display:block;font-family:Manrope}.zoom-node span{display:block;margin-top:.35rem;color:var(--muted);font-size:.78rem}.zoom-node.exact{color:#fff;background:linear-gradient(135deg,#153b44,#135f5b);border-color:transparent}
+.scale{padding:1.3rem;background:var(--card);border:1px solid var(--line);border-radius:16px}.scale-controls{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.4rem}.scale-btn{min-width:72px;padding:.55rem .75rem;color:var(--copy);background:var(--surface);border:1px solid var(--line);border-radius:9px;cursor:pointer;font-weight:700}.scale-btn[aria-pressed=true]{color:#fff;background:var(--accent);border-color:var(--accent)}.scale-view{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:center}.tier-visual{display:flex;align-items:end;gap:.42rem;min-height:150px;padding:1rem;border-bottom:1px solid var(--line)}.tier-bar{flex:1;min-width:22px;background:linear-gradient(180deg,var(--green),rgba(13,119,106,.25));border-radius:8px 8px 0 0}.tier-bar:nth-last-child(1){background:linear-gradient(180deg,var(--accent),rgba(215,86,44,.25))}.scale-stats{display:grid;gap:.85rem}.metric span{display:block;color:var(--muted);font-size:.75rem}.metric strong{font:700 1.4rem Manrope}.formula{margin-top:1rem;color:var(--muted);font:500 .76rem "DM Mono";text-align:center}
+.invariants{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:2rem 0}.invariant{padding:1.2rem;background:var(--card);border:1px solid var(--line);border-radius:13px}.invariant b{display:block;margin-bottom:.3rem;font-family:Manrope}.invariant span{color:var(--copy);font-size:.9rem}.tradeoffs{display:grid;gap:.7rem}.tradeoff{display:grid;grid-template-columns:130px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}.tradeoff b{font-family:Manrope}.tradeoff span{color:var(--copy)}
+.cta{padding:70px 0;color:#eef3f7;background:#0c1a2b;border-top:1px solid #26384c}.cta-grid{display:flex;align-items:end;justify-content:space-between;gap:2rem}.cta h2{max-width:720px;margin:0;font:700 clamp(2rem,4vw,3.6rem)/1.05 Manrope;letter-spacing:-.04em}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.72rem 1rem;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:10px;font-weight:700}.btn:hover{transform:translateY(-2px)}footer{padding:2rem 0;color:var(--muted);border-top:1px solid var(--line);font-size:.87rem}.footer{display:flex;justify-content:space-between;gap:2rem}.footer-links{display:flex;gap:1rem}
+@media(max-width:950px){.layout{grid-template-columns:1fr;gap:45px}.toc{position:relative;top:0;padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}.toc a{display:inline-block;margin:.25rem}.cta-grid{align-items:start;flex-direction:column}}
+@media(max-width:680px){.wrap{width:calc(100% - 28px)}.nav-links a:not(.essential){display:none}.brand span:last-child{display:none}.hero{padding:125px 0 70px}.layout{padding:64px 0 90px}.article section{margin-bottom:4.5rem}.meta span+span:before{display:none}.meta{display:grid}.band{grid-template-columns:1fr}.age-axis{padding-left:0}.rollup,.zoom{grid-template-columns:1fr}.arrow{min-height:28px;transform:rotate(90deg)}.scale-view{grid-template-columns:1fr}.invariants{grid-template-columns:1fr}.tradeoff{grid-template-columns:1fr;gap:.25rem}.footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.progress{display:none}}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<a class="skip" href="#article">Skip to article</a>
+<nav><div class="wrap nav"><a class="brand" href="index.html"><span class="mark">SC</span><span>Soumil Chugh</span></a><div class="nav-links"><a href="index.html#work">Engineering work</a><a href="projects.html">Research & projects</a><a class="essential" href="Resume.pdf" target="_blank" rel="noopener">Résumé</a><button id="theme" aria-label="Switch color theme">◐</button></div></div></nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow mono">Agent systems · Memory</div>
+    <h1>Memory that gets quieter, <span style="color:#ff7547">not lost.</span></h1>
+    <p class="dek">Keep recent conversation exact. Compress older history into a hierarchy. Let the agent open any summary to recover the original detail.</p>
+    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>7 minute read</span></div>
+  </div>
+</header>
+
+<main class="wrap layout">
+  <aside class="toc" aria-label="Article contents">
+    <div class="toc-title mono">On this page</div>
+    <a href="#problem">The context problem</a>
+    <a href="#idea">One simple idea</a>
+    <a href="#rollup">How rollups work</a>
+    <a href="#retrieve">Recovering detail</a>
+    <a href="#scale">Why it scales</a>
+    <a href="#lifecycle">Storage and lifecycle</a>
+    <a href="#tradeoffs">Tradeoffs</a>
+  </aside>
+
+  <article class="article" id="article">
+    <section id="problem">
+      <span class="label mono">01 · The problem</span>
+      <h2>A conversation keeps growing. The context window does not.</h2>
+      <p class="lead">Long-running agents eventually face a bad choice: compress a large block of history all at once, or drop it.</p>
+      <p>A hard cutoff creates uneven memory. Recent turns remain detailed while everything before the boundary suddenly becomes vague or disappears. Important decisions, file paths, and user preferences can be lost even though the agent still needs them.</p>
+      <div class="callout"><span class="label mono">Design goal</span><p>Let detail fade gradually with age while preserving every original turn outside the model's context.</p></div>
+    </section>
+
+    <section id="idea">
+      <span class="label mono">02 · The idea</span>
+      <h2>Recent turns stay exact. Older turns become progressively coarser.</h2>
+      <figure class="figure">
+        <div class="memory-bands" role="img" aria-label="Memory hierarchy from old coarse summaries to recent verbatim turns">
+          <div class="band tier3"><div class="band-label">Tier 3<small>oldest · broad themes</small></div><div class="units"><div class="unit">Summary</div><div class="unit">Summary</div></div></div>
+          <div class="band tier2"><div class="band-label">Tier 2<small>older · major decisions</small></div><div class="units"><div class="unit">Summary</div><div class="unit">Summary</div><div class="unit">Summary</div></div></div>
+          <div class="band tier1"><div class="band-label">Tier 1<small>recent history · detailed</small></div><div class="units"><div class="unit">Summary</div><div class="unit">Summary</div><div class="unit">Summary</div><div class="unit">Summary</div></div></div>
+          <div class="band live"><div class="band-label">Live window<small>most recent · verbatim</small></div><div class="units"><div class="unit">Turn 45</div><div class="unit">Turn 46</div><div class="unit">Turn 47</div><div class="unit">Now</div></div></div>
+          <div class="age-axis"><span>Older / coarser</span><span>Newer / exact</span></div>
+        </div>
+        <figcaption>The prompt contains a small set of summaries plus the recent turns in full.</figcaption>
+      </figure>
+      <p>The full conversation lives in files. The context contains only the live window and the summaries currently active at each tier. Each summary includes a path, so it also acts as an index into the archive.</p>
+    </section>
+
+    <section id="rollup">
+      <span class="label mono">03 · Rollups</span>
+      <h2>The same rule repeats at every level.</h2>
+      <p>Choose a window size <strong>N</strong>. With the default <strong>N = 8</strong>, a rollup begins when 16 loose turns accumulate. The oldest eight move into a tier-1 directory and a summarizer writes one bounded summary.</p>
+      <figure class="figure">
+        <div class="rollup" role="img" aria-label="Three-stage rollup from loose turns to an archived tier with one summary reference in context">
+          <div class="stage"><div class="stage-title">1 · Turns accumulate</div><div class="mini-units"><div class="mini old">01</div><div class="mini old">02</div><div class="mini old">03</div><div class="mini old">04</div><div class="mini">05</div><div class="mini">06</div><div class="mini">07</div><div class="mini">08</div></div><div class="stage-note">Oldest group reaches the rollup point.</div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="stage"><div class="stage-title">2 · Archive + summarize</div><div class="summary-node">summary.md</div><div class="mini-units" style="margin-top:.35rem"><div class="mini old">01</div><div class="mini old">02</div><div class="mini old">03</div><div class="mini old">04</div></div><div class="stage-note">Exact turns move; nothing is deleted.</div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="stage"><div class="stage-title">3 · Keep context small</div><div class="summary-node">Tier-1 summary + path</div><div class="stage-note">Many messages become one compact reference.</div></div>
+        </div>
+        <figcaption>The illustration uses four turns for space; the default design uses groups of eight.</figcaption>
+      </figure>
+      <p>When enough tier-1 groups accumulate, the oldest groups roll into tier 2. Tier 2 groups later roll into tier 3. The algorithm is identical at every level and has no fixed maximum depth.</p>
+      <p>A token safety threshold can trigger an early rollup when one unusually large turn would otherwise overflow the live window.</p>
+    </section>
+
+    <section id="retrieve">
+      <span class="label mono">04 · Retrieval</span>
+      <h2>A summary is a map, not a replacement.</h2>
+      <p>Suppose the agent remembers that an API decision was made months ago but needs the exact endpoint. It follows the path attached to the broad summary, opens the next level, and keeps narrowing until it reaches the original turn.</p>
+      <figure class="figure">
+        <div class="zoom" role="img" aria-label="Agent drills from a coarse tier-3 summary through a detailed tier-1 summary to the exact original turn">
+          <div class="zoom-node"><div><b>Tier 3</b><span>“The team chose a new integration approach.”</span></div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="zoom-node"><div><b>Tier 1</b><span>“CLI selected for the media workflow.”</span></div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="zoom-node exact"><div><b>Turn 184</b><span>Exact decision, command, path, and rationale</span></div></div>
+        </div>
+        <figcaption>Ordinary list, read, and search tools are enough to navigate the tree.</figcaption>
+      </figure>
+      <p>The agent can also search the session files directly. This matters because summaries are intentionally lossy: they help locate evidence, while the original turn remains the source of truth.</p>
+    </section>
+
+    <section id="scale">
+      <span class="label mono">05 · Scale</span>
+      <h2>Context grows slowly even when the conversation grows dramatically.</h2>
+      <p>The live window remains roughly constant. Only the number of active summary tiers grows, and it grows logarithmically with the number of turns.</p>
+      <div class="scale" aria-label="Interactive scale explorer">
+        <div class="scale-controls" role="group" aria-label="Select conversation length">
+          <button class="scale-btn" type="button" data-index="0" aria-pressed="true">1K turns</button>
+          <button class="scale-btn" type="button" data-index="1" aria-pressed="false">10K</button>
+          <button class="scale-btn" type="button" data-index="2" aria-pressed="false">100K</button>
+          <button class="scale-btn" type="button" data-index="3" aria-pressed="false">1M</button>
+        </div>
+        <div class="scale-view">
+          <div class="tier-visual" id="tier-visual" aria-hidden="true"></div>
+          <div class="scale-stats" id="scale-stats" aria-live="polite">
+            <div class="metric"><span>Tier depth</span><strong id="tier-depth">4</strong></div>
+            <div class="metric"><span>Maximum active summaries</span><strong id="summary-count">64</strong></div>
+            <div class="metric"><span>Maximum summary context</span><strong id="summary-tokens">32K tokens</strong></div>
+          </div>
+        </div>
+        <div class="formula">N = 8 · summary budget = 500 tokens · plus 8–15 recent turns verbatim</div>
+      </div>
+      <p>Summarization cost is also amortized. With <strong>N = 8</strong>, the hierarchy needs about one summarizer call for every seven completed turns over time.</p>
+    </section>
+
+    <section id="lifecycle">
+      <span class="label mono">06 · Storage</span>
+      <h2>The directory tree is the memory state.</h2>
+      <div class="invariants">
+        <div class="invariant"><b>Write once</b><span>Every completed turn is stored as an immutable file.</span></div>
+        <div class="invariant"><b>Move, never duplicate</b><span>A turn exists at the root or inside exactly one tier.</span></div>
+        <div class="invariant"><b>Resume from disk</b><span>Loose turns rebuild the live window; summaries rebuild older context.</span></div>
+        <div class="invariant"><b>Branch safely</b><span>A session can fork while immutable history remains shared.</span></div>
+      </div>
+      <p>This makes recovery simple: walk the directory tree. A new session starts empty, clearing memory changes the active session rather than deleting history, and a branch creates an independent future from the same past.</p>
+    </section>
+
+    <section id="tradeoffs">
+      <span class="label mono">07 · Tradeoffs</span>
+      <h2>What this design solves—and what it does not.</h2>
+      <div class="tradeoffs">
+        <div class="tradeoff"><b>It preserves</b><span>Every original turn, gradual awareness of old topics, bounded recent context, and an inspectable path to evidence.</span></div>
+        <div class="tradeoff"><b>It accepts</b><span>Higher tiers lose nuance because summaries are summaries. The agent must drill down before relying on an important detail.</span></div>
+        <div class="tradeoff"><b>It requires</b><span>Evaluation of summary faithfulness, rollup correctness, retrieval quality, and whether the agent knows when to inspect deeper levels.</span></div>
+        <div class="tradeoff"><b>It leaves separate</b><span>Shared memory across agents, cross-session search, and editing old turns. Those need their own designs.</span></div>
+      </div>
+      <div class="callout"><span class="label mono">The central idea</span><p>Use lossy summaries for orientation and lossless files for truth. The agent carries a compact map, not the entire territory.</p></div>
+    </section>
+  </article>
+</main>
+
+<section class="cta"><div class="wrap cta-grid"><div><div class="mono" style="color:#50d1bd;margin-bottom:.8rem">More engineering work</div><h2>Memory is useful when an agent can recover the right detail at the right time.</h2></div><a class="btn" href="index.html#work">Explore the portfolio →</a></div></section>
+<footer><div class="wrap footer"><span>© 2026 Soumil Chugh</span><div class="footer-links"><a href="agent-evals.html">Agent evals</a><a href="projects.html">Projects</a><a href="https://github.com/soumilchugh" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/soumil-chugh-95b33652" target="_blank" rel="noopener">LinkedIn</a></div></div></footer>
+
+<script>
+const root=document.documentElement;
+const theme=document.getElementById('theme');
+const saved=localStorage.getItem('theme')||'dark';
+root.setAttribute('data-theme',saved);
+theme.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',next);localStorage.setItem('theme',next)});
+const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;root.style.setProperty('--progress',max?Math.min(100,scrollY/max*100)+'%':'0%')};
+addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+const tocLinks=[...document.querySelectorAll('.toc a')];
+const sections=tocLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){tocLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id))}})},{rootMargin:'-18% 0px -70% 0px'});
+sections.forEach(section=>observer.observe(section));
+
+const scaleData=[
+  {turns:'1K',depth:4,summaries:64,tokens:'32K tokens'},
+  {turns:'10K',depth:5,summaries:80,tokens:'40K tokens'},
+  {turns:'100K',depth:6,summaries:96,tokens:'48K tokens'},
+  {turns:'1M',depth:7,summaries:112,tokens:'56K tokens'}
+];
+const visual=document.getElementById('tier-visual');
+function renderScale(index){
+  const d=scaleData[index];
+  document.getElementById('tier-depth').textContent=d.depth;
+  document.getElementById('summary-count').textContent=d.summaries;
+  document.getElementById('summary-tokens').textContent=d.tokens;
+  visual.innerHTML='';
+  for(let n=0;n<d.depth;n++){
+    const bar=document.createElement('div');
+    bar.className='tier-bar';
+    bar.style.height=(48+n*14)+'px';
+    bar.setAttribute('aria-label','Tier '+(n+1));
+    visual.appendChild(bar);
+  }
+  document.querySelectorAll('.scale-btn').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
+}
+document.querySelectorAll('.scale-btn').forEach(button=>button.addEventListener('click',()=>renderScale(Number(button.dataset.index))));
+renderScale(0);
+</script>
+</body>
+</html>

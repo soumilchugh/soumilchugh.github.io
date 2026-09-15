@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Agent evals should explain why, not just score what — Soumil Chugh</title>
-<meta name="description" content="A practical framework for evaluating AI agents across outcomes, tools, traces, context, regressions, cost, latency, and the reliability of the eval system itself.">
+<meta name="description" content="A simple, practical framework for evaluating AI agents with grounded LLM and VLM judges.">
 <meta name="theme-color" content="#08111f">
 <link rel="canonical" href="https://soumilchugh.github.io/agent-evals.html">
 <meta property="og:type" content="article">
@@ -43,211 +43,134 @@ details{margin:.8rem 0;background:var(--card);border:1px solid var(--line);borde
   <div class="wrap hero-inner">
     <div class="eyebrow mono">Agent systems · Evaluation</div>
     <h1>Agent evals should explain <span style="color:#ff7547">why</span>, not just score what.</h1>
-    <p class="dek">A practical framework centered on LLM and VLM judges: compare agent behavior and artifacts against grounded references, grade every layer of the run, and show what regressed, where failure began, and what the improvement cost.</p>
-    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>14 minute read</span></div>
+    <p class="dek">A simple framework for using LLM and VLM judges to compare agent runs with grounded references—and explain what worked, what failed, and why.</p>
+    <div class="meta"><span>Soumil Chugh</span><span>September 2026</span><span>8 minute read</span></div>
   </div>
 </header>
 
 <main class="wrap layout">
   <aside class="toc" aria-label="Article contents">
     <div class="toc-title mono">On this page</div>
-    <a href="#problem">The missing why</a>
-    <a href="#layers">Evaluation layers</a>
-    <a href="#judges">LLM/VLM judges</a>
-    <a href="#record">What to record</a>
-    <a href="#scenarios">Realistic scenarios</a>
-    <a href="#verdicts">Tools vs outcomes</a>
-    <a href="#diagnosis">Trace diagnosis</a>
-    <a href="#regressions">Regression gates</a>
-    <a href="#comparisons">Fair comparisons</a>
-    <a href="#trust">Test the eval</a>
-    <a href="#workstreams">Eight workstreams</a>
-    <a href="#sequence">Execution order</a>
-    <a href="#done">Definition of done</a>
+    <a href="#goal">What an eval should answer</a>
+    <a href="#framework">The judge-centered model</a>
+    <a href="#references">Building reference data</a>
+    <a href="#evidence">Recording the run</a>
+    <a href="#grading">Relative grading</a>
+    <a href="#calibration">Calibrating judges</a>
+    <a href="#regression">Regression decisions</a>
+    <a href="#rollout">A practical rollout</a>
   </aside>
 
   <article class="article" id="article">
-    <section id="problem">
-      <span class="label mono">01 · The missing why</span>
-      <h2>A score without attribution is only half an evaluation.</h2>
-      <p class="lead">Most agent evals can tell us that one run scored lower than another. They are much less capable of telling us whether the model misunderstood the task, chose the wrong tool, received incomplete context, executed a reasonable plan badly, or produced a weak final artifact.</p>
-      <p>That distinction matters because agents are systems, not single model calls. A run combines prompts, models, context assembly, memory, tool schemas, tool implementations, state transitions, retries, infrastructure, and judges. The final score compresses all of those decisions into one number. Compression is useful for a dashboard; it is insufficient for debugging.</p>
-      <p>Hand-written scenarios create a second blind spot. They are valuable for stable coverage, but they tend to describe the workflows the team already understands. Real users discover combinations, long conversations, malformed state, and ambiguous goals that a small curated suite rarely anticipates.</p>
-      <div class="callout"><span class="label mono">Core principle</span><p><strong>An agent evaluation system should answer three questions:</strong> Was the result good? Why did the run behave that way? Did a specific change make the system better or worse?</p></div>
-      <p>The goal is not simply more graders. It is an evidence chain from scenario to execution to artifact to diagnosis, with enough control to support a credible regression decision.</p>
+    <section id="goal">
+      <span class="label mono">01 · The goal</span>
+      <h2>An eval should tell us more than whether a run was good.</h2>
+      <p class="lead">A useful agent eval answers three questions: Did the agent produce a good result? Why did the run behave that way? Did a specific change make it better or worse?</p>
+      <p>A final score answers only the first question. Agents are systems made of models, prompts, context, memory, tools, state, and infrastructure. A weak output could come from a poor plan, missing context, the wrong tool, bad parameters, a failed recovery, or a judge that misunderstood the task.</p>
+      <div class="callout"><span class="label mono">The objective</span><p>Connect the final result to evidence from the run so an engineer can find the cause, fix it, and prevent it from returning.</p></div>
     </section>
 
-    <section id="layers">
-      <span class="label mono">02 · Evaluation layers</span>
-      <h2>Evaluate the run at every layer where quality can be lost.</h2>
-      <p>A single end-to-end judge is important because the user experiences the final result. It should be the top of the stack, not the entire stack.</p>
-      <div class="stack">
-        <div class="layer"><div class="layer-num">L1</div><div><h3>Outcome quality</h3><p>Did the final artifact satisfy the request? Judge correctness, completeness, visual or functional quality, constraint adherence, and usefulness against explicit criteria.</p></div></div>
-        <div class="layer"><div class="layer-num">L2</div><div><h3>Tool correctness</h3><p>Was each tool call valid, necessary, correctly parameterized, and successful? Distinguish transport success from semantic success.</p></div></div>
-        <div class="layer"><div class="layer-num">L3</div><div><h3>Execution trajectory</h3><p>Did the agent choose a coherent path, recover from failures, avoid loops, and stop at the right time? Evaluate observable decisions and state transitions rather than relying on the final response alone.</p></div></div>
-        <div class="layer"><div class="layer-num">L4</div><div><h3>Context and state</h3><p>Did the agent receive the right history, user information, artifacts, and tool results at the moment it needed them? Missing evidence can make reasonable reasoning fail.</p></div></div>
-        <div class="layer"><div class="layer-num">L5</div><div><h3>System performance</h3><p>How many tokens, tool round trips, retries, and wall-clock seconds did the task consume? Quality improvements have to be understood alongside cost and latency.</p></div></div>
-        <div class="layer"><div class="layer-num">L6</div><div><h3>Evaluator reliability</h3><p>Is the signal repeatable, calibrated, covered by tests, and aligned with human judgment? An untested eval can produce precise-looking but misleading results.</p></div></div>
+    <section id="framework">
+      <span class="label mono">02 · The framework</span>
+      <h2>Put LLM and VLM judges at the center.</h2>
+      <p>The evaluation factors describe what matters. LLM and VLM judges do the grading. Each judge receives the candidate run, the relevant evidence, and a grounded reference package.</p>
+      <div class="pipeline" aria-label="Judge-centered evaluation flow">
+        <div class="node"><b>Scenario</b><span>Request, state, constraints</span></div>
+        <div class="node"><b>Reference</b><span>Expected behavior and examples</span></div>
+        <div class="node"><b>Agent run</b><span>Trace, tools, artifacts</span></div>
+        <div class="node"><b>LLM / VLM judges</b><span>Factor-by-factor comparison</span></div>
+        <div class="node"><b>Decision</b><span>Diagnosis and regression signal</span></div>
       </div>
-    </section>
-
-    <section id="judges">
-      <span class="label mono">03 · The evaluation engine</span>
-      <h2>LLM and VLM judges sit at the center of every evaluation layer.</h2>
-      <p class="lead">The factors define what we care about. The judge turns those factors into grades by comparing the candidate run with a grounded expectation.</p>
-      <p>An LLM judge can inspect requests, rubrics, structured traces, tool calls, text outputs, and state transitions. A VLM judge extends that view to rendered canvases, interfaces, images, video frames, and other visual artifacts. The judge should not receive only the final output: it should receive the evidence needed for the particular claim it is grading.</p>
       <div class="grid">
-        <div class="card"><h3>Outcome judge</h3><p>Compares the candidate artifact with the user request, constraints, rubric, and one or more validated reference artifacts. VLMs are essential when quality is spatial, visual, or temporal.</p></div>
-        <div class="card"><h3>Tool judge</h3><p>Compares the chosen tool, parameters, result, and resulting state with the expected operation or an accepted range of valid operations.</p></div>
-        <div class="card"><h3>Trajectory judge</h3><p>Compares the observed sequence of decisions and state transitions with successful reference traces, while allowing different valid paths to the same goal.</p></div>
-        <div class="card"><h3>Context judge</h3><p>Determines whether the evidence delivered to the agent was relevant, sufficient, timely, and grounded in the available source material.</p></div>
+        <div class="card"><h3>Final outcome</h3><p>Did the artifact satisfy the request, constraints, and quality bar? A VLM can inspect images, video frames, canvases, and interfaces.</p></div>
+        <div class="card"><h3>Tool use</h3><p>Did the agent choose the right tool, provide correct parameters, change the intended state, and recover from errors?</p></div>
+        <div class="card"><h3>Execution path</h3><p>Was the plan coherent? Did the agent loop, miss an important step, or stop too early?</p></div>
+        <div class="card"><h3>Context</h3><p>Did the agent receive the right history, source material, user information, and tool results when it needed them?</p></div>
       </div>
-      <div class="callout"><span class="label mono">Preferred grading order</span><p><strong>Start with relative judgment:</strong> given the same scenario, is candidate A better, worse, or equivalent to candidate B or the reference—and why? Pairwise comparison is usually more stable than asking a judge to invent an absolute score in isolation. Convert comparisons into an absolute scale only after the preference signal is calibrated.</p></div>
-      <h3>The ground-truth ladder</h3>
-      <p>Reference data should begin with approved real scenarios because they contain realistic intent, constraints, state, and failure modes. Those scenarios can seed synthetic generation at scale: produce candidate inputs, expected tool outcomes, successful traces, reference artifacts, controlled defects, and hard negative examples. But synthetic data is a proposal, not truth by declaration.</p>
+      <p>Cost and latency are measured alongside these judgments. They are not substitutes for quality, but they show whether an improvement is operationally worthwhile.</p>
+    </section>
+
+    <section id="references">
+      <span class="label mono">03 · Reference data</span>
+      <h2>Ground the judges in real work, then scale with synthetic data.</h2>
+      <p>Hand-written scenarios are useful, but they rarely capture the variety of real usage. The strongest starting point is approved, de-identified production-shaped data: actual goals, realistic state, long conversations, common tool combinations, and known failure modes.</p>
+      <p>Models can expand those examples into a larger evaluation set. They can create paraphrases, edge cases, longer conversations, expected tool results, successful traces, strong reference artifacts, and deliberately flawed outputs. This gives the judge both positive examples and hard negatives.</p>
       <div class="steps">
-        <div class="step"><div class="step-body"><h3>Anchor in real data</h3><p>Sample approved, de-identified tasks and preserve the properties that made them representative: workflow, context, tool mix, task length, and success conditions.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Generate structured variants</h3><p>Use models to create paraphrases, boundary cases, long-horizon extensions, reference outputs, known-good traces, and deliberately flawed alternatives for each failure class.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Validate the references</h3><p>Human reviewers or deterministic validators accept, repair, or reject synthetic references. Record provenance, reviewer agreement, and the conditions under which each reference is valid.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Version the evaluation set</h3><p>Freeze scenario, rubric, reference set, judge prompt, judge model, rendering process, and acceptance policy so results remain reproducible.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Start with an approved real scenario</h3><p>Keep the properties that make the task realistic while removing private or identifying information.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Generate controlled variants</h3><p>Create alternate inputs, references, and known failure cases without changing the capability being tested.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Validate before use</h3><p>A human reviewer or deterministic checker accepts, repairs, or rejects each synthetic reference. Generated data is a proposal, not ground truth by default.</p></div></div>
+        <div class="step"><div class="step-body"><h3>Version the package</h3><p>Store the scenario, rubric, references, judge configuration, and provenance together so a result can be reproduced.</p></div></div>
       </div>
-      <p>Not every open-ended task has one perfect golden output. In those cases, ground truth is a <strong>reference package</strong>: the original request, must-satisfy constraints, accepted examples, disallowed failures, tool or state invariants, and a factor-specific rubric. The judge compares against this package instead of copying one answer's surface form.</p>
-      <h3>Relative grading before scalar scoring</h3>
-      <p>For a regression test, present the judge with the baseline and candidate in randomized order, hide system identity, and ask for a factor-by-factor preference with cited evidence. Repeat or ensemble judgments when the decision is high impact. Track win, loss, and tie rates by factor; then calibrate any composite score against human preference rather than treating the model's raw number as inherently meaningful.</p>
+      <h3>A reference is not always one perfect answer</h3>
+      <p>Creative and open-ended tasks may have many valid outputs. For those tasks, use a reference package: required constraints, accepted examples, disallowed failures, expected state changes, and a clear rubric. The judge grades against the package without forcing the candidate to copy one surface form.</p>
     </section>
 
-    <section id="record">
-      <span class="label mono">04 · The run record</span>
-      <h2>Diagnosis begins with recording what actually happened.</h2>
-      <p>If a failed run only stores the conversation and the final score, the investigator has to reconstruct the execution from fragments. A useful run record keeps the scenario, configuration, context, calls, results, artifacts, timings, errors, and judge evidence connected by stable identifiers.</p>
-      <div class="pipeline" aria-label="Evaluation pipeline">
-        <div class="node"><b>Scenario</b><span>Goal, starting state, constraints, success criteria</span></div>
-        <div class="node"><b>Instrumented run</b><span>Turns, decisions, tool calls, state transitions</span></div>
-        <div class="node"><b>Layered judges</b><span>Artifact, tools, trace, context, performance</span></div>
-        <div class="node"><b>Diagnosis</b><span>Failure class, first divergence, supporting evidence</span></div>
-        <div class="node"><b>Regression signal</b><span>Baseline delta, confidence, ownership</span></div>
+    <section id="evidence">
+      <span class="label mono">04 · Run evidence</span>
+      <h2>Record enough of the run to explain the grade.</h2>
+      <p>The judge should see the evidence needed for the factor it is evaluating. An outcome judge needs the request, reference package, and rendered artifact. A tool judge needs the intended subgoal, tool call, result, and resulting state. A context judge needs the information available to the agent at that point in time.</p>
+      <div class="record" role="img" aria-label="Essential agent run record">
+        <div><span class="key">scenario</span>: goal, starting state, constraints, reference package</div>
+        <div><span class="key">configuration</span>: model, prompt, tools, memory, evaluator version</div>
+        <div><span class="key">trajectory</span>: observable decisions, actions, retries, checkpoints</div>
+        <div><span class="key">tool evidence</span>: inputs, outputs, errors, resulting state</div>
+        <div><span class="key">artifacts</span>: intermediate and final renderable outputs</div>
+        <div><span class="key">performance</span>: tokens, calls, retries, cost, latency</div>
       </div>
-      <div class="record" role="img" aria-label="Example structured evaluation run record">
-        <div><span class="key">run</span>: <span class="value">scenario + configuration + version</span></div>
-        <div class="indent"><span class="key">inputs</span>: user goal, starting state, available context</div>
-        <div class="indent"><span class="key">trajectory</span>: decisions, actions, retries, checkpoints</div>
-        <div class="indent"><span class="key">tools</span>: normalized inputs, outputs, errors, duration</div>
-        <div class="indent"><span class="key">artifacts</span>: final and intermediate renderable outputs</div>
-        <div class="indent"><span class="key">judges</span>: rubric, evidence shown, verdict, confidence</div>
-        <div class="indent"><span class="key">metrics</span>: tokens, latency, cost, calls, failure class</div>
-      </div>
-      <p>For public or production traffic, recording must be designed with privacy from the start: consent or approved use, de-identification, strict access controls, purpose-limited retention, and a clear deletion path. Raw hidden chain-of-thought is neither required nor desirable; observable actions, concise decision summaries, state transitions, and tool evidence provide a safer diagnostic record.</p>
+      <p>Production-derived records need consent or approved use, de-identification, access controls, limited retention, and a deletion path. Raw hidden chain-of-thought is not required; observable actions, concise decision summaries, state transitions, and tool evidence are more useful and safer to store.</p>
     </section>
 
-    <section id="scenarios">
-      <span class="label mono">05 · Scenario strategy</span>
-      <h2>Combine stable coverage with the shape of real work.</h2>
-      <p>A healthy suite has two complementary sources. A curated set gives repeatable coverage of core capabilities and known failure modes. Traffic-derived scenarios reveal what users actually ask, including long conversations and unexpected combinations. Together they provide the seed material for a larger, controlled synthetic evaluation set.</p>
+    <section id="grading">
+      <span class="label mono">05 · Grading</span>
+      <h2>Prefer relative comparison before absolute scores.</h2>
+      <p>It is difficult for a judge to invent a reliable score for one output in isolation. It is usually easier to ask a focused question: for the same scenario and reference package, is candidate A better, worse, or equivalent to candidate B?</p>
+      <p>Show the baseline and candidate in randomized order and hide which system produced each one. Ask for a decision on each factor, require evidence, and report win, loss, and tie rates. Deterministic checks—such as schema validity, required elements, state invariants, and exact constraints—should run before model judgment.</p>
+      <div class="callout"><span class="label mono">Example</span><p>Instead of asking “Is this image an 8 out of 10?”, ask “Which image better satisfies the layout, brand, and content requirements in the reference package? Cite the visible evidence for each factor.”</p></div>
+      <p>A scalar score can still be useful for dashboards, but it should be derived from calibrated factor-level decisions rather than treated as the source of truth.</p>
+    </section>
+
+    <section id="calibration">
+      <span class="label mono">06 · Judge calibration</span>
+      <h2>Evaluate the judges before trusting their grades.</h2>
+      <p>Create a reviewed calibration set containing clear wins, clear failures, close calls, and ties. Compare the judge's decisions with human preferences for each factor, not only the overall result.</p>
       <div class="grid">
-        <div class="card"><h3>Curated scenarios</h3><p>Small, reviewed, versioned, and tied to explicit capabilities. They become dependable smoke tests and regression anchors.</p></div>
-        <div class="card"><h3>Traffic-derived scenarios</h3><p>Sampled from approved telemetry, de-identified, assembled into complete task histories, and reviewed before joining the evaluation set.</p></div>
-        <div class="card"><h3>Adversarial scenarios</h3><p>Designed around ambiguity, missing context, tool failures, interruptions, retries, and other boundaries where the runtime must recover.</p></div>
-        <div class="card"><h3>Long-horizon scenarios</h3><p>Multi-turn tasks that stress memory, state, handoffs, resumability, and the compounding effects of small early mistakes.</p></div>
-        <div class="card"><h3>Synthetic variants</h3><p>Model-generated extensions of validated real scenarios: paraphrases, edge cases, controlled failures, alternate references, and difficult negative examples.</p></div>
-        <div class="card"><h3>Reference packages</h3><p>Versioned rubrics, constraints, accepted examples, state invariants, and reviewed expected outputs that give LLM/VLM judges a grounded comparison target.</p></div>
+        <div class="card"><h3>Agreement</h3><p>Measure how often the judge matches reviewed human decisions and where disagreement occurs.</p></div>
+        <div class="card"><h3>Position bias</h3><p>Swap candidate order. The verdict should not change simply because an output appears first.</p></div>
+        <div class="card"><h3>Consistency</h3><p>Repeat the same judgment to learn how stable the decision is, especially for close comparisons.</p></div>
+        <div class="card"><h3>Change control</h3><p>Recalibrate when the judge model, prompt, renderer, rubric, or reference set changes.</p></div>
       </div>
-      <p>Sampling should be explicit. Useful axes include workflow type, task length, tool mix, failure frequency, model configuration, user segment, and recency. The goal is not to mirror traffic volume exactly; it is to represent important behavior and preserve enough rare failures to learn from them.</p>
+      <p>The evaluation pipeline also needs normal software tests. Filters, defaults, fixtures, joins, and schemas can fail while still producing believable numbers. Run an unchanged scenario several times to measure the noise floor before treating a small movement as real.</p>
     </section>
 
-    <section id="verdicts">
-      <span class="label mono">06 · Two kinds of truth</span>
-      <h2>A successful tool call and a successful outcome are different claims.</h2>
-      <p>Infrastructure often marks a tool call successful when it returns without an exception. For evaluation, that definition is too weak. A call can complete yet use the wrong object, produce an empty artifact, apply a change in the wrong location, or add no value to the task.</p>
-      <div class="grid">
-        <div class="card"><h3>Tool verdict</h3><p>Validate schema, permissions, target, parameters, execution result, state mutation, and whether the call contributed to the plan.</p></div>
-        <div class="card"><h3>Output verdict</h3><p>Evaluate the final artifact against the user's intent, reference material, explicit constraints, and domain-specific quality criteria.</p></div>
+    <section id="regression">
+      <span class="label mono">07 · Regression decisions</span>
+      <h2>Turn judge preferences into a reliable release signal.</h2>
+      <p>Map every scenario to the capabilities it exercises—such as planning, memory, a specific tool, or visual output. Compare a candidate with a versioned baseline while changing one variable at a time. This makes the result easier to attribute.</p>
+      <p>A gate should consider factor-level win rates, important hard failures, judge confidence, and normal variance. It should also report tokens, cost, latency, tool calls, and retries. A cheaper run is only better if it maintains the required quality.</p>
+      <p>Automated blocking comes last. First establish trustworthy references, complete evidence, calibrated judges, stable baselines, and clear ownership for approving exceptions.</p>
+    </section>
+
+    <section id="rollout">
+      <span class="label mono">08 · Practical rollout</span>
+      <h2>Build the system in the order that makes each result trustworthy.</h2>
+      <details open><summary>1 · Measure the current noise</summary><div class="detail"><p>Run an unchanged scenario several times. Measure variation in outputs, judge preferences, cost, and latency.</p></div></details>
+      <details><summary>2 · Build the run record</summary><div class="detail"><p>Capture scenarios, configurations, traces, tool evidence, artifacts, timings, and evaluator inputs under stable identifiers.</p></div></details>
+      <details><summary>3 · Create reference packages</summary><div class="detail"><p>Start from approved real scenarios, generate controlled synthetic variants, validate them, and record provenance.</p></div></details>
+      <details><summary>4 · Add factor-specific judges</summary><div class="detail"><p>Begin with final outcomes and high-impact tools, then add trajectory and context evaluation.</p></div></details>
+      <details><summary>5 · Calibrate and test</summary><div class="detail"><p>Compare with human preferences, test order bias and consistency, and add tests for the evaluation pipeline.</p></div></details>
+      <details><summary>6 · Enable regression gates</summary><div class="detail"><p>Use controlled comparisons and noise-aware thresholds only after the earlier layers are dependable.</p></div></details>
+      <div class="done" style="margin-top:2rem">
+        <span class="label mono">A mature eval</span>
+        <h2>One run should produce a clear answer.</h2>
+        <p>After changing a model, prompt, tool, memory strategy, or runtime component, the system should show:</p>
+        <ul>
+          <li>which workflows improved or regressed;</li>
+          <li>which factor caused the change and what evidence supports it;</li>
+          <li>whether the change is larger than normal variance; and</li>
+          <li>what happened to cost, tokens, retries, and latency.</li>
+        </ul>
+        <p>That is the shift from a scorecard to an engineering tool.</p>
       </div>
-      <p>These verdicts should remain separate. A good output can mask wasteful or risky execution; a technically correct sequence of calls can still create a poor result. Each verdict can be produced by an LLM/VLM judge using the evidence and reference package appropriate to that factor. Together they narrow the search space for the failure.</p>
-    </section>
-
-    <section id="diagnosis">
-      <span class="label mono">07 · Trace analysis</span>
-      <h2>Find the first meaningful divergence, not just the last visible defect.</h2>
-      <p>Failures often surface late. The final artifact may be wrong because the agent retrieved the wrong input ten actions earlier, silently accepted an empty tool result, or carried a stale state snapshot into the next step. Trace analysis should identify the earliest decision or event that made failure likely.</p>
-      <p>A useful diagnostic view aligns the intended subgoal, observable agent decision, tool input, tool result, resulting state, and judge evidence on one timeline. It should classify likely causes—planning, context, tool selection, parameters, tool implementation, recovery, stopping, or judging—and link each claim to evidence from the record.</p>
-      <div class="callout"><span class="label mono">Analysis policy</span><p>Run expensive trace diagnosis primarily on failed, borderline, or newly regressed cases. Sample successful cases as a control so the analyzer does not learn that every trace must contain a defect.</p></div>
-    </section>
-
-    <section id="regressions">
-      <span class="label mono">08 · Regression gates</span>
-      <h2>Make changes answerable: what moved, by how much, and in which capability?</h2>
-      <p>Regression testing needs more than a before-and-after average. Each scenario should map to the capabilities and components it exercises. Baselines must be versioned. Thresholds must account for the natural variance of model and judge outputs.</p>
-      <div class="grid">
-        <div class="card"><h3>Coverage map</h3><p>Connect prompts, tools, runtime components, memory behavior, and model choices to the scenarios that exercise them.</p></div>
-        <div class="card"><h3>Versioned baseline</h3><p>Record configuration, model, judge, fixtures, environment, and suite version so a comparison can be reproduced.</p></div>
-        <div class="card"><h3>Noise-aware threshold</h3><p>Block on meaningful deltas, not random movement. Use repeated runs and confidence intervals where variance is material.</p></div>
-        <div class="card"><h3>Owned decision</h3><p>Define who updates baselines, who can approve an exception, and what evidence is required to accept a regression.</p></div>
-      </div>
-      <p>The regression gate belongs late in the build sequence. Automating an unreliable metric only makes unreliable decisions faster.</p>
-    </section>
-
-    <section id="comparisons">
-      <span class="label mono">09 · Controlled comparisons</span>
-      <h2>Compare models, prompts, tools, cost, and latency one variable at a time.</h2>
-      <p>Agent experiments become difficult to interpret when the model, prompt, tool schema, judge, and scenario set all change together. Every comparison should declare its independent variable and freeze the rest of the configuration.</p>
-      <p>Report quality beside operational metrics: input and output tokens, cached tokens, number of model calls, tool round trips, retries, wall-clock latency, and estimated cost. Segment results by task type because a configuration that wins on short retrieval work may lose on long creative workflows.</p>
-      <p>Use the same recorded evidence for both quality diagnosis and efficiency analysis. Then a cheaper run can be understood as genuinely more efficient, rather than merely doing less work or receiving an easier scenario.</p>
-    </section>
-
-    <section id="trust">
-      <span class="label mono">10 · Evaluate the evaluator</span>
-      <h2>The eval system is production software. Test it like production software.</h2>
-      <p>Filters, defaults, fixtures, data joins, rendering, and judge prompts can drift while still returning plausible numbers. That is particularly dangerous: a broken evaluator often fails silently.</p>
-      <div class="steps">
-        <div class="step"><div class="step-body"><h3>Measure the noise floor</h3><p>Run the same unchanged scenario and configuration multiple times. Quantify score variance, judge variance, latency variance, and failure-class stability before interpreting small deltas.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Test data and defaults</h3><p>Add unit and integration tests for filters, joins, scenario assembly, missing fields, configuration inheritance, schema changes, and stale fixtures.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Calibrate judges</h3><p>Compare LLM/VLM verdicts with reviewed human pairwise preferences, test repeated judgments, inspect disagreement by factor, and use criteria that describe observable evidence. Measure position bias by swapping candidate order, test self-consistency, and recalibrate whenever the judge model, prompt, renderer, or reference set changes.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Keep comparisons single-variable</h3><p>Reject reports that accidentally mix changes in model, prompt, tool, judge, scenario set, or environment unless the experiment explicitly studies the combination.</p></div></div>
-      </div>
-    </section>
-
-    <section id="workstreams">
-      <span class="label mono">11 · Implementation plan</span>
-      <h2>Eight workstreams turn the framework into an operating system for quality.</h2>
-      <details open><summary>01 · Scenarios from real traffic</summary><div class="detail"><p>Define privacy and sampling policy, mine approved telemetry, reconstruct complete conversations, de-identify content, review examples, and version the resulting scenario set.</p></div></details>
-      <details><summary>02 · Complete run recording</summary><div class="detail"><p>Capture configuration, context, observable decisions, tool inputs and outputs, state transitions, artifacts, judge inputs, errors, tokens, and timings under stable run identifiers.</p></div></details>
-      <details><summary>03 · Tool-level verdicts</summary><div class="detail"><p>Give each tool a semantic success contract. Evaluate parameter correctness, target selection, resulting state, necessity, and recovery behavior—not only whether the call returned.</p></div></details>
-      <details><summary>04 · Output-quality evaluation</summary><div class="detail"><p>Build task-specific reference packages from approved real scenarios, scale them through reviewed synthetic generation, and use calibrated LLM/VLM judges for blinded relative grading, rendered artifact inspection, and constraint checks.</p></div></details>
-      <details><summary>05 · Trace analysis and attribution</summary><div class="detail"><p>Align subgoals, actions, results, and state on a timeline. Find the first meaningful divergence and classify the likely cause with evidence links and confidence.</p></div></details>
-      <details><summary>06 · Regression gates</summary><div class="detail"><p>Map code and capabilities to scenarios, create versioned baselines, establish noise-aware thresholds, report scoped deltas, and define baseline ownership and exception policy.</p></div></details>
-      <details><summary>07 · Model, cost, and latency comparison</summary><div class="detail"><p>Run blinded, randomized pairwise comparisons with one declared variable, consistent scenario and reference packages, calibrated LLM/VLM judges, and segmented reporting across quality, tokens, calls, retries, cost, and latency.</p></div></details>
-      <details><summary>08 · Trust in the evaluation system</summary><div class="detail"><p>Test evaluator code, fixtures, schemas, filters, defaults, and renderers. Measure repeatability and calibrate judge agreement before using the results to block releases.</p></div></details>
-    </section>
-
-    <section id="sequence">
-      <span class="label mono">12 · Execution order</span>
-      <h2>Build the evidence chain before the release gate.</h2>
-      <div class="steps">
-        <div class="step"><div class="step-body"><h3>Establish the noise floor</h3><p>Run one representative scenario repeatedly without changing the system. Learn how much movement is normal.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Harden evaluator code</h3><p>Test filters, defaults, fixtures, configuration, and data contracts in parallel with the initial measurement.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Complete run recording</h3><p>Make every later verdict traceable to a consistent, privacy-aware evidence record.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Add tool verdicts</h3><p>Start with tools that mutate state or dominate failures, then broaden semantic success checks.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Mine realistic scenarios</h3><p>Develop the telemetry pipeline alongside instrumentation and review the first traffic-derived set.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Improve output judging</h3><p>Add goldens where they make sense, explicit criteria elsewhere, and calibration against human review.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Build trace attribution</h3><p>Use the now-complete records and verdicts to locate the first meaningful divergence.</p></div></div>
-        <div class="step"><div class="step-body"><h3>Enable regression gates</h3><p>Only after repeatability, coverage, attribution, and ownership are strong enough to support an automated decision.</p></div></div>
-      </div>
-      <p>Controlled model and efficiency comparisons become useful once attribution works; otherwise a lower score or higher cost remains difficult to explain.</p>
-    </section>
-
-    <section id="done" class="done">
-      <span class="label mono">13 · Definition of done</span>
-      <h2>What a mature eval should make possible.</h2>
-      <p>After changing a prompt, model, tool, memory strategy, or runtime component, an engineer should be able to run the suite and answer:</p>
-      <ul>
-        <li>Which workflows improved or regressed?</li>
-        <li>Was the first failure in context, planning, tool use, execution, recovery, output, or judging?</li>
-        <li>What trace evidence supports that diagnosis?</li>
-        <li>How confident are we that the movement exceeds normal variance?</li>
-        <li>What did the change do to tokens, cost, latency, retries, and tool round trips?</li>
-        <li>Can the result be reproduced from a versioned scenario and configuration?</li>
-      </ul>
-      <p><strong>That is the shift:</strong> from a test that says a run was bad to an evaluation system that helps the team understand, fix, and prevent the failure.</p>
     </section>
   </article>
 </main>
